@@ -24,7 +24,9 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     public Application() {
         initComponents();
         Drawer.setScene(new Scene());
-        CollisionSystem.setCollisionController(new CollisionController());
+       
+        /*CollisionSystem.setCollisionController(new CollisionController());
+        
         Drawer.addToDraw(block1);
         Drawer.addPlayer();
         super.setContentPane(Drawer.getScene());
@@ -32,14 +34,18 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         //CollisionSystem.getCollisionController().execute();
         CollisionSystem.addCollisionObject(block1);
         initPlayer(new Point(80,150));
+        */
         clock.start();
         
         
     }
     
+    public void menu(){
+        
+    }
     
     public void initLevel(int levelNumber){
-    
+        
     }
     
     public void initPlayer(Point position){

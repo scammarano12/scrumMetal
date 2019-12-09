@@ -92,9 +92,9 @@ public class Bullet extends SolidObject implements Runnable,Cloneable,Movable,Dr
     }
 
     @Override
-    public Rectangle getDraw() {
-        //return this.images.get(currentDir);
-        return getHitbox();
+    public Image getDraw() {
+        return this.images.get(currentDir);
+        //return getHitbox();
     }
     
    

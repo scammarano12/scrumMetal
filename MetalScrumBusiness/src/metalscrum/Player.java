@@ -22,10 +22,10 @@ public class Player extends Character {
     
     public Player(Point position, int width, int heigth, String id, boolean isVisible, int health, Direction currentDir,Weapon weapon) {
         super(position, width, heigth, id, isVisible, health, currentDir,weapon);    
-        images.put(Direction.RIGHT,loadImage(rightPlayer));
-        images.put(Direction.LEFT,loadImage(leftPlayer));
-        images.put(Direction.UP,loadImage(upPlayer));
-        images.put(Direction.DOWN,loadImage(downPlayer));
+        images.put(Direction.RIGHT,super.loadImage(rightPlayer));
+        images.put(Direction.LEFT,super.loadImage(leftPlayer));
+        images.put(Direction.UP,super.loadImage(upPlayer));
+        images.put(Direction.DOWN,super.loadImage(downPlayer));
         
 
     }
@@ -50,9 +50,9 @@ public class Player extends Character {
     }
 
     @Override
-    public Rectangle getDraw() {
-        //return images.get(currentDir);
-        return getHitbox();
+    public Image getDraw() {
+        return images.get(currentDir);
+        //return getHitbox();
     }
     
   
