@@ -24,6 +24,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     public Application() {
         initComponents();
         Drawer.setScene(new Scene());
+       
         CollisionSystem.setCollisionController(new CollisionController());
         
         Drawer.addToDraw(block1);
@@ -48,7 +49,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     }
     
     public void initPlayer(Point position){
-        Player player = new Player(position,40,40,"player",true,100,Direction.RIGHT,new Weapon(2));
+        Player player = new Player(position,29,38,"player",true,100,Direction.RIGHT,new Weapon(2));
         PlayerController controller = new PlayerController();
        
         controllers.add(controller);
@@ -124,7 +125,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     }
     
     Timer clock = new Timer(10,this);
-    Block block1 = new Block(new Point(80,200),300,30,"block",true);
+    Block block1 = new Block(new Point(80,200),426,96,"block",true);
     private List<CharacterController> controllers = new LinkedList<>();
     @Override
     public void actionPerformed(ActionEvent e) {

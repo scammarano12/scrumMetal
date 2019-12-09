@@ -32,7 +32,13 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     
     public void shoot(){
         System.out.println("sparo");
+        
+        if(currentDir==Direction.RIGHT)
+            currentDir=Direction.SHOOTING_RIGHT;
+        else if(currentDir==Direction.LEFT)
+            currentDir=Direction.SHOOTING_LEFT;
         weapon.shoot(position, currentDir,this.width);
+        
     }
 
     public int getHealth() {

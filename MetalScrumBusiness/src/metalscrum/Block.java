@@ -14,15 +14,16 @@ import java.awt.Rectangle;
  * @author stefano
  */
 public class Block extends SolidObject implements Drawable{
-    private static final String image = "src/resources/block.png";
+    private static final String platform = "src/resources/platform.png";
 
     public Block(Point position, int width, int heigth, String id, boolean isVisible) {
         super(position, width, heigth, id, isVisible);
+        images.put(Direction.RIGHT, super.loadImage(platform));
     }
 
     @Override
     public Image getDraw() {
-        return this.images.get(currentDir); //To change body of generated methods, choose Tools | Templates.
+        return this.images.get(Direction.RIGHT); //To change body of generated methods, choose Tools | Templates.
         
     }
     

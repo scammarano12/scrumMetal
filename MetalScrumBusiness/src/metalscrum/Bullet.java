@@ -19,20 +19,19 @@ import java.util.logging.Logger;
 public class Bullet extends SolidObject implements Runnable,Cloneable,Movable,Drawable{
     private int damage;
     private boolean active;
-    private Direction d;
     private HashMap<Direction,Image> images;
     private final static String LEFT_BULLET = "src/resources/leftbullet.png";
     private final static String RIGHT_BULLET = "src/resources/rightbullet.png";
     
 
-    public Bullet(Point position, int width, int heigth, String id, boolean isVisible,int damage,Direction d) {
+    public Bullet(Point position, int width, int heigth, String id, boolean isVisible,int damage,Direction currentDir) {
         super(position, width, heigth, id, isVisible);
         this.damage=damage;
         active = true;
-        this.d=d;
+        this.currentDir=currentDir;
         this.images = new HashMap<>();
-        images.put(Direction.LEFT,super.loadImage(LEFT_BULLET));
-        images.put(Direction.LEFT,super.loadImage(RIGHT_BULLET));
+        images.put(Direction.SHOOTING_LEFT,super.loadImage(LEFT_BULLET));
+        images.put(Direction.SHOOTING_RIGHT,super.loadImage(RIGHT_BULLET));
         
     }
 
@@ -77,10 +76,10 @@ public class Bullet extends SolidObject implements Runnable,Cloneable,Movable,Dr
             try {
                 Thread.sleep(3);
                 
-                    if(d == Direction.LEFT){
+                    if(currentDir== Direction.SHOOTING_LEFT){
                         move(-1,0);
                     }
-                else if(d == Direction.RIGHT){
+                else if(currentDir == Direction.SHOOTING_RIGHT){
                     move(1,0);
                 }
                 

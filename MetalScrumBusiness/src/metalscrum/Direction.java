@@ -11,5 +11,7 @@ public enum Direction {
     UP,
     DOWN,
     LEFT,
-    RIGHT;
+    RIGHT,
+    SHOOTING_LEFT,
+    SHOOTING_RIGHT;
 }
