@@ -8,6 +8,7 @@ package metalscrum;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.Timer;
 
@@ -30,7 +31,9 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         Drawer.getScene().setFocusable(true);
         //CollisionSystem.getCollisionController().execute();
         CollisionSystem.addCollisionObject(block1);
+        initPlayer(new Point(0,150));
         clock.start();
+        
         
     }
     
@@ -40,16 +43,17 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     }
     
     public void initPlayer(Point position){
-        Player player = new Player(new Point(0,150),40,40,"player",true,100,Direction.RIGHT,new Weapon(2));
+        Player player = new Player(position,40,40,"player",true,100,Direction.RIGHT,new Weapon(2));
         PlayerController controller = new PlayerController();
        
         controllers.add(controller);
         
         controller.addMovable(player);
-        this.addKeyListener(controller);
+        this.getContentPane().addKeyListener(controller);
         Drawer.addToDraw(player);
         CollisionSystem.addCollisionSubject(player);
         CollisionSystem.addCollisionObject(player);
+        
     }
     
     
@@ -116,7 +120,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     
     Timer clock = new Timer(10,this);
     Block block1 = new Block(new Point(0,200),300,30,"block",true);
-    private List<CharacterController> controllers;
+    private List<CharacterController> controllers = new LinkedList<>();
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == clock){

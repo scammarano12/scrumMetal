@@ -27,7 +27,13 @@ public class CollisionSystem {
     public  static void addCollisionSubject(SolidObject c){
         CollisionSystem.cc.addSubject(c);
     }
+    public static void removeCollisionObject (SolidObject o){
+        CollisionSystem.cc.removeObj(o);
+    }
     
+    public static void removeCollisionSubject (SolidObject s){
+        CollisionSystem.cc.removeSubject(s);
+    }
     
     
     

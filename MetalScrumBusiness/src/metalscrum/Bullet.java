@@ -63,6 +63,8 @@ public class Bullet extends SolidObject implements Runnable,Cloneable,Movable,Dr
         
         if(c.getObject()!=null){
         Drawer.removeFromDraw(this);
+        CollisionSystem.removeCollisionObject(this);
+        CollisionSystem.removeCollisionSubject(this);
         active = false;
         }
     }
