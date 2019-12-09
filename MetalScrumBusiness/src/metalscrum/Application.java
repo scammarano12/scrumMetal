@@ -8,8 +8,14 @@ package metalscrum;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 
 /**
@@ -26,15 +32,19 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         Drawer.setScene(new Scene());
        
         CollisionSystem.setCollisionController(new CollisionController());
-        
+        /*
         Drawer.addToDraw(block1);
         Drawer.addPlayer();
-        super.setContentPane(Drawer.getScene());
-        Drawer.getScene().setFocusable(true);
-        //CollisionSystem.getCollisionController().execute();
-        CollisionSystem.addCollisionObject(block1);
-        initPlayer(new Point(80,150));
         
+        
+        //CollisionSystem.getCollisionController().execute();
+        
+        initPlayer(new Point(80,150));
+        */
+         super.setContentPane(Drawer.getScene());
+        Drawer.getScene().setFocusable(true);
+        initLevel(1);
+       
         clock.start();
         
         
@@ -45,7 +55,44 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     }
     
     public void initLevel(int levelNumber){
+        try {
+            Reader is = new FileReader("src/resources/provaLevel1.txt");
+            Scanner s = new Scanner(is);
+            int width =60;
+            int heigth =60;
+            int j =0;
+            int count = 0;
+            s.nextLine();
+            while(s.hasNext()){
+                String level = s.nextLine();
+                count=0;
+                for(int i =0; i<level.length()-2;i++){
+                    char c = level.charAt(i+1);
+                   
+                    if(c=='1'){
+                        Block b = new Block(new Point(count*width,j*heigth),40 ,40,"block",true);
+                        Drawer.addToDraw(b);
+                         CollisionSystem.addCollisionObject(b);
+                         count++;
+                    }
+                    if(c=='p'){
+                        initPlayer(new Point(count*width,j*heigth));
+                        count++;
+                    }
+                    if(c=='0'){
+                        count++;
+                    }
+                }
+                j++;
+            }
+                
+               
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+             
     }
     
     public void initPlayer(Point position){

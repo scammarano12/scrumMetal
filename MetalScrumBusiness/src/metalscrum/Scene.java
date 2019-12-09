@@ -23,7 +23,7 @@ public class Scene extends JPanel {
     }
     
     public synchronized void addToDraw(Drawable d){
-        
+        System.out.println("aggiungo");
         this.objects.add(d);
         
     }

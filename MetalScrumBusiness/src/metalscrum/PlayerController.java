@@ -59,7 +59,7 @@ public class PlayerController extends CharacterController implements KeyListener
     @Override
     public void updatePositions(){
         for(Movable m: characters){
-            System.out.println(shoot);
+            
             if(shoot){
                 ((Player) m).shoot();
             }

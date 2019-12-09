@@ -77,11 +77,11 @@ public class CollisionController {
                     if (subjectHitBox.x == objHitBox.x + objHitBox.width - 1 && (subjectHitBox.y+subjectHitBox.height -1 > objHitBox.y || subjectHitBox.y < objHitBox.y + objHitBox.height)) {
                         collision.setLeft(true);
                     }
-                    System.out.println(collision);
+                    
                     subject.setCollision(collision);
                     object.setCollision(collision);
                 } 
-                //System.out.println(collision);
+                
                
 
             }
