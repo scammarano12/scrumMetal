@@ -5,8 +5,6 @@
  */
 package metalscrum;
 
-
-
 /**
  *
  * @author stefano

@@ -57,16 +57,7 @@ public class Scene extends JPanel {
         
     
     public synchronized void createPlayer(){
-        Player player = new Player(new Point(0,150),40,40,"player",true,100,Direction.RIGHT,new Weapon(2));
-        PlayerController controller = new PlayerController();
-       
-        controllers.add(controller);
         
-        controller.addMovable(player);
-        this.addKeyListener(controller);
-        addToDraw(player);
-        CollisionSystem.addCollisionSubject(player);
-        CollisionSystem.addCollisionObject(player);
         
     }
     

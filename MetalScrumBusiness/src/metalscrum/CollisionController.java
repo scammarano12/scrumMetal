@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package metalscrum;
-
-
-
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.LinkedList;
