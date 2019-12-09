@@ -61,23 +61,23 @@ public class CollisionController {
                 if (subjectHitBox.intersects(objHitBox) && object.isVisible() && !object.getId().equals(subject.getId())) {
                     collision.setObject(object);
                 
-                    if (subjectHitBox.y > objHitBox.y) {
+                    if (subjectHitBox.y  > objHitBox.y ) {
                         collision.setTop(true);
                         
                     }
-                    if (subjectHitBox.y < objHitBox.y) {
+                    if (subjectHitBox.y + subjectHitBox.height == objHitBox.y +1) {
                         collision.setDown(true);
                        
                     }
                     
-                    if (subjectHitBox.x < objHitBox.x && subjectHitBox.y > objHitBox.y &&  subjectHitBox.y < objHitBox.y + objHitBox.height ) {
+                    if ( subjectHitBox.x+subjectHitBox.width-1 == objHitBox.x && (subjectHitBox.y+subjectHitBox.height -1 > objHitBox.y || subjectHitBox.y < objHitBox.y + objHitBox.height)) {
                         collision.setRigth(true);
                         
                     }
-                    if (subjectHitBox.x > objHitBox.x && subjectHitBox.y > objHitBox.y &&  subjectHitBox.y < objHitBox.y + objHitBox.height ) {
+                    if (subjectHitBox.x == objHitBox.x + objHitBox.width - 1 && (subjectHitBox.y+subjectHitBox.height -1 > objHitBox.y || subjectHitBox.y < objHitBox.y + objHitBox.height)) {
                         collision.setLeft(true);
                     }
-
+                    System.out.println(collision);
                     subject.setCollision(collision);
                     object.setCollision(collision);
                 } 

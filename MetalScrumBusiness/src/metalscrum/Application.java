@@ -31,7 +31,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         Drawer.getScene().setFocusable(true);
         //CollisionSystem.getCollisionController().execute();
         CollisionSystem.addCollisionObject(block1);
-        initPlayer(new Point(0,150));
+        initPlayer(new Point(80,150));
         clock.start();
         
         
@@ -119,12 +119,12 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     }
     
     Timer clock = new Timer(10,this);
-    Block block1 = new Block(new Point(0,200),300,30,"block",true);
+    Block block1 = new Block(new Point(80,200),300,30,"block",true);
     private List<CharacterController> controllers = new LinkedList<>();
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == clock){
-            CollisionSystem.getCollisionController().checkCollision();
+            CollisionSystem.checkCollision();
             for(CharacterController c :controllers){
                 c.updatePositions();
             }

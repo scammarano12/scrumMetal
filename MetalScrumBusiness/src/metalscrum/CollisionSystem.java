@@ -35,6 +35,9 @@ public class CollisionSystem {
         CollisionSystem.cc.removeSubject(s);
     }
     
+    public static void checkCollision(){
+         CollisionSystem.cc.checkCollision();
+    }
     
     
 }
