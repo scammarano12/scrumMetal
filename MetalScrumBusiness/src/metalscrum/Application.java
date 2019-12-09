@@ -8,6 +8,7 @@ package metalscrum;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.Timer;
@@ -24,14 +25,34 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     public Application() {
         initComponents();
         Drawer.setScene(new Scene());
+        
+        Block blockDown = new Block(new Point(0,super.getHeight()-50),super.getWidth(),30,"block",true);
+        //Block blockUp = new Block(new Point(0,200),300,30,"block",true); 
+        //Block blockLeft = new Block(new Point(0,0),2,super.getHeight(),"block",true);
+        //Block blockRight = new Block(new Point(super.getWidth()-2,0),2,super.getHeight(),"block",true);
+        
+        
         CollisionSystem.setCollisionController(new CollisionController());
-        Drawer.addToDraw(block1);
+        
+        Drawer.addToDraw(blockDown);
+        //Drawer.addToDraw(blockLeft);
+        //Drawer.addToDraw(blockRight);
+
+        
+        
         Drawer.addPlayer();
         super.setContentPane(Drawer.getScene());
         Drawer.getScene().setFocusable(true);
         //CollisionSystem.getCollisionController().execute();
-        CollisionSystem.addCollisionObject(block1);
+        
+        
+        CollisionSystem.addCollisionObject(blockDown);
+        //CollisionSystem.addCollisionObject(blockLeft);
+        //CollisionSystem.addCollisionObject(blockRight);
+        
         initPlayer(new Point(0,150));
+        initEnemy(3); //prende il numero di nemici da generare!
+        
         clock.start();
         
         
@@ -53,6 +74,36 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         Drawer.addToDraw(player);
         CollisionSystem.addCollisionSubject(player);
         CollisionSystem.addCollisionObject(player);
+        
+    }
+    
+    
+    //aggiunto SSS
+    public synchronized void initEnemy(int numEnemy){
+        
+        //da spostare, magari, in quale classe apposita a fare ciò!
+        ArrayList<Point> positionEnemy = new ArrayList<>();
+        positionEnemy.add(new Point(50,150));
+        positionEnemy.add(new Point(250,150));
+        positionEnemy.add(new Point(500,150));
+        
+        
+        
+        for(int i=0; i<numEnemy; i++){
+            //Aggiunto SSS
+            Enemy enemy = new Enemy(positionEnemy.get(i),20,20,"enemy",true,100,Direction.RIGHT,new Weapon(2));
+            
+            EnemyController controller = new EnemyController(100,300);
+        
+            controllers.add(controller);
+
+            controller.addMovable(enemy);
+            //associare all'enemy un timer per spostarsi e sparare!
+            Drawer.addToDraw(enemy);
+            CollisionSystem.addCollisionSubject(enemy);
+            CollisionSystem.addCollisionObject(enemy);
+        }
+        
         
     }
     

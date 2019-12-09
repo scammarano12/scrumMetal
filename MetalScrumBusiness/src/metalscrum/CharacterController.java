@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author stefano
  */
-public abstract class CharacterController {
+public abstract class CharacterController{
     protected List<Movable> characters;
     protected int gravitylv;
     protected int dx;
