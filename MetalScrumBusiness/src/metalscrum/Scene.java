@@ -4,10 +4,7 @@
  * and open the template in the editor.
  */
 package metalscrum;
-
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Polygon;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JPanel;
