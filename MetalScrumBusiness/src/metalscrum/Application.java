@@ -49,7 +49,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     }
     
     public void initPlayer(Point position){
-        Player player = new Player(position,29,38,"player",true,100,Direction.RIGHT,new Weapon(2));
+        Player player = new Player(position,50,45,"player",true,100,Direction.RIGHT,new Weapon(2));
         PlayerController controller = new PlayerController();
        
         controllers.add(controller);
