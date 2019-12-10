@@ -5,6 +5,7 @@
  */
 package metalscrum;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -50,8 +51,9 @@ public class Enemy extends Character {
     }
 
     @Override
-    public Rectangle getDraw() {
-        return getHitbox();
+    public Image getDraw() {
+        return images.get(currentDir);
+        //return getHitbox();
     }
     
 }

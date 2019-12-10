@@ -35,10 +35,10 @@ public class Weapon {
             if(System.currentTimeMillis() - time > 1000/rateo){
                 time = System.currentTimeMillis() ;
                 Bullet b = null;
-                if(d == Direction.RIGHT){
-                     b = new Bullet(new Point (position.x+width+1,position.y),3,3,"bullet",true,1,d);
-                }else{
-                     b = new Bullet(new Point (position.x-1,position.y),3,3,"bullet",true,1,d);
+                if(d == Direction.SHOOTING_RIGHT){
+                     b = new Bullet(new Point (position.x+width+2,position.y),57,19,"bullet",true,1,d);
+                }else if(d == Direction.SHOOTING_LEFT){
+                     b = new Bullet(new Point (position.x-width-2,position.y),49,19,"bullet",true,1,d);
                 }
                 Drawer.addToDraw(b);
                 CollisionSystem.addCollisionSubject(b);

@@ -8,9 +8,15 @@ package metalscrum;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 
 /**
@@ -26,45 +32,66 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         initComponents();
         Drawer.setScene(new Scene());
         
-        Block blockDown = new Block(new Point(0,super.getHeight()-50),super.getWidth(),30,"block",true);
-        //Block blockUp = new Block(new Point(0,200),300,30,"block",true); 
-        //Block blockLeft = new Block(new Point(0,0),2,super.getHeight(),"block",true);
-        //Block blockRight = new Block(new Point(super.getWidth()-2,0),2,super.getHeight(),"block",true);
-        
-        
         CollisionSystem.setCollisionController(new CollisionController());
         
-        Drawer.addToDraw(blockDown);
-        //Drawer.addToDraw(blockLeft);
-        //Drawer.addToDraw(blockRight);
-
-        
-        
-        Drawer.addPlayer();
-        super.setContentPane(Drawer.getScene());
-        Drawer.getScene().setFocusable(true);
         //CollisionSystem.getCollisionController().execute();
+
+        super.setContentPane(Drawer.getScene());
+        Drawer.getScene().setFocusable(true);  
         
-        
-        CollisionSystem.addCollisionObject(blockDown);
-        //CollisionSystem.addCollisionObject(blockLeft);
-        //CollisionSystem.addCollisionObject(blockRight);
-        
-        initPlayer(new Point(0,150));
-        initEnemy(3); //prende il numero di nemici da generare!
-        
+        initLevel(1);  
         clock.start();
-        
         
     }
     
+    public void menu(){
+        
+    }
     
     public void initLevel(int levelNumber){
-    
+        try {
+            Reader is = new FileReader("src/resources/provaLevel1.txt");
+            Scanner s = new Scanner(is);
+            int width =60;
+            int heigth =60;
+            int j =0;
+            int count = 0;
+            s.nextLine();
+            while(s.hasNext()){
+                String level = s.nextLine();
+                count=0;
+                for(int i =0; i<level.length()-2;i++){
+                    char c = level.charAt(i+1);
+                   
+                    if(c=='1'){
+                        Block b = new Block(new Point(count*width,j*heigth),40 ,40,"block",true);
+                        Drawer.addToDraw(b);
+                         CollisionSystem.addCollisionObject(b);
+                         count++;
+                    }
+                    if(c=='p'){
+                        initPlayer(new Point(count*width,j*heigth));
+                        initEnemy(3); //prende il numero di nemici da generare!
+                        count++;
+                    }
+                    if(c=='0'){
+                        count++;
+                    }
+                }
+                j++;
+            }
+                
+               
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+             
     }
     
     public void initPlayer(Point position){
-        Player player = new Player(position,40,40,"player",true,100,Direction.RIGHT,new Weapon(2));
+        Player player = new Player(position,50,45,"player",true,100,Direction.RIGHT,new Weapon(2));
         PlayerController controller = new PlayerController();
        
         controllers.add(controller);
@@ -91,7 +118,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
         for(int i=0; i<numEnemy; i++){
             //Aggiunto SSS
-            Enemy enemy = new Enemy(positionEnemy.get(i),20,20,"enemy",true,100,Direction.RIGHT,new Weapon(2));
+            Enemy enemy = new Enemy(positionEnemy.get(i),50,45,"enemy",true,100,Direction.RIGHT,new Weapon(2));
             
             EnemyController controller = new EnemyController(100,300);
         
@@ -170,12 +197,12 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     }
     
     Timer clock = new Timer(10,this);
-    Block block1 = new Block(new Point(0,200),300,30,"block",true);
+   
     private List<CharacterController> controllers = new LinkedList<>();
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == clock){
-            CollisionSystem.getCollisionController().checkCollision();
+            CollisionSystem.checkCollision();
             for(CharacterController c :controllers){
                 c.updatePositions();
             }

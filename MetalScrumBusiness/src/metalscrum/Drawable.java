@@ -14,7 +14,7 @@ import java.awt.Rectangle;
  * @author stefano
  */
 public interface Drawable {
-    public Rectangle getDraw();
+    public Image getDraw();
     public Point getPosition();
     
 }

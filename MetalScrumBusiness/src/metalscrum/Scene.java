@@ -23,7 +23,7 @@ public class Scene extends JPanel {
     }
     
     public synchronized void addToDraw(Drawable d){
-        
+        System.out.println("aggiungo");
         this.objects.add(d);
         
     }
@@ -45,9 +45,9 @@ public class Scene extends JPanel {
     public synchronized void paint(Graphics g){
          
         for(Drawable d: objects){
-            //g.drawImage(d.getDraw(), d.getPosition().x, d.getPosition().y, this);
+            g.drawImage(d.getDraw(), d.getPosition().x, d.getPosition().y, this);
            
-            g.drawRect(d.getDraw().x, d.getDraw().y, d.getDraw().width, d.getDraw().height);
+            //g.drawRect(d.getDraw().x, d.getDraw().y, d.getDraw().width, d.getDraw().height);
         }
         
     }

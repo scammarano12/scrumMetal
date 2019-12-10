@@ -17,15 +17,19 @@ import java.util.HashMap;
 public class Player extends Character {
     private final static String rightPlayer="src/resources/playerRight.png";
     private final static String leftPlayer="src/resources/playerLeft.png";
-    private final static String upPlayer="src/resources/playerUp.png";
-    private final static String downPlayer="src/resources/playerDown.png";
+    //private final static String upPlayer="src/resources/playerUp.png";
+    //private final static String downPlayer="src/resources/playerDown.png";
+    private final static String shootingLeft="src/resources/shootingLeft.png";
+    private final static String shootingRight="src/resources/shootingRight.png";
     
     public Player(Point position, int width, int heigth, String id, boolean isVisible, int health, Direction currentDir,Weapon weapon) {
         super(position, width, heigth, id, isVisible, health, currentDir,weapon);    
-        images.put(Direction.RIGHT,loadImage(rightPlayer));
-        images.put(Direction.LEFT,loadImage(leftPlayer));
-        images.put(Direction.UP,loadImage(upPlayer));
-        images.put(Direction.DOWN,loadImage(downPlayer));
+        images.put(Direction.RIGHT,super.loadImage(rightPlayer));
+        images.put(Direction.LEFT,super.loadImage(leftPlayer));
+        //images.put(Direction.UP,super.loadImage(upPlayer));
+        //images.put(Direction.DOWN,super.loadImage(downPlayer));
+        images.put(Direction.SHOOTING_LEFT,super.loadImage(shootingLeft));
+        images.put(Direction.SHOOTING_RIGHT,super.loadImage(shootingRight));
         
 
     }
@@ -50,9 +54,9 @@ public class Player extends Character {
     }
 
     @Override
-    public Rectangle getDraw() {
-        //return images.get(currentDir);
-        return getHitbox();
+    public Image getDraw() {
+        return images.get(currentDir);
+        //return getHitbox();
     }
     
   

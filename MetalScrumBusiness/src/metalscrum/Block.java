@@ -7,22 +7,24 @@ package metalscrum;
 
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.Rectangle;
+
 
 /**
  *
  * @author stefano
  */
 public class Block extends SolidObject implements Drawable{
+    private static final String platform = "src/resources/platform.png";
 
     public Block(Point position, int width, int heigth, String id, boolean isVisible) {
         super(position, width, heigth, id, isVisible);
+        images.put(Direction.RIGHT, super.loadImage(platform));
     }
 
     @Override
-    public Rectangle getDraw() {
-        //return this.images.get(currentDir); //To change body of generated methods, choose Tools | Templates.
-        return getHitbox();
+    public Image getDraw() {
+        return this.images.get(Direction.RIGHT); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }

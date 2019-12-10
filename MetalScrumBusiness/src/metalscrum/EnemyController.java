@@ -23,8 +23,6 @@ public class EnemyController extends CharacterController implements ActionListen
     private float distance;
     private Timer timer;
     
-    private boolean shoot=false;
-    
     
     
     public EnemyController(int rangeMin, int rangeMax){
@@ -113,12 +111,10 @@ public class EnemyController extends CharacterController implements ActionListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.shoot = true;
-        System.out.print("SPAROOOOOOO!");
+        //System.out.print("SPAROOOOOOO!");
         for (Movable m : characters) {
             ((Enemy) m).shoot();
         }
-        this.shoot = false;
     }
     
 
