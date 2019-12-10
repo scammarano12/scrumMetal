@@ -5,6 +5,8 @@
  */
 package metalscrum;
 
+import java.awt.Color;
+import java.awt.Image;
 import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,6 +16,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -24,6 +28,20 @@ public class LevelBuilder {
     
     
     public static List<Point> createStage(int levelNumber ,int number){
+        
+        Drawer.getScene().addToDraw(new Drawable() {
+            @Override
+            public Image getDraw() {
+                ImageIcon ii = new ImageIcon("src/resources/Levels/Level"+levelNumber+"/background.png");
+                return ii.getImage();
+            }
+
+            @Override
+            public Point getPosition() {
+                return new Point(0,0);
+            }
+        });
+        
         LinkedList<Point> positions = new LinkedList<>();
         try {
             Reader is = new FileReader("src/resources/Levels/Level"+levelNumber+"/stage"+number+".txt");
