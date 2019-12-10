@@ -36,13 +36,13 @@ public class Weapon {
                 time = System.currentTimeMillis() ;
                 Bullet b = null;
                 if(d == Direction.SHOOTING_RIGHT){
-                     b = new Bullet(new Point (position.x+width+1,position.y),57,19,"bullet",true,1,d);
+                     b = new Bullet(new Point (position.x+width+10,position.y),57,19,"bullet",true,1,d);
                 }else if(d == Direction.SHOOTING_LEFT){
-                     b = new Bullet(new Point (position.x-1-49,position.y),49,19,"bullet",true,1,d);
+                     b = new Bullet(new Point (position.x-49-10,position.y),49,19,"bullet",true,1,d);
                 }
                 
                 Drawer.addToDraw(b);
-                CollisionSystem.addCollisionSubject(b);
+                CollisionSystem.addCollisionObject(b);
                 return b;
                 
                 

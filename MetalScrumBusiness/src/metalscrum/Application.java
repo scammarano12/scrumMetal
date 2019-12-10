@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -31,21 +32,9 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         initComponents();
         initGame();
        
-        
-       
-        
-        
-        
-        
-        //CollisionSystem.getCollisionController().execute();
-        
-      
-        
-        
         initLevel(1);
-       
+        initEnemy(1);
         clock.start();
-        
         
     }
     
@@ -81,6 +70,36 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         Drawer.addToDraw(player);
         CollisionSystem.addCollisionSubject(player);
         CollisionSystem.addCollisionObject(player);
+        
+    }
+    
+    
+    //aggiunto SSS
+    public synchronized void initEnemy(int numEnemy){
+        
+        //da spostare, magari, in quale classe apposita a fare ciò!
+        ArrayList<Point> positionEnemy = new ArrayList<>();
+        positionEnemy.add(new Point(120,400));
+        positionEnemy.add(new Point(250,150));
+        positionEnemy.add(new Point(500,150));
+        
+        
+        
+        for(int i=0; i<numEnemy; i++){
+            //Aggiunto SSS
+            Enemy enemy = new Enemy(positionEnemy.get(i),50,45,"enemy",true,100,Direction.RIGHT,new Weapon(2));
+            
+            EnemyController controller = new EnemyController(100,300);
+        
+            controllers.add(controller);
+
+            controller.addMovable(enemy);
+            //associare all'enemy un timer per spostarsi e sparare!
+            Drawer.addToDraw(enemy);
+            CollisionSystem.addCollisionSubject(enemy);
+            CollisionSystem.addCollisionObject(enemy);
+        }
+        
         
     }
     
