@@ -32,16 +32,16 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         Drawer.setScene(new Scene());
        
         CollisionSystem.setCollisionController(new CollisionController());
-        /*
-        Drawer.addToDraw(block1);
-        Drawer.addPlayer();
+       
+        
+        
         
         
         //CollisionSystem.getCollisionController().execute();
         
-        initPlayer(new Point(80,150));
-        */
-         super.setContentPane(Drawer.getScene());
+      
+        
+        super.setContentPane(Drawer.getScene());
         Drawer.getScene().setFocusable(true);
         initLevel(1);
        
@@ -172,7 +172,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     }
     
     Timer clock = new Timer(10,this);
-    Block block1 = new Block(new Point(80,200),426,96,"block",true);
+   
     private List<CharacterController> controllers = new LinkedList<>();
     @Override
     public void actionPerformed(ActionEvent e) {
