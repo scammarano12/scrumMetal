@@ -36,7 +36,7 @@ public class Player extends Character {
     
 
     @Override
-    public void move(int dx, int dy) {
+    public synchronized void move(int dx, int dy) {
         if (dx>0 && !collision.isRigth() || dx<0 && !collision.isLeft()){ 
             if(dx>0)
                 currentDir = Direction.RIGHT;
@@ -46,8 +46,9 @@ public class Player extends Character {
             getPosition().translate(dx,0);
         }
         if(dy<0 && !collision.isTop() || dy>0 && !collision.isDown() ){
-               
-                 getPosition().translate(0, dy) ;
+                 
+                     
+                     getPosition().translate(0, dy) ;
         }
        
         

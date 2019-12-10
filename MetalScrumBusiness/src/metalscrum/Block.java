@@ -32,11 +32,8 @@ public class Block extends SolidObject implements Drawable{
     @Override
     public Image getDraw() {
         int imagesCount = width/40;
-        if(imagesCount == 1)
-            return this.images.get(currentDir);
-        
-       
-        
+    
+         
        
            
         BufferedImage images1[] = new BufferedImage[imagesCount];

@@ -31,7 +31,7 @@ public class PlayerController extends CharacterController implements KeyListener
                dx=1;
            break;
            case KeyEvent.VK_UP:
-                dy=-10;
+                dy=-15;
             break;
               
        }
@@ -59,18 +59,28 @@ public class PlayerController extends CharacterController implements KeyListener
     @Override
     public void updatePositions(){
         for(Movable m: characters){
-            
+            Player p = (Player) m;
             if(shoot){
-                ((Player) m).shoot();
+                p.shoot();
             }
             
-            m.move(dx, dy+gravitylv);
+            p.move(dx, dy+gravitylv);
             if(dy!=0){
                 dy=dy+gravitylv;
             }
             
             
+            for(Bullet b : p.getFiredBullets()){
+                if(b.getCurrentDir() == Direction.SHOOTING_LEFT){
+                        b.move(-10,0);
+                    }
+                else if(b.getCurrentDir() == Direction.SHOOTING_RIGHT){
+                    b.move(10,0);
+                }
+            }
+            
         }
+        
     }
 
    

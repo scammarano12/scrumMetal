@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author stefano
  */
-public class Bullet extends SolidObject implements Runnable,Cloneable,Movable,Drawable{
+public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
     private int damage;
     private boolean active;
     private HashMap<Direction,Image> images;
@@ -36,7 +36,7 @@ public class Bullet extends SolidObject implements Runnable,Cloneable,Movable,Dr
     }
 
     @Override
-    public void move(int dx, int dy) {
+    public synchronized void move(int dx, int dy) {
          position.translate(dx, 0);
     }
 
@@ -44,6 +44,10 @@ public class Bullet extends SolidObject implements Runnable,Cloneable,Movable,Dr
     public Bullet clone() throws CloneNotSupportedException {
          Bullet clone = (Bullet) super.clone();
          return clone;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
    
@@ -69,27 +73,6 @@ public class Bullet extends SolidObject implements Runnable,Cloneable,Movable,Dr
     }
 
    
-
-    @Override
-    public void run() {
-        while(active){
-            try {
-                Thread.sleep(3);
-                
-                    if(currentDir== Direction.SHOOTING_LEFT){
-                        move(-1,0);
-                    }
-                else if(currentDir == Direction.SHOOTING_RIGHT){
-                    move(1,0);
-                }
-                
-            } //To change body of generated methods, choose Tools | Templates.
-            catch (InterruptedException ex) {
-                Logger.getLogger(Bullet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
     @Override
     public Image getDraw() {
         return this.images.get(currentDir);

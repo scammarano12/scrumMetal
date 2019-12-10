@@ -50,6 +50,7 @@ public class CollisionController {
     }
 
     public synchronized void checkCollision() {
+        List<Collision> collisions = new LinkedList<>();
         
         for (SolidObject subject : subjects) {
             
@@ -65,7 +66,7 @@ public class CollisionController {
                         collision.setTop(true);
                         
                     }
-                    if (subjectHitBox.y + subjectHitBox.height == objHitBox.y +1) {
+                    if (subjectHitBox.y + subjectHitBox.height == objHitBox.y + 1) {
                         collision.setDown(true);
                        
                     }
@@ -79,16 +80,27 @@ public class CollisionController {
                         collision.setLeft(true);
                     }
                     
+                    
+                   /* 
                     subject.setCollision(collision);
                     object.setCollision(collision);
+*/
                 } 
+                collisions.add(collision);
                 
                
 
             }
-            if(collision.getObject()==null){
-                subject.setCollision(collision);
+            
+        }
+        
+        for(Collision c : collisions){
+            c.getSubject().setCollision(c);
+            
+            if(c.getObject()!= null){
+                c.getObject().setCollision(c);
             }
+            
         }
     }
 

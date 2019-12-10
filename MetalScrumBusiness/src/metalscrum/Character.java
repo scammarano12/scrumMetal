@@ -3,6 +3,8 @@ package metalscrum;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import javax.swing.ImageIcon;
 
@@ -17,7 +19,7 @@ import javax.swing.ImageIcon;
 public abstract class Character extends SolidObject implements Movable,Drawable {
     protected Weapon weapon;
     protected int health;
-    
+    protected List<Bullet> bullets;
 
 
     public Character(Point position, int width, int heigth, String id, boolean isVisible,int health, Direction currentDir,Weapon weapon) {
@@ -26,8 +28,13 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
         this.health=100;
         this.currentDir=Direction.RIGHT;
         this.weapon=weapon;
+         this.bullets = new LinkedList<>();
         
-        
+    }
+    
+    public List<Bullet> getFiredBullets(){
+        bullets.removeIf(b -> !b.isActive());
+        return bullets;
     }
     
     public void shoot(){
@@ -37,7 +44,10 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
             currentDir=Direction.SHOOTING_RIGHT;
         else if(currentDir==Direction.LEFT)
             currentDir=Direction.SHOOTING_LEFT;
-        weapon.shoot(position, currentDir,this.width);
+        Bullet b = weapon.shoot(position, currentDir,this.width);
+        
+        if(b!=null)
+            bullets.add(b);
         
     }
 

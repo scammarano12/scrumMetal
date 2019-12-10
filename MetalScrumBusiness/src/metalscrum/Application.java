@@ -64,50 +64,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     
     public void initLevel(int levelNumber){
         CollisionSystem.setCollisionController(new CollisionController());
-        try {
-            Reader is = new FileReader("src/resources/provaLevel1.txt");
-            Scanner s = new Scanner(is);
-            int width =40;
-            int heigth =24;
-            int j =0;
-            int count = 0;
-            int last = 0;
-            while(s.hasNext()){
-                String level = s.nextLine();
-                count=0;
-                last=0;
-                for(int i =0; i<level.length();i++){
-                    char c = level.charAt(i);
-                    
-                    if(c=='1'){
-                        
-                        last++;
-                        count++;
-                    }else{
-                        if((last>0 && c!='\t')){
-                        System.out.println("blocco");
-                        Block b = new Block(new Point((count-last)*width,j*heigth),width*last ,heigth,"block",true);
-                        Drawer.addToDraw(b);
-                        CollisionSystem.addCollisionObject(b);
-                        last=0;
-                        }
-                    }
-                    if(c=='p'){
-                        initPlayer(new Point(count*width,j*heigth));
-                        count++;
-                    }
-                    if(c=='0'){
-                        count++;
-                    }
-                }
-                j++;
-            }
-                
-               
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        List<Point> l = LevelBuilder.createStage(levelNumber, 1);
+        initPlayer(l.get(0));
         
              
     }
@@ -195,6 +153,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == clock){
             CollisionSystem.checkCollision();
+            
             for(CharacterController c :controllers){
                 c.updatePositions();
             }

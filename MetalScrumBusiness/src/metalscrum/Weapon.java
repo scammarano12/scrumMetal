@@ -30,7 +30,7 @@ public class Weapon {
         
     }
     
-    public void shoot(Point position,Direction d,int width){
+    public Bullet shoot(Point position,Direction d,int width){
             
             if(System.currentTimeMillis() - time > 1000/rateo){
                 time = System.currentTimeMillis() ;
@@ -40,21 +40,14 @@ public class Weapon {
                 }else if(d == Direction.SHOOTING_LEFT){
                      b = new Bullet(new Point (position.x-1-49,position.y),49,19,"bullet",true,1,d);
                 }
+                
                 Drawer.addToDraw(b);
                 CollisionSystem.addCollisionSubject(b);
-                Thread bt = new Thread(b);
-                bt.start();
+                return b;
+                
                 
             }
-            
-        
-           
-           
-    }
-    
-    
-
-    
-    
-    
+            return null;
+}
+      
 }
