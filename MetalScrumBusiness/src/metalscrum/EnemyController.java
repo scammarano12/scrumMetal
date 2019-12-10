@@ -65,7 +65,8 @@ public class EnemyController extends CharacterController implements ActionListen
         
         
         for (Movable m : characters) {  //si può togliere il foreach
-            
+            Enemy e = (Enemy) m;
+            if(e.isAlive()){
             if( ((Enemy)m).getCurrentDir()==Direction.RIGHT ){
                 if(count < this.distance){
                     dx = 1;
@@ -102,6 +103,8 @@ public class EnemyController extends CharacterController implements ActionListen
             
             Collision collision=((Enemy)m).getCollision();
             if (dx>0 && !collision.isRigth() || dx<0 && !collision.isLeft()){ 
+               
+                    
                 m.move(dx,0);
             }
             if(collision.isDown())
@@ -128,7 +131,16 @@ public class EnemyController extends CharacterController implements ActionListen
                 }
             }
 
-            
+            }
+            else{
+                e.getFiredBullets().forEach((b) -> {Drawer.removeFromDraw(b);CollisionSystem.removeCollisionObject(b);});
+                
+                
+                this.characters.remove(e);
+                Drawer.removeFromDraw(e);
+                CollisionSystem.removeCollisionObject(e);
+                CollisionSystem.removeCollisionSubject(e);
+            }
 
         }
     }

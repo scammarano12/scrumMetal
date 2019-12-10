@@ -25,7 +25,7 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     public Character(Point position, int width, int heigth, String id, boolean isVisible,int health, Direction currentDir,Weapon weapon) {
         
         super(position, width, heigth, id, isVisible);
-        this.health=100;
+        this.health=health;
         this.currentDir=Direction.RIGHT;
         this.weapon=weapon;
          this.bullets = new LinkedList<>();
@@ -38,7 +38,8 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     }
     
     public boolean isAlive(){
-        return health>=0;
+        System.out.println(health);
+        return health>0;
     }
     
     public void shoot(){

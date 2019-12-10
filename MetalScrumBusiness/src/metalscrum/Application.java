@@ -133,16 +133,13 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     public synchronized void initEnemy(List<Point> positions){
         
         //da spostare, magari, in quale classe apposita a fare ciò!
-        ArrayList<Point> positionEnemy = new ArrayList<>();
-        positionEnemy.add(new Point(120,400));
-        positionEnemy.add(new Point(250,150));
-        positionEnemy.add(new Point(500,150));
+ 
         
         
         
         for(int i=0; i<positions.size(); i++){
             //Aggiunto SSS
-            Enemy enemy = new Enemy(positions.get(i),50,45,"enemy",true,100,Direction.RIGHT,new Weapon(2));
+            Enemy enemy = new Enemy(positions.get(i),50,45,"enemy",true,4,Direction.RIGHT,new Weapon(2));
             
             EnemyController controller = new EnemyController(100,300);
         
@@ -152,7 +149,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             //associare all'enemy un timer per spostarsi e sparare!
             Drawer.addToDraw(enemy);
             CollisionSystem.addCollisionSubject(enemy);
-            CollisionSystem.addCollisionObject(enemy);
+            //CollisionSystem.addCollisionObject(enemy);
         }
         
         
