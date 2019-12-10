@@ -100,11 +100,29 @@ public class EnemyController extends CharacterController implements ActionListen
             
             
             
+            Collision collision=((Enemy)m).getCollision();
+            if (dx>0 && !collision.isRigth() || dx<0 && !collision.isLeft()){ 
+                m.move(dx,0);
+            }
+            if(collision.isDown())
+                dy=0;
+            else dy=gravitylv;
             
-            m.move(dx, dy + gravitylv);
-                if (dy != 0) {
-                    dy = dy + gravitylv;
+            if( dy>0 && !collision.isDown() ){
+                
+                m.move(0, dy) ;
+            }
+            
+            for(Bullet b : ((Enemy)m).getFiredBullets()){
+                if(b.getCurrentDir() == Direction.SHOOTING_LEFT){
+                        b.move(-10,0);
+                    }
+                else if(b.getCurrentDir() == Direction.SHOOTING_RIGHT){
+                    b.move(10,0);
                 }
+            }
+
+            
 
         }
     }

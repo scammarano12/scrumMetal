@@ -30,16 +30,9 @@ public class Application extends javax.swing.JFrame implements ActionListener{
      */
     public Application() {
         initComponents();
-        Drawer.setScene(new Scene());
-        
-        CollisionSystem.setCollisionController(new CollisionController());
-        
-        //CollisionSystem.getCollisionController().execute();
-
-        super.setContentPane(Drawer.getScene());
-        Drawer.getScene().setFocusable(true);  
-        
-        initLevel(1);  
+        initGame();
+       
+        initLevel(1);
         clock.start();
         
     }
@@ -48,44 +41,21 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
     }
     
+    public void initGame(){
+        Drawer.setScene(new Scene());
+        super.setSize(1280, 720);
+        super.setResizable(false);
+        super.setContentPane(Drawer.getScene());
+        Drawer.getScene().setFocusable(true);
+        
+    }
+    
     public void initLevel(int levelNumber){
-        try {
-            Reader is = new FileReader("src/resources/provaLevel1.txt");
-            Scanner s = new Scanner(is);
-            int width =60;
-            int heigth =60;
-            int j =0;
-            int count = 0;
-            s.nextLine();
-            while(s.hasNext()){
-                String level = s.nextLine();
-                count=0;
-                for(int i =0; i<level.length()-2;i++){
-                    char c = level.charAt(i+1);
-                   
-                    if(c=='1'){
-                        Block b = new Block(new Point(count*width,j*heigth),40 ,40,"block",true);
-                        Drawer.addToDraw(b);
-                         CollisionSystem.addCollisionObject(b);
-                         count++;
-                    }
-                    if(c=='p'){
-                        initPlayer(new Point(count*width,j*heigth));
-                        initEnemy(3); //prende il numero di nemici da generare!
-                        count++;
-                    }
-                    if(c=='0'){
-                        count++;
-                    }
-                }
-                j++;
-            }
-                
-               
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        CollisionSystem.setCollisionController(new CollisionController());
+        List<Point> l = LevelBuilder.createStage(levelNumber, 1);
+        initPlayer(l.remove(0));
+
+        initEnemy(l);
         
              
     }
@@ -106,19 +76,19 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     
     
     //aggiunto SSS
-    public synchronized void initEnemy(int numEnemy){
+    public synchronized void initEnemy(List<Point> positions){
         
         //da spostare, magari, in quale classe apposita a fare ciò!
         ArrayList<Point> positionEnemy = new ArrayList<>();
-        positionEnemy.add(new Point(50,150));
+        positionEnemy.add(new Point(120,400));
         positionEnemy.add(new Point(250,150));
         positionEnemy.add(new Point(500,150));
         
         
         
-        for(int i=0; i<numEnemy; i++){
+        for(int i=0; i<positions.size(); i++){
             //Aggiunto SSS
-            Enemy enemy = new Enemy(positionEnemy.get(i),50,45,"enemy",true,100,Direction.RIGHT,new Weapon(2));
+            Enemy enemy = new Enemy(positions.get(i),50,45,"enemy",true,100,Direction.RIGHT,new Weapon(2));
             
             EnemyController controller = new EnemyController(100,300);
         
@@ -196,13 +166,14 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         });
     }
     
-    Timer clock = new Timer(10,this);
+    Timer clock = new Timer(5,this);
    
     private List<CharacterController> controllers = new LinkedList<>();
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == clock){
             CollisionSystem.checkCollision();
+            
             for(CharacterController c :controllers){
                 c.updatePositions();
             }

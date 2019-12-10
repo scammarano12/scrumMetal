@@ -10,6 +10,8 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.ImageIcon;
 
 
@@ -26,6 +28,7 @@ public abstract class SolidObject {
     protected Collision collision;
     protected HashMap<Direction,Image> images;
     protected Direction currentDir;
+    
 
     public SolidObject(Point position, int width, int heigth, String id, boolean visible) {
         this.position = position;
@@ -35,7 +38,10 @@ public abstract class SolidObject {
         this.visible = visible;
         this.collision=new Collision(this,null,false,false,false,false);
         this.images=new HashMap<>();
+       
     }
+    
+    
     
     protected Image loadImage(String imageName) {
 
@@ -43,6 +49,16 @@ public abstract class SolidObject {
         return ii.getImage();
         
     }
+
+    public Direction getCurrentDir() {
+        return currentDir;
+    }
+
+    public void setCurrentDir(Direction currentDir) {
+        this.currentDir = currentDir;
+    }
+    
+    
     
     public Rectangle getHitbox(){
         return new Rectangle(position.x,position.y,width,heigth);
@@ -56,11 +72,11 @@ public abstract class SolidObject {
         return collision;
     } 
 
-    public  Point getPosition() {
+    public synchronized Point getPosition() {
         return position;
     }
 
-    public   void setPosition(Point position) {
+    public synchronized  void setPosition(Point position) {
         this.position = position;
     }
 

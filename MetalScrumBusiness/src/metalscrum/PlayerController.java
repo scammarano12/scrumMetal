@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
  * @author stefano
  */
 public class PlayerController extends CharacterController implements KeyListener {
-
+    private boolean avaiable=false;
     @Override
     public void keyTyped(KeyEvent e) {
         
@@ -31,7 +31,11 @@ public class PlayerController extends CharacterController implements KeyListener
                dx=1;
            break;
            case KeyEvent.VK_UP:
-                dy=-10;
+               if(avaiable){
+                   dy=-15;
+                   avaiable=false;
+               }
+                
             break;
               
        }
@@ -59,18 +63,43 @@ public class PlayerController extends CharacterController implements KeyListener
     @Override
     public void updatePositions(){
         for(Movable m: characters){
-            
+            Player p = (Player) m;
             if(shoot){
-                ((Player) m).shoot();
+                p.shoot();
             }
-            
-            m.move(dx, dy+gravitylv);
-            if(dy!=0){
-                dy=dy+gravitylv;
+            Collision collision=p.getCollision();
+            if (dx>0 && !collision.isRigth() || dx<0 && !collision.isLeft()){ 
+                if(dx>0)
+                    p.setCurrentDir(Direction.RIGHT);
+                else
+                    p.setCurrentDir(Direction.LEFT);
+
+            p.move(dx,0);
             }
-            
+            if(dy!=gravitylv)
+                    dy+=gravitylv;
+            else if (collision.isDown()){
+                    dy=0;
+                    avaiable=true;
+                }
+            if(dy<0 && !collision.isTop() || dy>0 && !collision.isDown() ){
+                
+                
+                p.move(0, dy) ;
+            }
+
+
+            for(Bullet b : p.getFiredBullets()){
+                if(b.getCurrentDir() == Direction.SHOOTING_LEFT){
+                        b.move(-10,0);
+                    }
+                else if(b.getCurrentDir() == Direction.SHOOTING_RIGHT){
+                    b.move(10,0);
+                }
+            }
             
         }
+        
     }
 
    
