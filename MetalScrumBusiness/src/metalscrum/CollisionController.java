@@ -71,6 +71,7 @@ public class CollisionController {
                     }
                     
                     if ( subjectHitBox.x+subjectHitBox.width-1 == objHitBox.x && (subjectHitBox.y+subjectHitBox.height -1 > objHitBox.y || subjectHitBox.y < objHitBox.y + objHitBox.height)) {
+                        
                         collision.setRigth(true);
                         
                     }

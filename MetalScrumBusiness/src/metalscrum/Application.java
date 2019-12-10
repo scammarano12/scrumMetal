@@ -29,9 +29,9 @@ public class Application extends javax.swing.JFrame implements ActionListener{
      */
     public Application() {
         initComponents();
-        Drawer.setScene(new Scene());
+        initGame();
        
-        CollisionSystem.setCollisionController(new CollisionController());
+        
        
         
         
@@ -41,8 +41,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
       
         
-        super.setContentPane(Drawer.getScene());
-        Drawer.getScene().setFocusable(true);
+        
         initLevel(1);
        
         clock.start();
@@ -54,26 +53,44 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
     }
     
+    public void initGame(){
+        Drawer.setScene(new Scene());
+        super.setSize(1280, 720);
+        super.setResizable(false);
+        super.setContentPane(Drawer.getScene());
+        Drawer.getScene().setFocusable(true);
+        
+    }
+    
     public void initLevel(int levelNumber){
+        CollisionSystem.setCollisionController(new CollisionController());
         try {
             Reader is = new FileReader("src/resources/provaLevel1.txt");
             Scanner s = new Scanner(is);
-            int width =60;
-            int heigth =60;
+            int width =40;
+            int heigth =24;
             int j =0;
             int count = 0;
-            s.nextLine();
+            int last = 0;
             while(s.hasNext()){
                 String level = s.nextLine();
                 count=0;
-                for(int i =0; i<level.length()-2;i++){
-                    char c = level.charAt(i+1);
-                   
+                last=0;
+                for(int i =0; i<level.length();i++){
+                    char c = level.charAt(i);
+                    
                     if(c=='1'){
-                        Block b = new Block(new Point(count*width,j*heigth),40 ,40,"block",true);
+                        
+                        last++;
+                        count++;
+                    }else{
+                        if((last>0 && c!='\t')){
+                        System.out.println("blocco");
+                        Block b = new Block(new Point((count-last)*width,j*heigth),width*last ,heigth,"block",true);
                         Drawer.addToDraw(b);
-                         CollisionSystem.addCollisionObject(b);
-                         count++;
+                        CollisionSystem.addCollisionObject(b);
+                        last=0;
+                        }
                     }
                     if(c=='p'){
                         initPlayer(new Point(count*width,j*heigth));

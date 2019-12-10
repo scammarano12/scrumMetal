@@ -5,8 +5,16 @@
  */
 package metalscrum;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 
 /**
@@ -23,7 +31,41 @@ public class Block extends SolidObject implements Drawable{
 
     @Override
     public Image getDraw() {
-        return this.images.get(Direction.RIGHT); //To change body of generated methods, choose Tools | Templates.
+        int imagesCount = width/40;
+        if(imagesCount == 1)
+            return this.images.get(currentDir);
+        
+       
+        
+       
+           
+        BufferedImage images1[] = new BufferedImage[imagesCount];
+        for(int j = 0; j < images1.length; j++) {
+            images1[j] = new BufferedImage(40, 24, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2d = images1[j].createGraphics();
+            
+            g2d.drawImage(this.images.get(Direction.RIGHT),0, 0, 40, heigth, null);
+            g2d.dispose();
+        } 
+        
+        int widthTotal = 0;
+        for(int j = 0; j < images1.length; j++) {
+            widthTotal += images1[j].getWidth();
+        }
+        
+        int widthCurr = 0;
+        BufferedImage concatImage = new BufferedImage(widthTotal, heigth, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2d = concatImage.createGraphics();
+     
+        for(int j = 0; j < images1.length; j++) {
+            g2d.drawImage(images1[j],widthCurr, 0, 40, heigth, null);
+            widthCurr += images1[j].getWidth();
+        }
+        g2d.dispose();
+        
+        return concatImage;
+        
+        
         
     }
     
