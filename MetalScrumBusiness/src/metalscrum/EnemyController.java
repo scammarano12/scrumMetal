@@ -114,7 +114,13 @@ public class EnemyController extends CharacterController implements ActionListen
             }
             
             for(Bullet b : ((Enemy)m).getFiredBullets()){
-                if(b.getCurrentDir() == Direction.SHOOTING_LEFT){
+                if(b.getHitbox().x>1280 || b.getHitbox().x<0){
+                    
+                    b.setActive(false);
+                    Drawer.removeFromDraw(b);
+                    CollisionSystem.removeCollisionObject(b);
+                }
+                else if(b.getCurrentDir() == Direction.SHOOTING_LEFT){
                         b.move(-10,0);
                     }
                 else if(b.getCurrentDir() == Direction.SHOOTING_RIGHT){

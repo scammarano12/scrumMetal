@@ -49,21 +49,21 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
     public boolean isActive() {
         return active;
     }
+    
+    public void setActive(boolean active){
+        this.active = active;
+    }
 
    
     @Override
     public void setCollision(Collision c) {
-        /*
-        SolidObject subject = c.getSubject();
-        if(c.getSubject().getId().equals("player")){
-          int health = ((Character) subject).getHealth();
-          ((Character) subject).setHealth(health-damage);
+        SolidObject so =c.getSubject();
+        String id = so.getId();
+        if(id.equals("player")){
+            Player p = (Player) so;
+            int currentHealth = p.getHealth();
+            p.setHealth(currentHealth-damage);
         }
-        if(c.getSubject().getId().equals("enemy")){
-            int health = ((Character) subject).getHealth();
-            ((Character) subject).setHealth(health-damage);
-        }
-        */
         
         Drawer.removeFromDraw(this);
         CollisionSystem.removeCollisionObject(this);

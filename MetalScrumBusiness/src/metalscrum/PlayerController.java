@@ -38,7 +38,7 @@ public class PlayerController extends CharacterController implements KeyListener
                 
             break;
               
-       }
+       }   
     }
 
     @Override
@@ -62,8 +62,10 @@ public class PlayerController extends CharacterController implements KeyListener
     
     @Override
     public void updatePositions(){
+        
         for(Movable m: characters){
             Player p = (Player) m;
+            if(p.isAlive()){
             if(shoot){
                 p.shoot();
             }
@@ -90,7 +92,13 @@ public class PlayerController extends CharacterController implements KeyListener
 
 
             for(Bullet b : p.getFiredBullets()){
-                if(b.getCurrentDir() == Direction.SHOOTING_LEFT){
+                if(b.getHitbox().x>1280 || b.getHitbox().x<0){
+                   
+                    b.setActive(false);
+                    Drawer.removeFromDraw(b);
+                    CollisionSystem.removeCollisionObject(b);
+                }
+                else if(b.getCurrentDir() == Direction.SHOOTING_LEFT){
                         b.move(-10,0);
                     }
                 else if(b.getCurrentDir() == Direction.SHOOTING_RIGHT){
@@ -98,7 +106,13 @@ public class PlayerController extends CharacterController implements KeyListener
                 }
             }
             
+        }else{  
+                GameStatus.setGameStatus(4);
+                Drawer.removeFromDraw(p);
+                CollisionSystem.removeCollisionSubject(p);
+            }
         }
+        
         
     }
 

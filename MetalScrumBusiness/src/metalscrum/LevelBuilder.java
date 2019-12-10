@@ -63,11 +63,11 @@ public class LevelBuilder {
                         count++;
                     }else{
                         if((last>0 && c!='\t')){
-                        System.out.println("blocco");
+                        
                         Block b = new Block(new Point((count-last)*width,j*heigth),width*last ,heigth,"block",true);
                         Drawer.addToDraw(b);
                         CollisionSystem.addCollisionObject(b);
-                        CollisionSystem.addCollisionSubject(b);
+                       
                         last=0;
                         }
                     }

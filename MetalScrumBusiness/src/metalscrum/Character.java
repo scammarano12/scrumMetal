@@ -37,8 +37,12 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
         return bullets;
     }
     
+    public boolean isAlive(){
+        return health>=0;
+    }
+    
     public void shoot(){
-        System.out.println("sparo");
+        
         
         if(currentDir==Direction.RIGHT)
             currentDir=Direction.SHOOTING_RIGHT;

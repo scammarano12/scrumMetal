@@ -8,6 +8,8 @@ package metalscrum;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
@@ -30,24 +32,75 @@ public class Application extends javax.swing.JFrame implements ActionListener{
      */
     public Application() {
         initComponents();
-        initGame();
-       
-        initLevel(1);
-        clock.start();
+        checkStatus();
+        
+        
         
     }
     
-    public void menu(){
-        
-    }
+  
     
-    public void initGame(){
-        Drawer.setScene(new Scene());
-        super.setSize(1280, 720);
-        super.setResizable(false);
-        super.setContentPane(Drawer.getScene());
-        Drawer.getScene().setFocusable(true);
+    public void checkStatus(){
+        gameStatus = GameStatus.getGameStatus();
+        switch(gameStatus){
+            case 1:
+                Drawer.setScene(new Scene());
+                super.setSize(1280, 720);
+                super.setResizable(false);
+                super.setContentPane(Drawer.getScene());
+               
+                Drawer.getScene().setFocusable(true);
+                initLevel(1);
+                
+                super.getContentPane().addKeyListener(new KeyListener(){
+            @Override
+            public void keyTyped(KeyEvent e) {
+                
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode()==KeyEvent.VK_ESCAPE ){
+                    if(GameStatus.getGameStatus()==0){
+                        GameStatus.setGameStatus(2);
+                    }
+                    else if(GameStatus.getGameStatus()==2){
+                        GameStatus.setGameStatus(0);
+                    }
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                
+            }
+                });
+                
+                GameStatus.setGameStatus(0);
+                clock.start();
+            break;
+            case 0:
+                CollisionSystem.checkCollision();
+            
+            for(CharacterController c :controllers){
+                c.updatePositions();
+            }
+            repaint();
+                System.out.println("in game");
+                 
+                break;
+            case 2:
+                System.out.println("pause");
+                
+                break;
+            case 3:
+               
+                break;
+            case 4:
+                System.out.println("GameOver");
+                break;
         
+        }
     }
     
     public void initLevel(int levelNumber){
@@ -61,13 +114,14 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     }
     
     public void initPlayer(Point position){
-        Player player = new Player(position,50,45,"player",true,100,Direction.RIGHT,new Weapon(2));
+        Player player = new Player(position,50,45,"player",true,1,Direction.RIGHT,new Weapon(2));
         PlayerController controller = new PlayerController();
        
         controllers.add(controller);
         
         controller.addMovable(player);
         this.getContentPane().addKeyListener(controller);
+       
         Drawer.addToDraw(player);
         CollisionSystem.addCollisionSubject(player);
         CollisionSystem.addCollisionObject(player);
@@ -166,21 +220,20 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         });
     }
     
-    Timer clock = new Timer(5,this);
-   
+    private Timer clock = new Timer(5,this);
     private List<CharacterController> controllers = new LinkedList<>();
+    private int gameStatus;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == clock){
-            CollisionSystem.checkCollision();
+            checkStatus();
             
-            for(CharacterController c :controllers){
-                c.updatePositions();
-            }
-            repaint();
             
         }
     }
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
