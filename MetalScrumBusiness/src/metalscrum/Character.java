@@ -44,7 +44,7 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
             currentDir=Direction.SHOOTING_RIGHT;
         else if(currentDir==Direction.LEFT)
             currentDir=Direction.SHOOTING_LEFT;
-        Bullet b = weapon.shoot(position, currentDir,this.width);
+        Bullet b = weapon.shoot(position, currentDir,this.width,this.heigth);
         
         if(b!=null)
             bullets.add(b);
