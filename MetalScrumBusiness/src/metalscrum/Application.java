@@ -20,6 +20,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
+import testmenu.Menu;
 
 /**
  *
@@ -32,6 +33,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
      */
     public Application() {
         initComponents();
+        super.setSize(1280, 720);
+        super.setResizable(false);
         checkStatus();
         
         
@@ -45,8 +48,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         switch(gameStatus){
             case 1:
                 Drawer.setScene(new Scene());
-                super.setSize(1280, 720);
-                super.setResizable(false);
+                
                 super.setContentPane(Drawer.getScene());
                
                 Drawer.getScene().setFocusable(true);
@@ -94,7 +96,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 
                 break;
             case 3:
-               
+                    super.setContentPane(Menu.getStartMenu());
                 break;
             case 4:
                 System.out.println("GameOver");
