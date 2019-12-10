@@ -19,13 +19,16 @@ public class Enemy extends Character {
     
     private final static String rightEnemy="src/resources/enemyRight.png";
     private final static String leftEnemy="src/resources/enemyLeft.png";
-    
+    private final static String shootingright="src/resources/enemyRight.png";
+    private final static String shootingleft="src/resources/enemyLeft.png";
 
 
     public Enemy(Point position, int width, int heigth, String id, boolean isVisible, int health, Direction currentDir, Weapon weapon) {
         super(position, width, heigth, id, isVisible, health, currentDir, weapon);
         images.put(Direction.RIGHT,loadImage(rightEnemy));
         images.put(Direction.LEFT,loadImage(leftEnemy));
+        images.put(Direction.SHOOTING_RIGHT,loadImage(shootingright));
+        images.put(Direction.SHOOTING_LEFT,loadImage(shootingleft));
         
     }
     

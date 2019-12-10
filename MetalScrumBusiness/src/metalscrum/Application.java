@@ -33,7 +33,6 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         initGame();
        
         initLevel(1);
-        initEnemy(1);
         clock.start();
         
     }
@@ -54,7 +53,9 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     public void initLevel(int levelNumber){
         CollisionSystem.setCollisionController(new CollisionController());
         List<Point> l = LevelBuilder.createStage(levelNumber, 1);
-        initPlayer(l.get(0));
+        initPlayer(l.remove(0));
+
+        initEnemy(l);
         
              
     }
@@ -75,7 +76,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     
     
     //aggiunto SSS
-    public synchronized void initEnemy(int numEnemy){
+    public synchronized void initEnemy(List<Point> positions){
         
         //da spostare, magari, in quale classe apposita a fare ciò!
         ArrayList<Point> positionEnemy = new ArrayList<>();
@@ -85,9 +86,9 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
         
         
-        for(int i=0; i<numEnemy; i++){
+        for(int i=0; i<positions.size(); i++){
             //Aggiunto SSS
-            Enemy enemy = new Enemy(positionEnemy.get(i),50,45,"enemy",true,100,Direction.RIGHT,new Weapon(2));
+            Enemy enemy = new Enemy(positions.get(i),50,45,"enemy",true,100,Direction.RIGHT,new Weapon(2));
             
             EnemyController controller = new EnemyController(100,300);
         
@@ -165,7 +166,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         });
     }
     
-    Timer clock = new Timer(10,this);
+    Timer clock = new Timer(5,this);
    
     private List<CharacterController> controllers = new LinkedList<>();
     @Override

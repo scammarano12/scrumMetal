@@ -24,7 +24,7 @@ public class LevelBuilder {
     
     
     public static List<Point> createStage(int levelNumber ,int number){
-        List<Point> positions = new LinkedList<>();
+        LinkedList<Point> positions = new LinkedList<>();
         try {
             Reader is = new FileReader("src/resources/Levels/Level"+levelNumber+"/stage"+number+".txt");
             Scanner s = new Scanner(is);
@@ -53,11 +53,15 @@ public class LevelBuilder {
                         }
                     }
                     if(c=='p'){
-                        positions.add(0,new Point(count*width,j*heigth));
+                        positions.addFirst(new Point(count*width,j*heigth));
                         count++;
                     }
                     if(c=='0'){
                         count++;
+                    }
+                    if(c=='e'){
+                         positions.addLast(new Point(count*width,j*heigth));
+                         count++;
                     }
                 }
                 j++;
