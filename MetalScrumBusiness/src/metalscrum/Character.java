@@ -26,7 +26,7 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
         
         super(position, width, heigth, id, isVisible);
         this.health=100;
-        this.currentDir=Direction.RIGHT;
+        this.currentDir=currentDir;
         this.weapon=weapon;
          this.bullets = new LinkedList<>();
         
