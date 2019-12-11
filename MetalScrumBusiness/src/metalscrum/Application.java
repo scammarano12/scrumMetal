@@ -38,7 +38,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     public Application() {
         initComponents();
         clock=new Timer(5,this);
-        
+        Drawer.setScene(new Scene());
         pause = new MenuPause();
         start = new MenuStart();
         setSize(1280, 720);
@@ -64,7 +64,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         switch(gameStatus){
             case 1:
                 System.out.println("loading");
-                Drawer.setScene(new Scene());
+                Drawer.resetScene();
                 initLevel(1);
                 Drawer.getScene().addKeyListener(new GameListener());
                 super.setContentPane(Drawer.getScene());
@@ -148,7 +148,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
         for(int i=0; i<positions.size(); i++){
             //Aggiunto SSS
-            Enemy enemy = new Enemy(positions.get(i),50,45,"enemy",true,40,Direction.RIGHT,new Weapon(2));
+            Enemy enemy = new Enemy(positions.get(i),50,45,"enemy",true,40,Direction.LEFT,new Weapon(2));
             
             EnemyController controller = new EnemyController(100,300);
         

@@ -24,13 +24,17 @@ public class Drawer {
         Drawer.scene.removeFromDraw(d);
     }
     
-    public static void addPlayer(){
-        Drawer.scene.createPlayer();
-    }
+   
     
     public static Scene getScene(){
         return scene;
     }
+    
+    public static void resetScene(){
+        Drawer.scene.reset();
+               
+    }
+            
     
    
     

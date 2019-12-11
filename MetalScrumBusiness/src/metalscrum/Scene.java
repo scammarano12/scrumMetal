@@ -19,7 +19,7 @@ public class Scene extends JPanel {
     
     public Scene(){
         objects = new LinkedList<>();
-        controllers = new LinkedList<>();
+      
     }
     
     public synchronized void addToDraw(Drawable d){
@@ -37,9 +37,7 @@ public class Scene extends JPanel {
     public synchronized List<Drawable> getObjects(){
         return objects;
     }
-    public synchronized List<CharacterController> getControllers(){
-        return controllers;
-    }
+    
     
     @Override
     public synchronized void paint(Graphics g){
@@ -53,11 +51,8 @@ public class Scene extends JPanel {
     }
         
     
-    public synchronized void createPlayer(){
-        
-        
+    public void reset(){
+        objects.removeAll(objects);
     }
-    
-    
     
 }

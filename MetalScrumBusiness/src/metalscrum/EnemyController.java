@@ -32,7 +32,7 @@ public class EnemyController extends CharacterController implements ActionListen
         this.distance = rand.nextInt((this.rangeMax - this.rangeMin) + 1) + this.rangeMin;
         //System.out.println(this.distance);
         
-        this.timer = new Timer((rand.nextInt((10-7)+1)+7)*1000, this);
+        this.timer = new Timer(rand.nextInt(2000-1000)+1000, this);
         timer.start();
         
     }
@@ -133,10 +133,8 @@ public class EnemyController extends CharacterController implements ActionListen
 
             }
             else{
-                e.getFiredBullets().forEach((b) -> {Drawer.removeFromDraw(b);CollisionSystem.removeCollisionObject(b);});
-                
-                
                 this.characters.remove(e);
+                e.getFiredBullets().forEach((b) -> {Drawer.removeFromDraw(b);CollisionSystem.removeCollisionObject(b);});
                 Drawer.removeFromDraw(e);
                 CollisionSystem.removeCollisionObject(e);
                 CollisionSystem.removeCollisionSubject(e);
