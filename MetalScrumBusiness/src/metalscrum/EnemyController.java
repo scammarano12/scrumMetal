@@ -72,6 +72,12 @@ public class EnemyController extends CharacterController implements ActionListen
         for (Movable m : characters) {  //si può togliere il foreach
             Enemy e = (Enemy) m;
             if(e.isAlive()){
+                if(shoot){
+                    e.shoot();
+                    shoot=false;
+                }
+                
+ 
             if( ((Enemy)m).getCurrentDir()==Direction.RIGHT ){
                 if(count < this.distance){
                     dx = 1;
@@ -154,8 +160,10 @@ public class EnemyController extends CharacterController implements ActionListen
         if(e.getSource()==timer){
             System.out.println("ao sparo");
         for (Movable m : characters) {
-            ((Enemy) m).shoot();
+            shoot=true;
+            
         }
+        
         }
     }
     

@@ -30,6 +30,7 @@ public class Enemy extends Character {
         images.put(Direction.SHOOTING_RIGHT,loadImage(shootingright));
         images.put(Direction.SHOOTING_LEFT,loadImage(shootingleft));
         
+        
     }
     
     

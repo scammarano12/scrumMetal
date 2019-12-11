@@ -17,13 +17,14 @@ public abstract class CharacterController{
     protected int gravitylv;
     protected int dx;
     protected int dy;
-    protected boolean shoot=false;
+    protected boolean shoot;
     
     public CharacterController(){
         this.gravitylv=1;
         this.dx=0;
         this.dy=0;
         this.characters=new LinkedList<>();
+        this.shoot=false;
     }
     
     public void addMovable(Movable m){
