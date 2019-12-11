@@ -52,8 +52,12 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         setResizable(false);
         pause.setResume(new ResumeListener());
         start.setPlay(new PlayListener());
+        start.setVolumeOff(new VolumeOffListener());
+        start.setVolumeOn(new VolumeOnListener());
         pause.setRestart(new RestartListener());
         pause.setQuit(new QuitListener());
+        pause.setVolumeOff(new VolumeOffListener());
+        pause.setVolumeOn(new VolumeOnListener());
         gameOver= new MenuGameOver();
         gameOver.setQuit(new QuitListener());
         gameOver.setPlay(new PlayListener());
@@ -315,7 +319,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     
     }
     
-    public class QuitListener implements ActionListener{
+    private class QuitListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -326,6 +330,25 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         }
 
 }
+    
+    private class VolumeOffListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            mp.pause();
+        }
+
+}
+    
+    private class VolumeOnListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            mp.play();
+        }
+
+}
+    
     
     
     private class GameListener implements KeyListener{

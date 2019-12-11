@@ -29,8 +29,8 @@ public class MenuStart extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        volumeOnButton = new javax.swing.JButton();
+        volumeOffButton = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         playButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -41,18 +41,18 @@ public class MenuStart extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 0, 0));
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/volumeon.png"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        volumeOnButton.setBackground(new java.awt.Color(0, 0, 0));
+        volumeOnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/volumeon.png"))); // NOI18N
+        volumeOnButton.setBorderPainted(false);
+        volumeOnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                volumeOnButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/volumeof.png"))); // NOI18N
-        jButton4.setBorderPainted(false);
+        volumeOffButton.setBackground(new java.awt.Color(0, 0, 0));
+        volumeOffButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/volumeof.png"))); // NOI18N
+        volumeOffButton.setBorderPainted(false);
 
         jButton5.setBackground(new java.awt.Color(0, 0, 0));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/quit.png"))); // NOI18N
@@ -89,9 +89,9 @@ public class MenuStart extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(volumeOffButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(volumeOnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(562, 562, 562))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 314, Short.MAX_VALUE)
@@ -127,21 +127,20 @@ public class MenuStart extends javax.swing.JPanel {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 108, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(volumeOnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(volumeOffButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)))
                 .addGap(58, 58, 58))
         );
 
-        jButton3.getAccessibleContext().setAccessibleName("buttonVolumeOn");
-        jButton4.getAccessibleContext().setAccessibleName("buttonVolumeOff");
+        volumeOnButton.getAccessibleContext().setAccessibleName("buttonVolumeOn");
+        volumeOffButton.getAccessibleContext().setAccessibleName("buttonVolumeOff");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void volumeOnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volumeOnButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_volumeOnButtonActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -149,15 +148,21 @@ public class MenuStart extends javax.swing.JPanel {
     public void setPlay(ActionListener al){
         playButton.addActionListener(al);
     }
+    public void setVolumeOff(ActionListener al){
+        volumeOffButton.addActionListener(al);
+    }
+    public void setVolumeOn(ActionListener al){
+        volumeOnButton.addActionListener(al);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JButton playButton;
+    private javax.swing.JButton volumeOffButton;
+    private javax.swing.JButton volumeOnButton;
     // End of variables declaration//GEN-END:variables
 }

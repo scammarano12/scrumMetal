@@ -32,6 +32,12 @@ public class MenuPause extends javax.swing.JPanel {
     public void setRestart(ActionListener al){
         restartButton.addActionListener(al);
     }
+    public void setVolumeOff(ActionListener al){
+        volumeOffButton.addActionListener(al);
+    }
+    public void setVolumeOn(ActionListener al){
+        volumeOnButton.addActionListener(al);
+    }
      public void setQuit(ActionListener al){
         quitButton.addActionListener(al);
     }
@@ -49,8 +55,8 @@ public class MenuPause extends javax.swing.JPanel {
         quitButton = new javax.swing.JButton();
         restartButton = new javax.swing.JButton();
         resumeButton = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        prova = new javax.swing.JButton();
+        volumeOnButton = new javax.swing.JButton();
+        volumeOffButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 0));
@@ -73,13 +79,13 @@ public class MenuPause extends javax.swing.JPanel {
         resumeButton.setBorder(null);
         resumeButton.setBorderPainted(false);
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/volumeon.png"))); // NOI18N
-        jButton4.setBorderPainted(false);
+        volumeOnButton.setBackground(new java.awt.Color(0, 0, 0));
+        volumeOnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/volumeon.png"))); // NOI18N
+        volumeOnButton.setBorderPainted(false);
 
-        prova.setBackground(new java.awt.Color(0, 0, 0));
-        prova.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/volumeof.png"))); // NOI18N
-        prova.setBorderPainted(false);
+        volumeOffButton.setBackground(new java.awt.Color(0, 0, 0));
+        volumeOffButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/volumeof.png"))); // NOI18N
+        volumeOffButton.setBorderPainted(false);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/pausemenu_copia.png"))); // NOI18N
@@ -106,9 +112,9 @@ public class MenuPause extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(prova, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(volumeOffButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(volumeOnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(565, 565, 565))
         );
         layout.setVerticalGroup(
@@ -123,19 +129,19 @@ public class MenuPause extends javax.swing.JPanel {
                     .addComponent(resumeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prova, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(volumeOnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(volumeOffButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(163, 163, 163))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton prova;
     private javax.swing.JButton quitButton;
     private javax.swing.JButton restartButton;
     private javax.swing.JButton resumeButton;
+    private javax.swing.JButton volumeOffButton;
+    private javax.swing.JButton volumeOnButton;
     // End of variables declaration//GEN-END:variables
 }
