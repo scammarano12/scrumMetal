@@ -97,7 +97,7 @@ public class EnemyControllerTest {
      * Test of updatePositions method, of class EnemyController.
      */
     @Test
-    public void testUpdatePositions() {
+    public void testUpdatePositionsLeft() {
         System.out.println("updatePositions");
         enemy.setCurrentDir(Direction.LEFT);
         EnemyController instance = new EnemyController(100, 300);
@@ -113,7 +113,7 @@ public class EnemyControllerTest {
     }
 
     @Test
-    public void testUpdatePositions1() {
+    public void testUpdatePositionsRight() {
         System.out.println("updatePositions");
         enemy.setCurrentDir(Direction.RIGHT);
         EnemyController instance = new EnemyController(100, 300);
