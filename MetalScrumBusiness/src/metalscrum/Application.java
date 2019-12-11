@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import testmenu.Menu;
+import testmenu.MenuGameOver;
 import testmenu.MenuPause;
 import testmenu.MenuStart;
 
@@ -39,6 +40,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         initComponents();
         clock=new Timer(5,this);
         Drawer.setScene(new Scene());
+        CollisionSystem.setCollisionController(new CollisionController());
         pause = new MenuPause();
         start = new MenuStart();
         setSize(1280, 720);
@@ -46,16 +48,25 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         pause.setResume(new ResumeListener());
         start.setPlay(new PlayListener());
         pause.setRestart(new RestartListener());
+        pause.setQuit(new QuitListener());
+        gameOver= new MenuGameOver();
+        gameOver.setQuit(new QuitListener());
+        gameOver.setPlay(new PlayListener());
+        getContentPane().add(gameOver);
+        
         getContentPane().add(start);
         getContentPane().add(pause);
         getContentPane().add(Drawer.getScene());
         Drawer.getScene().setSize(1280, 720);
+        gameOver.setSize(1280, 720);
         pause.setSize(1280, 720);
         start.setSize(1280, 720);
         pause.setVisible(false);
         start.setVisible(false);
+        gameOver.setVisible(false);
         Drawer.getScene().setVisible(false);
         
+        controllers = new LinkedList<>();
         checkStatus();
         
         
@@ -67,8 +78,10 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         gameStatus = GameStatus.getGameStatus();
         switch(gameStatus){
             case 1:
-                System.out.println("loading");
                 Drawer.resetScene();
+                CollisionSystem.resetCollisionSystem();
+                controllers.forEach(c-> c.deActive());
+                System.out.println("loading");
                 Drawer.getScene().setVisible(true);
                 initLevel(1);
                 Drawer.getScene().addKeyListener(new GameListener());
@@ -110,14 +123,19 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             case 4:
                 System.out.println("GameOver");
                 clock.stop();
+                Drawer.getScene().setVisible(false);
+                gameOver.setVisible(true);
+                gameOver.requestFocusInWindow();
+                
                 break;
         
         }
     }
     
     public void initLevel(int levelNumber){
-        CollisionSystem.setCollisionController(new CollisionController());
         controllers = new LinkedList<>();
+        
+        
         List<Point> l = LevelBuilder.createStage(levelNumber, 1);
         initPlayer(l.remove(0));
         initEnemy(l);
@@ -234,6 +252,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     private int gameStatus;
     private MenuPause pause ;
     private MenuStart start;
+    private MenuGameOver gameOver;
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -274,11 +293,24 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             start.setVisible(false);
+            gameOver.setVisible(false);
             GameStatus.setGameStatus(1);
             checkStatus();
         }
     
     }
+    
+    public class QuitListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            pause.setVisible(false);
+            gameOver.setVisible(false);
+            GameStatus.setGameStatus(3);
+            checkStatus();
+        }
+
+}
     
     
     private class GameListener implements KeyListener{

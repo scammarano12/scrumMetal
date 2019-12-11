@@ -36,7 +36,10 @@ public abstract class CharacterController{
     
     public abstract void updatePositions();
     
-    
+    public void deActive(){
+        
+        this.characters.removeAll(characters);
+    }
     
     
 }

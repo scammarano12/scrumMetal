@@ -24,7 +24,12 @@ public class EnemyController extends CharacterController implements ActionListen
     private Timer timer;
     
     
-    
+    @Override
+    public void deActive(){
+        timer.stop();
+        
+        super.deActive();
+    }
     public EnemyController(int rangeMin, int rangeMax){
         this.rangeMin = rangeMin;
         this.rangeMax = rangeMax;
@@ -133,6 +138,7 @@ public class EnemyController extends CharacterController implements ActionListen
 
             }
             else{
+                timer.stop();
                 this.characters.remove(e);
                 e.getFiredBullets().forEach((b) -> {Drawer.removeFromDraw(b);CollisionSystem.removeCollisionObject(b);});
                 Drawer.removeFromDraw(e);
@@ -145,9 +151,11 @@ public class EnemyController extends CharacterController implements ActionListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //System.out.print("SPAROOOOOOO!");
+        if(e.getSource()==timer){
+            System.out.println("ao sparo");
         for (Movable m : characters) {
             ((Enemy) m).shoot();
+        }
         }
     }
     

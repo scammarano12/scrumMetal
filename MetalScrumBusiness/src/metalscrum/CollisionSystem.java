@@ -12,6 +12,10 @@ package metalscrum;
 public class CollisionSystem {
     private static CollisionController cc;
     
+    public static void resetCollisionSystem(){
+        CollisionSystem.cc.reset();
+    }
+    
     public  static CollisionController getCollisionController(){
         return CollisionSystem.cc;
     }
