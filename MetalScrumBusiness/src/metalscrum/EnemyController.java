@@ -157,7 +157,7 @@ public class EnemyController extends CharacterController implements ActionListen
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==timer){
-            System.out.println("ao sparo");
+            
         for (Movable m : characters) {
             shoot=true;
             

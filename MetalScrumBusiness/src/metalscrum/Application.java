@@ -93,13 +93,15 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 CollisionSystem.resetCollisionSystem();
                 controllers.forEach(c-> c.deActive());
                 System.out.println("loading");
-                Drawer.getScene().setVisible(true);
+                
                 initLevel(1);
                 Drawer.getScene().addKeyListener(new GameListener());
-                Drawer.getScene().requestFocusInWindow();
-                GameStatus.setGameStatus(0);
-                clock.start();
                 
+                GameStatus.setGameStatus(0);
+               
+                Drawer.getScene().setVisible(true);
+                Drawer.getScene().requestFocusInWindow();
+                clock.start();
             break;
             case 0:
                 //in game
