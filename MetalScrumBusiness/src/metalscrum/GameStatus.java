@@ -10,7 +10,7 @@ package metalscrum;
  * @author stefano
  */
 public class GameStatus {
-    private static int gameStatus=1; 
+    private static int gameStatus=3; 
     
     public static void setGameStatus(int gs){
         GameStatus.gameStatus=gs;

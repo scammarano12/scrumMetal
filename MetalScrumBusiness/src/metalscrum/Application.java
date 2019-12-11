@@ -5,6 +5,7 @@
  */
 package metalscrum;
 
+import java.awt.Container;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,8 +20,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 import testmenu.Menu;
+import testmenu.MenuPause;
+import testmenu.MenuStart;
 
 /**
  *
@@ -33,10 +37,21 @@ public class Application extends javax.swing.JFrame implements ActionListener{
      */
     public Application() {
         initComponents();
-        super.setSize(1280, 720);
-        super.setResizable(false);
-        checkStatus();
+        clock=new Timer(5,this);
+        controllers = new LinkedList<>();
+        pause = new MenuPause();
+        start = new MenuStart();
+        setSize(1280, 720);
+        setResizable(false);
+        pause.setResume(new ResumeListener());
+        start.setPlay(new PlayListener());
         
+        pause.setVisible(false);
+        start.setVisible(false);
+        super.add(pause);
+        super.add(start);
+        
+        checkStatus();
         
         
     }
@@ -48,58 +63,49 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         switch(gameStatus){
             case 1:
                 Drawer.setScene(new Scene());
-                
-                super.setContentPane(Drawer.getScene());
-               
-                Drawer.getScene().setFocusable(true);
                 initLevel(1);
-                
-                super.getContentPane().addKeyListener(new KeyListener(){
-            @Override
-            public void keyTyped(KeyEvent e) {
-                
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode()==KeyEvent.VK_ESCAPE ){
-                    if(GameStatus.getGameStatus()==0){
-                        GameStatus.setGameStatus(2);
-                    }
-                    else if(GameStatus.getGameStatus()==2){
-                        GameStatus.setGameStatus(0);
-                    }
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                
-            }
-                });
-                
+                Drawer.getScene().addKeyListener(new GameListener());
+                super.setContentPane(Drawer.getScene());
+             
+                Drawer.getScene().requestFocusInWindow();
                 GameStatus.setGameStatus(0);
                 clock.start();
+                
             break;
             case 0:
+                //in game
+                
                 CollisionSystem.checkCollision();
             
             for(CharacterController c :controllers){
                 c.updatePositions();
             }
             repaint();
-                System.out.println("in game");
+                
                  
                 break;
+                
             case 2:
-                System.out.println("pause");
+                clock.stop();
+                setContentPane(pause);
+                pause.requestFocusInWindow();
+                pause.setLocation(new Point(0,0));
+                pause.setVisible(true);
+                
+                
                 
                 break;
             case 3:
-                    super.setContentPane(Menu.getStartMenu());
+                setContentPane(start);
+                start.requestFocusInWindow();
+                start.setLocation(new Point(0,0));
+                start.setVisible(true);
+                
+                    
                 break;
             case 4:
                 System.out.println("GameOver");
+                clock.stop();
                 break;
         
         }
@@ -122,7 +128,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         controllers.add(controller);
         
         controller.addMovable(player);
-        this.getContentPane().addKeyListener(controller);
+        Drawer.getScene().addKeyListener(controller);
        
         Drawer.addToDraw(player);
         CollisionSystem.addCollisionSubject(player);
@@ -219,9 +225,11 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         });
     }
     
-    private Timer clock = new Timer(5,this);
-    private List<CharacterController> controllers = new LinkedList<>();
+    private Timer clock ;
+    private List<CharacterController> controllers;
     private int gameStatus;
+    private MenuPause pause ;
+    private MenuStart start;
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -230,7 +238,61 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             
             
         }
+        
     }
+    
+    private class ResumeListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            setContentPane(Drawer.getScene());
+            Drawer.getScene().requestFocusInWindow();
+           
+            pause.setVisible(false);
+            GameStatus.setGameStatus(0);
+            clock.start();
+        }
+    
+    }
+    
+    private class PlayListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            start.setVisible(false);
+            GameStatus.setGameStatus(1);
+            checkStatus();
+        }
+    
+    }
+    
+    
+    private class GameListener implements KeyListener{
+            @Override
+            public void keyTyped(KeyEvent e) {
+                
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode()==KeyEvent.VK_ESCAPE ){
+                    if(GameStatus.getGameStatus()==0){
+                        GameStatus.setGameStatus(2);
+                    }
+                    else if(GameStatus.getGameStatus()==2){
+                        GameStatus.setGameStatus(0);
+                        clock.start();
+                    }
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                
+            }
+                }
+    
+    
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -13,11 +13,11 @@ import javax.swing.JPanel;
  */
 public class Menu {
     
-    public static JPanel getStartMenu(){
+    public static MenuStart getStartMenu(){
     
             return new MenuStart();
     }
-    public static JPanel getPauseMenu(){
+    public static MenuPause getPauseMenu(){
     
             return new MenuPause();
     }
