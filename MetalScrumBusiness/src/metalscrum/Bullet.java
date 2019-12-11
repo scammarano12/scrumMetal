@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -78,8 +79,43 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
         return this.images.get(currentDir);
         //return getHitbox();
     }
+
     
+    
+    
+    //Per la classe WeaponTest
+    @Override
+    public boolean equals(Object obj){
+        //Point position, int width, int heigth, String id, boolean isVisible,int damage,Direction currentDir
+        
+        Bullet b = ((Bullet)obj);
+        if(this.position.x != b.position.x || this.position.y != b.position.y)
+            return false;
+        if(this.width != b.width)
+            return false;
+        if(this.heigth != b.heigth)
+            return false;
+        if(this.id != b.id)
+            return false;
+        if(!(this.isVisible()==true && b.isVisible()==true || this.isVisible()==false && b.isVisible()==false))
+            return false;
+        if(this.damage!=b.damage)
+            return false;
+        if(this.currentDir!=b.currentDir)
+            return false;
+        
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + this.damage;
+        hash = 71 * hash + (this.active ? 1 : 0);
+        hash = 71 * hash + Objects.hashCode(this.images);
+        return hash;
+    }
    
-    
+
     
 }
