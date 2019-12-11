@@ -46,11 +46,15 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         pause.setResume(new ResumeListener());
         start.setPlay(new PlayListener());
         pause.setRestart(new RestartListener());
-        
+        getContentPane().add(start);
+        getContentPane().add(pause);
+        getContentPane().add(Drawer.getScene());
+        Drawer.getScene().setSize(1280, 720);
+        pause.setSize(1280, 720);
+        start.setSize(1280, 720);
         pause.setVisible(false);
         start.setVisible(false);
-        super.add(pause);
-        super.add(start);
+        Drawer.getScene().setVisible(false);
         
         checkStatus();
         
@@ -65,9 +69,9 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             case 1:
                 System.out.println("loading");
                 Drawer.resetScene();
+                Drawer.getScene().setVisible(true);
                 initLevel(1);
                 Drawer.getScene().addKeyListener(new GameListener());
-                super.setContentPane(Drawer.getScene());
                 Drawer.getScene().requestFocusInWindow();
                 GameStatus.setGameStatus(0);
                 clock.start();
@@ -88,19 +92,18 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 
             case 2:
                 clock.stop();
-                setContentPane(pause);
-                pause.requestFocusInWindow();
-                pause.setLocation(new Point(0,0));
                 pause.setVisible(true);
+                pause.requestFocusInWindow();
+                
                 
                 
                 
                 break;
             case 3:
-                setContentPane(start);
-                start.requestFocusInWindow();
-                start.setLocation(new Point(0,0));
                 start.setVisible(true);
+                start.requestFocusInWindow();
+                
+               
                 
                     
                 break;
@@ -246,9 +249,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            setContentPane(Drawer.getScene());
+            Drawer.getScene().setVisible(true);
             Drawer.getScene().requestFocusInWindow();
-           
             pause.setVisible(false);
             GameStatus.setGameStatus(0);
             clock.start();
@@ -291,10 +293,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                     if(GameStatus.getGameStatus()==0){
                         GameStatus.setGameStatus(2);
                     }
-                    else if(GameStatus.getGameStatus()==2){
-                        GameStatus.setGameStatus(0);
-                        checkStatus();
-                    }
+                    
                 }
             }
 
