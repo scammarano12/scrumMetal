@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
@@ -20,6 +21,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import testmenu.Menu;
@@ -37,6 +41,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
      * Creates new form Application
      */
     public Application() {
+        
         initComponents();
         clock=new Timer(5,this);
         Drawer.setScene(new Scene());
@@ -67,6 +72,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         Drawer.getScene().setVisible(false);
         
         controllers = new LinkedList<>();
+        mp=loadMusic("src/resources/music.mp3");
+        mp.play();
         checkStatus();
         
         
@@ -253,6 +260,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     private MenuPause pause ;
     private MenuStart start;
     private MenuGameOver gameOver;
+    private MediaPlayer mp;
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -262,6 +270,13 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             
         }
         
+    }
+
+    private MediaPlayer loadMusic(String path) {
+         new JFXPanel();
+        Media hit = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(hit);
+        return mediaPlayer;
     }
     
     private class ResumeListener implements ActionListener{
