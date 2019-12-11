@@ -79,7 +79,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         mp=loadMusic("src/resources/music.mp3");
         mp.play();
         checkStatus();
-        
+      
         
     }
     

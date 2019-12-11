@@ -27,7 +27,6 @@ public class EnemyController extends CharacterController implements ActionListen
     @Override
     public void deActive(){
         timer.stop();
-        
         super.deActive();
     }
     public EnemyController(int rangeMin, int rangeMax){

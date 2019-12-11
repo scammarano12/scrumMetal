@@ -56,8 +56,7 @@ public class CollisionController {
     }
 
     public synchronized void checkCollision() {
-        System.out.println("oggetti: "+objs.size());
-        System.out.println("soggetti: "+subjects.size());
+        
         List<Collision> collisions = new LinkedList<>();
         
         for (SolidObject subject : subjects) {
