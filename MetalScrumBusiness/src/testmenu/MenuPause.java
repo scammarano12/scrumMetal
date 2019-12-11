@@ -32,6 +32,9 @@ public class MenuPause extends javax.swing.JPanel {
     public void setRestart(ActionListener al){
         restartButton.addActionListener(al);
     }
+     public void setQuit(ActionListener al){
+        quitButton.addActionListener(al);
+    }
    
 
     /**
