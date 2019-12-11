@@ -38,13 +38,14 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     public Application() {
         initComponents();
         clock=new Timer(5,this);
-        controllers = new LinkedList<>();
+        
         pause = new MenuPause();
         start = new MenuStart();
         setSize(1280, 720);
         setResizable(false);
         pause.setResume(new ResumeListener());
         start.setPlay(new PlayListener());
+        pause.setRestart(new RestartListener());
         
         pause.setVisible(false);
         start.setVisible(false);
@@ -62,11 +63,11 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         gameStatus = GameStatus.getGameStatus();
         switch(gameStatus){
             case 1:
+                System.out.println("loading");
                 Drawer.setScene(new Scene());
                 initLevel(1);
                 Drawer.getScene().addKeyListener(new GameListener());
                 super.setContentPane(Drawer.getScene());
-             
                 Drawer.getScene().requestFocusInWindow();
                 GameStatus.setGameStatus(0);
                 clock.start();
@@ -113,9 +114,9 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     
     public void initLevel(int levelNumber){
         CollisionSystem.setCollisionController(new CollisionController());
+        controllers = new LinkedList<>();
         List<Point> l = LevelBuilder.createStage(levelNumber, 1);
         initPlayer(l.remove(0));
-
         initEnemy(l);
         
              
@@ -255,6 +256,17 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     
     }
     
+    private class RestartListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            pause.setVisible(false);
+            GameStatus.setGameStatus(1);
+            checkStatus();
+        }
+    
+    }
+    
     private class PlayListener implements ActionListener{
 
         @Override
@@ -281,7 +293,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                     }
                     else if(GameStatus.getGameStatus()==2){
                         GameStatus.setGameStatus(0);
-                        clock.start();
+                        checkStatus();
                     }
                 }
             }

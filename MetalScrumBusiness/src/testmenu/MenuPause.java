@@ -28,6 +28,10 @@ public class MenuPause extends javax.swing.JPanel {
     public void setResume(ActionListener al){
         resumeButton.addActionListener(al);
     }
+    
+    public void setRestart(ActionListener al){
+        restartButton.addActionListener(al);
+    }
    
 
     /**
@@ -39,7 +43,7 @@ public class MenuPause extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        restartButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         resumeButton = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -52,7 +56,7 @@ public class MenuPause extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1280, 304));
         setSize(new java.awt.Dimension(1280, 304));
 
-        jButton1.setSize(new java.awt.Dimension(97, 32));
+        restartButton.setSize(new java.awt.Dimension(97, 32));
 
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -76,7 +80,7 @@ public class MenuPause extends javax.swing.JPanel {
                         .addGap(344, 344, 344)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(restartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(222, 222, 222)
@@ -102,7 +106,7 @@ public class MenuPause extends javax.swing.JPanel {
                             .addComponent(resumeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(restartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -113,11 +117,11 @@ public class MenuPause extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton prova;
+    private javax.swing.JButton restartButton;
     private javax.swing.JButton resumeButton;
     // End of variables declaration//GEN-END:variables
 }
