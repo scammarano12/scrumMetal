@@ -77,7 +77,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
         controllers = new LinkedList<>();
         mp=loadMusic("src/resources/music.mp3");
-        mp.play();
+        //mp.play();
         checkStatus();
       
         
@@ -182,7 +182,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
         for(int i=0; i<positions.size(); i++){
             //Aggiunto SSS
-            Enemy enemy = new Enemy(positions.get(i),50,45,"enemy",true,40,Direction.LEFT,new Weapon(2));
+            Enemy enemy = new Enemy(positions.get(i),50,45,"enemy",true,4,Direction.LEFT,new Weapon(2));
             
             EnemyController controller = new EnemyController(100,300);
         

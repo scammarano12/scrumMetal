@@ -32,7 +32,7 @@ public class PlayerController extends CharacterController implements KeyListener
            break;
            case KeyEvent.VK_UP:
                if(avaiable){
-                   dy=-15;
+                  // dy=-15;
                    avaiable=false;
                }
                 

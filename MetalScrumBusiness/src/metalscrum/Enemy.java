@@ -33,6 +33,9 @@ public class Enemy extends Character {
         
     }
     
+    @Override
+    public void shoot(){
+    }
     
     
     @Override
