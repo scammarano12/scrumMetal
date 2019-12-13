@@ -26,13 +26,14 @@ public class Weapon {
     
     public Weapon(int rateo) {
         this.rateo = rateo;
-        time = System.currentTimeMillis();
-        
+        this.time = System.currentTimeMillis();
+        //System.out.println("Time "+time);
     }
     
     public Bullet shoot(Point position,Direction d,int width,int heigth){
             
             if(System.currentTimeMillis() - time > 1000/rateo){
+                //System.out.println("Time2 "+time);
                 time = System.currentTimeMillis() ;
                 Bullet b = null;
                 if(d == Direction.SHOOTING_RIGHT){
