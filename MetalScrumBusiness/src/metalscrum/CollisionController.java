@@ -55,7 +55,7 @@ public class CollisionController {
         
     }
 
-    public synchronized void checkCollision() {
+    public synchronized List<Collision> checkCollision() {
         
         List<Collision> collisions = new LinkedList<>();
         
@@ -66,6 +66,9 @@ public class CollisionController {
             for (SolidObject object :objs) {
                
                 Rectangle objHitBox = object.getHitbox();
+                System.out.println(objHitBox);
+                System.out.println(subjectHitBox);
+                
                 if (subjectHitBox.intersects(objHitBox) && object.isVisible() && !object.getId().equals(subject.getId())) {
                     collision.setObject(object);
                 
@@ -79,7 +82,7 @@ public class CollisionController {
                     }
                     
                     if ( subjectHitBox.x+subjectHitBox.width-1 == objHitBox.x && (subjectHitBox.y+subjectHitBox.height -1 > objHitBox.y || subjectHitBox.y < objHitBox.y + objHitBox.height)) {
-                        
+                        System.out.println("Destrta");
                         collision.setRigth(true);
                         
                     }
@@ -93,6 +96,7 @@ public class CollisionController {
                     object.setCollision(collision);
 */
                 } 
+                System.out.println(collision);
                 collisions.add(collision);
                 
                
@@ -101,14 +105,15 @@ public class CollisionController {
             
         }
         
-        for(Collision c : collisions){
-            c.getSubject().setCollision(c);
-            
-            if(c.getObject()!= null){
-                c.getObject().setCollision(c);
-            }
-            
-        }
+//        for(Collision c : collisions){
+//            c.getSubject().setCollision(c);
+//            
+//            if(c.getObject()!= null){
+//                c.getObject().setCollision(c);
+//            }
+//            
+//        }
+    return collisions;
     }
 
 }
