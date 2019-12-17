@@ -34,6 +34,18 @@ public class Enemy extends Character {
     }
     
     
+    @Override
+    public void setCollision(Collision c){
+        super.setCollision(c);
+        SolidObject so =c.getSubject();
+        String id = so.getId();
+        if(id.equals("player") ){
+           
+            Character p = (Character) so;
+            int currentHealth = p.getHealth();
+            p.setHealth(currentHealth-1);
+        }
+    }
     
     @Override
     public void move(int dx, int dy) {

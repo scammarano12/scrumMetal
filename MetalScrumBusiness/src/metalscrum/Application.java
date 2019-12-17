@@ -184,7 +184,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
         for(int i=0; i<positions.size(); i++){
             //Aggiunto SSS
-            Enemy enemy = new Enemy(positions.get(i),50,45,"enemy",true,40,Direction.LEFT,new Weapon(2));
+            Enemy enemy = new Enemy(positions.get(i),50,45,"enemy",true,2,Direction.LEFT,new Weapon(2));
             
             EnemyController controller = new EnemyController(100,300);
         
