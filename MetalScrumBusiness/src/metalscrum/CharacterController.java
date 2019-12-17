@@ -13,11 +13,13 @@ import java.util.List;
  * @author stefano
  */
 public abstract class CharacterController{
+    
     protected List<Movable> characters;
     protected int gravitylv;
     protected int dx;
     protected int dy;
     protected boolean shoot;
+    protected boolean isActive;
     
     public CharacterController(){
         this.gravitylv=1;
@@ -25,6 +27,7 @@ public abstract class CharacterController{
         this.dy=0;
         this.characters=new LinkedList<>();
         this.shoot=false;
+        this.isActive=true;
     }
     
     public void addMovable(Movable m){
@@ -38,8 +41,12 @@ public abstract class CharacterController{
     public abstract void updatePositions();
     
     public void deActive(){
-        
+        isActive=false;
         this.characters.removeAll(characters);
+    }
+    
+    public boolean isActive(){
+        return isActive;
     }
     
     

@@ -63,11 +63,14 @@ public class EnemyController extends CharacterController implements ActionListen
         return distance;
     }
     
+   
+    
     
     @Override
     public void updatePositions() {
         
-        
+        if (characters.size()==0)
+            isActive=false;
         for (Movable m : characters) {  //si può togliere il foreach
             Enemy e = (Enemy) m;
             if(e.isAlive()){

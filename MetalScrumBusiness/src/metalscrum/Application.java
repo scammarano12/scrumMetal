@@ -61,18 +61,23 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         gameOver= new MenuGameOver();
         gameOver.setQuit(new QuitListener());
         gameOver.setPlay(new PlayListener());
+        stageOver= new MenuGameOver();
+        stageOver.setQuit(new QuitStageListener());
+        stageOver.setPlay(new PlayStageListener());
         getContentPane().add(gameOver);
-        
+        getContentPane().add(stageOver);
         getContentPane().add(start);
         getContentPane().add(pause);
         getContentPane().add(Drawer.getScene());
         Drawer.getScene().setSize(1280, 720);
         gameOver.setSize(1280, 720);
+        stageOver.setSize(1280, 720);
         pause.setSize(1280, 720);
         start.setSize(1280, 720);
         pause.setVisible(false);
         start.setVisible(false);
         gameOver.setVisible(false);
+        stageOver.setVisible(false);
         Drawer.getScene().setVisible(false);
         
         controllers = new LinkedList<>();
@@ -86,15 +91,18 @@ public class Application extends javax.swing.JFrame implements ActionListener{
   
     
     public void checkStatus(){
+        
         gameStatus = GameStatus.getGameStatus();
         switch(gameStatus){
             case 1:
+                //set stage
                 Drawer.resetScene();
                 CollisionSystem.resetCollisionSystem();
                 controllers.forEach(c-> c.deActive());
                 System.out.println("loading");
                 
-                initLevel(1);
+                initStage();
+                
                 Drawer.getScene().addKeyListener(new GameListener());
                 
                 GameStatus.setGameStatus(0);
@@ -103,20 +111,32 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 Drawer.getScene().requestFocusInWindow();
                 clock.start();
             break;
+            
             case 0:
+                //check collision in game
                 //in game
                 
                 CollisionSystem.checkCollision();
+                int enemyCounter=-1;
+                for(CharacterController c :controllers){
+                    c.updatePositions();
+                    if(c.isActive)
+                        enemyCounter++;
+                }
+                gl.setResumeEnemies(enemyCounter);
+                System.out.println("sup   "+gl.getResumeEnemies());
             
-            for(CharacterController c :controllers){
-                c.updatePositions();
-            }
-            repaint();
+                repaint();
+                if(enemyCounter==0)
+                    GameStatus.setGameStatus(5);
+                
                 
                  
                 break;
                 
             case 2:
+                
+                //menu pausa
                 clock.stop();
                 pause.setVisible(true);
                 pause.requestFocusInWindow();
@@ -126,6 +146,9 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 
                 break;
             case 3:
+                
+                //primo menu start
+                initLevel();
                 start.setVisible(true);
                 start.requestFocusInWindow();
                 
@@ -134,6 +157,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                     
                 break;
             case 4:
+                //menu sconfitta
                 System.out.println("GameOver");
                 clock.stop();
                 Drawer.getScene().setVisible(false);
@@ -141,15 +165,30 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 gameOver.requestFocusInWindow();
                 
                 break;
-        
+            case 5:
+                //Stage Over Menu
+                System.out.println("StageOver");
+                gl.nextStage();
+                clock.stop();
+                Drawer.getScene().setVisible(false);
+                stageOver.setVisible(true);
+                stageOver.requestFocusInWindow();
+                
+                break;
+                
+            
+                
         }
     }
     
-    public void initLevel(int levelNumber){
+    public void initLevel(){
+        gl= new GameLevel(1,3);
+    }
+    public void initStage(){
         controllers = new LinkedList<>();
         
-        
-        List<Point> l = LevelBuilder.createStage(levelNumber, 1);
+       
+        List<Point> l = gl.createStage();
         initPlayer(l.remove(0));
         initEnemy(l);
         
@@ -266,7 +305,9 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     private MenuPause pause ;
     private MenuStart start;
     private MenuGameOver gameOver;
+    private MenuGameOver stageOver;
     private MediaPlayer mp;
+    private GameLevel gl=null;
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -327,6 +368,33 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             pause.setVisible(false);
             gameOver.setVisible(false);
+            GameStatus.setGameStatus(3);
+            checkStatus();
+        }
+
+}
+    
+    private class PlayStageListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            start.setVisible(false);
+            stageOver.setVisible(false);
+            if(gl.checkNextStage())
+                GameStatus.setGameStatus(1);
+            else
+                GameStatus.setGameStatus(3);
+            checkStatus();
+        }
+    
+    }
+    
+    private class QuitStageListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            pause.setVisible(false);
+            stageOver.setVisible(false);
             GameStatus.setGameStatus(3);
             checkStatus();
         }

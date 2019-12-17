@@ -23,11 +23,39 @@ import javax.swing.JLabel;
  *
  * @author stefano
  */
-public class LevelBuilder {
-    ;
+public class GameLevel {
+    
+    private int levelNumber;
+    private int resumeEnemies;
+    private int stageNumber;
+    private int stageLimit;
+
+    public GameLevel(int levelNumber,int stageLimit) {
+        this.levelNumber = levelNumber;
+        this.resumeEnemies = 0;
+        this.stageNumber = 1;
+        this.stageLimit=stageLimit;
+    }
+
+    public void setResumeEnemies(int resumeEnemies) {
+        this.resumeEnemies = resumeEnemies;
+    }
+
+    public int getResumeEnemies() {
+        return resumeEnemies;
+    }
+
+    public void nextStage() {
+        this.stageNumber++;
+    }
     
     
-    public static List<Point> createStage(int levelNumber ,int number){
+    
+    public boolean checkNextStage(){
+       
+        return stageLimit!=stageNumber;
+    }
+    public  List<Point> createStage(){
         
         Drawer.getScene().addToDraw(new Drawable() {
             @Override
@@ -44,7 +72,8 @@ public class LevelBuilder {
         
         LinkedList<Point> positions = new LinkedList<>();
         try {
-            Reader is = new FileReader("src/resources/Levels/Level"+levelNumber+"/stage"+number+".txt");
+            System.out.println("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
+            Reader is = new FileReader("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
             Scanner s = new Scanner(is);
             int width =40;
             int heigth =24;
@@ -81,12 +110,14 @@ public class LevelBuilder {
                     if(c=='e'){
                          positions.addLast(new Point(count*width,j*heigth));
                          count++;
+                         resumeEnemies++;
                     }
                 }
                 j++;
             }
                 
                
+            
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
