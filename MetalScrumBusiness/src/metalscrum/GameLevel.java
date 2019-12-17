@@ -53,7 +53,7 @@ public class GameLevel {
     
     public boolean checkNextStage(){
        
-        return stageLimit!=stageNumber;
+        return stageLimit!=(stageNumber-1);
     }
     public  List<Point> createStage(){
         

@@ -26,10 +26,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import testmenu.Menu;
-import testmenu.MenuGameOver;
-import testmenu.MenuPause;
-import testmenu.MenuStart;
+import testmenu.*;
 
 /**
  *
@@ -61,23 +58,27 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         gameOver= new MenuGameOver();
         gameOver.setQuit(new QuitListener());
         gameOver.setPlay(new PlayListener());
-        stageOver= new MenuGameOver();
-        stageOver.setQuit(new QuitStageListener());
+        stageOver= new MenuStageTerminated();
         stageOver.setPlay(new PlayStageListener());
+        levelOver= new MenuLevelTerminated();
+        levelOver.setPlay(new PlayLevelOverListener());
         getContentPane().add(gameOver);
         getContentPane().add(stageOver);
         getContentPane().add(start);
         getContentPane().add(pause);
+        getContentPane().add(levelOver);
         getContentPane().add(Drawer.getScene());
         Drawer.getScene().setSize(1280, 720);
         gameOver.setSize(1280, 720);
         stageOver.setSize(1280, 720);
         pause.setSize(1280, 720);
         start.setSize(1280, 720);
+        levelOver.setSize(1280,720);
         pause.setVisible(false);
         start.setVisible(false);
         gameOver.setVisible(false);
         stageOver.setVisible(false);
+        levelOver.setVisible(false);
         Drawer.getScene().setVisible(false);
         
         controllers = new LinkedList<>();
@@ -167,14 +168,24 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 break;
             case 5:
                 //Stage Over Menu
-                System.out.println("StageOver");
+                
                 gl.nextStage();
                 clock.stop();
                 Drawer.getScene().setVisible(false);
-                stageOver.setVisible(true);
-                stageOver.requestFocusInWindow();
+                if(gl.checkNextStage()){
+                    stageOver.setVisible(true);
+                    stageOver.requestFocusInWindow();
+                }else{
+                    levelOver.setVisible(true);
+                    levelOver.requestFocusInWindow();
+                    
+                }
+                    
                 
                 break;
+            
+                
+                
                 
             
                 
@@ -305,7 +316,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     private MenuPause pause ;
     private MenuStart start;
     private MenuGameOver gameOver;
-    private MenuGameOver stageOver;
+    private MenuStageTerminated stageOver;
+    private MenuLevelTerminated levelOver;
     private MediaPlayer mp;
     private GameLevel gl=null;
     
@@ -378,28 +390,29 @@ public class Application extends javax.swing.JFrame implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            start.setVisible(false);
+            
             stageOver.setVisible(false);
-            if(gl.checkNextStage())
-                GameStatus.setGameStatus(1);
-            else
-                GameStatus.setGameStatus(3);
+            
+            GameStatus.setGameStatus(1);
+            
+                
+            checkStatus();
+        }
+    
+    }
+    private class PlayLevelOverListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+            levelOver.setVisible(false);
+            GameStatus.setGameStatus(3);
             checkStatus();
         }
     
     }
     
-    private class QuitStageListener implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            pause.setVisible(false);
-            stageOver.setVisible(false);
-            GameStatus.setGameStatus(3);
-            checkStatus();
-        }
-
-}
+    
     
     private class VolumeOffListener implements ActionListener{
 
