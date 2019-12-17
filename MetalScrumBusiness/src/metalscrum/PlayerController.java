@@ -107,7 +107,10 @@ public class PlayerController extends CharacterController implements KeyListener
             }
             
         }else{  
-                GameStatus.setGameStatus(4);
+                if(p.hasLives())
+                    GameStatus.setGameStatus(1);
+                else
+                    GameStatus.setGameStatus(4);
                 Drawer.removeFromDraw(p);
                 CollisionSystem.removeCollisionSubject(p);
             }

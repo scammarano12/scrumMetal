@@ -40,6 +40,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     public Application() {
         
         initComponents();
+        
         clock=new Timer(5,this);
         Drawer.setScene(new Scene());
         CollisionSystem.setCollisionController(new CollisionController());
@@ -95,6 +96,11 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
         gameStatus = GameStatus.getGameStatus();
         switch(gameStatus){
+            case -1:
+                 player = new Player(new Point(0,0),50,45,"player",true,3,Direction.RIGHT,new Weapon(2));
+                 GameStatus.setGameStatus(1);
+                 checkStatus();
+            break;
             case 1:
                 //set stage
                 Drawer.resetScene();
@@ -148,6 +154,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 
                 //primo menu start
                 initLevel();
+                //player = new Player(new Point(0,0),50,45,"player",true,3,Direction.RIGHT,new Weapon(2));
                 start.setVisible(true);
                 start.requestFocusInWindow();
                 
@@ -198,14 +205,15 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
        
         List<Point> l = gl.createStage();
-        initPlayer(l.remove(0));
+        initPlayer(l.remove(0),player);
         initEnemy(l);
         
              
     }
     
-    public void initPlayer(Point position){
-        Player player = new Player(position,50,45,"player",true,1,Direction.RIGHT,new Weapon(2));
+    public void initPlayer(Point position,Player player){
+       player.setPosition(position);
+        
         PlayerController controller = new PlayerController();
        
         controllers.add(controller);
@@ -230,7 +238,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
         for(int i=0; i<positions.size(); i++){
             //Aggiunto SSS
-            Enemy enemy = new Enemy(positions.get(i),50,45,"enemy",true,40,Direction.LEFT,new Weapon(2));
+            Enemy enemy = new Enemy(positions.get(i),50,45,"enemy",true,2,Direction.LEFT,new Weapon(2));
             
             EnemyController controller = new EnemyController(100,300);
         
@@ -318,6 +326,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     private MenuLevelTerminated levelOver;
     private MediaPlayer mp;
     private GameLevel gl=null;
+    private Player player;
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -366,7 +375,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             start.setVisible(false);
             gameOver.setVisible(false);
-            GameStatus.setGameStatus(1);
+            GameStatus.setGameStatus(-1);
             checkStatus();
         }
     
@@ -380,6 +389,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             gameOver.setVisible(false);
             GameStatus.setGameStatus(3);
             checkStatus();
+            
         }
 
 }
