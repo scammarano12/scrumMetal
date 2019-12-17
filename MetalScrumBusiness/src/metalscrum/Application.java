@@ -43,6 +43,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     public Application() {
         
         initComponents();
+        
         clock=new Timer(5,this);
         Drawer.setScene(new Scene());
         CollisionSystem.setCollisionController(new CollisionController());
@@ -157,7 +158,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     }
     
     public void initPlayer(Point position){
-        Player player = new Player(position,50,45,"player",true,1,Direction.RIGHT,new Weapon(2));
+        Player player = new Player(position,50,45,"player",true,3,Direction.RIGHT,new Weapon(2));
+        
         PlayerController controller = new PlayerController();
        
         controllers.add(controller);
@@ -329,6 +331,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             gameOver.setVisible(false);
             GameStatus.setGameStatus(3);
             checkStatus();
+            
         }
 
 }

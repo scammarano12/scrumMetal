@@ -60,9 +60,9 @@ public class CollisionController {
         List<Collision> collisions = new LinkedList<>();
         
         for (SolidObject subject : subjects) {
-            
-            Rectangle subjectHitBox = subject.getHitbox();
             Collision collision = new Collision(subject, null, false, false, false, false);
+            Rectangle subjectHitBox = subject.getHitbox();
+            
             for (SolidObject object :objs) {
                
                 Rectangle objHitBox = object.getHitbox();
@@ -93,11 +93,10 @@ public class CollisionController {
                     object.setCollision(collision);
 */
                 } 
-                collisions.add(collision);
                 
                
-
-            }
+             }
+             collisions.add(collision);
             
         }
         

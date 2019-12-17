@@ -24,7 +24,7 @@ import javax.swing.JLabel;
  * @author stefano
  */
 public class LevelBuilder {
-    ;
+    
     
     
     public static List<Point> createStage(int levelNumber ,int number){
