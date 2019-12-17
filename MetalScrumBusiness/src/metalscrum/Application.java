@@ -125,13 +125,11 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                         enemyCounter++;
                 }
                 gl.setResumeEnemies(enemyCounter);
-                System.out.println("sup   "+gl.getResumeEnemies());
+                
             
                 repaint();
                 if(enemyCounter==0)
-                    GameStatus.setGameStatus(5);
-                
-                
+                    GameStatus.setGameStatus(5);          
                  
                 break;
                 
