@@ -133,7 +133,7 @@ public class EnemyController extends CharacterController implements ActionListen
                 if(b.getHitbox().x>1280 || b.getHitbox().x<0){
                     
                     b.setActive(false);
-                    Drawer.removeFromDraw(b);
+                    Scene.getInstance().removeFromDraw(b);
                     CollisionController.getInstance().removeObject(b);
                 }
                 else if(b.getCurrentDir() == Direction.SHOOTING_LEFT){
@@ -148,8 +148,8 @@ public class EnemyController extends CharacterController implements ActionListen
             else{
                 timer.stop();
                 this.characters.remove(e);
-                e.getFiredBullets().forEach((b) -> {Drawer.removeFromDraw(b);CollisionController.getInstance().removeObject(b);});
-                Drawer.removeFromDraw(e);
+                e.getFiredBullets().forEach((b) -> {Scene.getInstance().removeFromDraw(b);CollisionController.getInstance().removeObject(b);});
+                Scene.getInstance().removeFromDraw(e);
                 CollisionController.getInstance().removeObject(e);
                 CollisionController.getInstance().removeSubject(e);
             }

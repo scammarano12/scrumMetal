@@ -33,7 +33,9 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
         this.images = new HashMap<>();
         images.put(Direction.SHOOTING_LEFT,super.loadImage(LEFT_BULLET));
         images.put(Direction.SHOOTING_RIGHT,super.loadImage(RIGHT_BULLET));
+        
         CollisionController.getInstance().addObject(this);
+        
         
     }
 
@@ -69,7 +71,7 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
             p.setHealth(currentHealth-damage);
         }
         
-        Drawer.removeFromDraw(this);
+        Scene.getInstance().removeFromDraw(this);
         CollisionController.getInstance().removeObject(this);
         active = false;
         

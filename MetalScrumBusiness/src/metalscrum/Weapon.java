@@ -41,7 +41,7 @@ public class Weapon {
                      b = new Bullet(new Point (position.x-49-10,position.y+heigth/2),49,19,"bullet",true,1,d);
                 }
                 
-                Drawer.addToDraw(b);
+                Scene.getInstance().addToDraw(b);
                 
                 
                 return b;

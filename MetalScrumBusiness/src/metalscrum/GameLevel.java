@@ -57,7 +57,7 @@ public class GameLevel {
     }
     public  List<Point> createStage(){
         
-        Drawer.getScene().addToDraw(new Drawable() {
+        Scene.getInstance().addToDraw(new Drawable() {
             @Override
             public Image getDraw() {
                 ImageIcon ii = new ImageIcon("src/resources/Levels/Level"+levelNumber+"/background.png");
@@ -94,7 +94,7 @@ public class GameLevel {
                         if((last>0 && c!='\t')){
                         
                         Block b = new Block(new Point((count-last)*width,j*heigth),width*last ,heigth,"block",true);
-                        Drawer.addToDraw(b);
+                        Scene.getInstance().addToDraw(b);
                         CollisionController.getInstance().addObject(b);
                        
                         last=0;

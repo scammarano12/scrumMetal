@@ -95,7 +95,7 @@ public class PlayerController extends CharacterController implements KeyListener
                 if(b.getHitbox().x>1280 || b.getHitbox().x<0){
                    
                     b.setActive(false);
-                    Drawer.removeFromDraw(b);
+                    Scene.getInstance().removeFromDraw(b);
                     CollisionController.getInstance().removeObject(b);
                 }
                 else if(b.getCurrentDir() == Direction.SHOOTING_LEFT){
@@ -111,7 +111,7 @@ public class PlayerController extends CharacterController implements KeyListener
                     GameStatus.setGameStatus(1);
                 else
                     GameStatus.setGameStatus(4);
-                Drawer.removeFromDraw(p);
+                Scene.getInstance().removeFromDraw(p);
                 CollisionController.getInstance().removeSubject(p);
             }
         }

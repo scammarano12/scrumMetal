@@ -15,28 +15,33 @@ import javax.swing.JPanel;
  */
 public class Scene extends JPanel {
     List<Drawable> objects;
-    List<CharacterController> controllers;
+    public static Scene instance = null;
+   
     
-    public Scene(){
+    private Scene(){
         objects = new LinkedList<>();
       
     }
     
+    public static Scene getInstance(){
+        if(instance==null){
+            instance = new Scene();
+        }
+        return instance;
+    }
+    
     public synchronized void addToDraw(Drawable d){
-       
-        this.objects.add(d);
-        
+        objects.add(d);
     }
     
     public synchronized void removeFromDraw(Drawable d){
-       
-        this.objects.remove(d);
+       objects.remove(d);
         
     }
     
-    public synchronized List<Drawable> getObjects(){
-        return objects;
-    }
+   public synchronized void reset(){
+       objects = new LinkedList<>();
+   }
     
     
     @Override
@@ -51,8 +56,5 @@ public class Scene extends JPanel {
     }
         
     
-    public void reset(){
-        objects.removeAll(objects);
-    }
     
 }

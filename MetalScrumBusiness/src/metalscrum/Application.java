@@ -42,7 +42,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         initComponents();
         
         clock=new Timer(5,this);
-        Drawer.setScene(new Scene());
+        sc = Scene.getInstance();
         //CollisionSystem.setCollisionController(new CollisionController());
         cc = CollisionController.getInstance();
         pause = new MenuPause();
@@ -69,8 +69,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         getContentPane().add(start);
         getContentPane().add(pause);
         getContentPane().add(levelOver);
-        getContentPane().add(Drawer.getScene());
-        Drawer.getScene().setSize(1280, 720);
+        getContentPane().add(sc);
+        sc.setSize(1280, 720);
         gameOver.setSize(1280, 720);
         stageOver.setSize(1280, 720);
         pause.setSize(1280, 720);
@@ -81,7 +81,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         gameOver.setVisible(false);
         stageOver.setVisible(false);
         levelOver.setVisible(false);
-        Drawer.getScene().setVisible(false);
+        sc.setVisible(false);
         
         controllers = new LinkedList<>();
         mp=loadMusic("src/resources/music.mp3");
@@ -104,19 +104,19 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             break;
             case 1:
                 //set stage
-                Drawer.resetScene();
+                sc.reset();
                 CollisionController.getInstance().reset();
                 controllers.forEach(c-> c.deActive());
                 System.out.println("loading");
                 
                 initStage();
                 
-                Drawer.getScene().addKeyListener(new GameListener());
+                sc.addKeyListener(new GameListener());
                 
                 GameStatus.setGameStatus(0);
                
-                Drawer.getScene().setVisible(true);
-                Drawer.getScene().requestFocusInWindow();
+                sc.setVisible(true);
+               sc.requestFocusInWindow();
                 clock.start();
             break;
             
@@ -167,7 +167,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 //menu sconfitta
                 System.out.println("GameOver");
                 clock.stop();
-                Drawer.getScene().setVisible(false);
+                sc.setVisible(false);
                 gameOver.setVisible(true);
                 gameOver.requestFocusInWindow();
                 
@@ -177,7 +177,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 
                 gl.nextStage();
                 clock.stop();
-                Drawer.getScene().setVisible(false);
+                sc.setVisible(false);
                 if(gl.checkNextStage()){
                     stageOver.setVisible(true);
                     stageOver.requestFocusInWindow();
@@ -220,9 +220,9 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         controllers.add(controller);
         
         controller.addMovable(player);
-        Drawer.getScene().addKeyListener(controller);
+        sc.addKeyListener(controller);
        
-        Drawer.addToDraw(player);
+        sc.addToDraw(player);
         cc.addSubject(player);
         cc.addObject(player);
         
@@ -247,7 +247,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
 
             controller.addMovable(enemy);
             //associare all'enemy un timer per spostarsi e sparare!
-            Drawer.addToDraw(enemy);
+            sc.addToDraw(enemy);
             cc.addSubject(enemy);
             //CollisionSystem.addCollisionObject(enemy);
         }
@@ -328,7 +328,10 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     private MediaPlayer mp;
     private GameLevel gl=null;
     private Player player;
+    
     private CollisionController cc;
+    private Scene sc;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == clock){
@@ -350,8 +353,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Drawer.getScene().setVisible(true);
-            Drawer.getScene().requestFocusInWindow();
+            sc.setVisible(true);
+            sc.requestFocusInWindow();
             pause.setVisible(false);
             GameStatus.setGameStatus(0);
             clock.start();
