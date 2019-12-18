@@ -41,6 +41,8 @@ public abstract class SolidObject {
        
     }
     
+    public abstract void activeCollision();
+    public abstract void stopCollision();
     
     
     protected Image loadImage(String imageName) {

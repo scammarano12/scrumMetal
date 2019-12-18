@@ -30,6 +30,11 @@ public class Block extends SolidObject implements Drawable{
     }
 
     @Override
+    public void draw(){
+        Scene.getInstance().addToDraw(this);
+    }
+    
+    @Override
     public Image getDraw() {
         int imagesCount = width/40;
     
@@ -64,6 +69,21 @@ public class Block extends SolidObject implements Drawable{
         
         
         
+    }
+
+    @Override
+    public void unDraw() {
+        Scene.getInstance().removeFromDraw(this);
+    }
+
+    @Override
+    public void activeCollision() {
+        CollisionController.getInstance().addObject(this);
+    }
+
+    @Override
+    public void stopCollision() {
+       CollisionController.getInstance().removeObject(this); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -34,9 +34,8 @@ public class Player extends Character {
         images.put(Direction.SHOOTING_RIGHT,super.loadImage(shootingRight));
         numberOfLife=3;
         playerHealth=health;
-        
-
     }
+    
     
 
     @Override
@@ -72,8 +71,19 @@ public class Player extends Character {
         return images.get(currentDir);
         //return getHitbox();
     }
+
+    @Override
+    public void draw() {
+        Scene.getInstance().addToDraw(this);
+    }
+
+    @Override
+    public void unDraw() {
+        Scene.getInstance().removeFromDraw(this);
+    }
     
-    
+  
+
     
   
     

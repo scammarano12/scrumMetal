@@ -23,14 +23,27 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
 
 
     public Character(Point position, int width, int heigth, String id, boolean isVisible,int health, Direction currentDir,Weapon weapon) {
-        
         super(position, width, heigth, id, isVisible);
+        
         this.health=health;
         this.currentDir=Direction.RIGHT;
         this.weapon=weapon;
-         this.bullets = new LinkedList<>();
+        this.bullets = new LinkedList<>();
         
     }
+    
+    @Override
+    public void activeCollision() {
+       
+        CollisionController.getInstance().addSubject(this);
+    }
+
+    @Override
+    public void stopCollision() {
+      
+       CollisionController.getInstance().removeSubject(this); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
     public List<Bullet> getFiredBullets(){
         bullets.removeIf(b -> !b.isActive());

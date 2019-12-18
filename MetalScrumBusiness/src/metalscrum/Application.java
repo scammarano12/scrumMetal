@@ -105,7 +105,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             case 1:
                 //set stage
                 sc.reset();
-                CollisionController.getInstance().reset();
+                
+                cc.reset();
                 controllers.forEach(c-> c.deActive());
                 System.out.println("loading");
                 
@@ -221,8 +222,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
         controller.addMovable(player);
         sc.addKeyListener(controller);
-       
-        sc.addToDraw(player);
+        player.draw();
         cc.addSubject(player);
         cc.addObject(player);
         
@@ -247,8 +247,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
 
             controller.addMovable(enemy);
             //associare all'enemy un timer per spostarsi e sparare!
-            sc.addToDraw(enemy);
-            cc.addSubject(enemy);
+            enemy.draw();
+            enemy.activeCollision();
             //CollisionSystem.addCollisionObject(enemy);
         }
         

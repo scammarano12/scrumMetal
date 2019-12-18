@@ -34,6 +34,11 @@ public class Enemy extends Character {
         
     }
     
+    @Override
+    public void draw(){
+        Scene.getInstance().addToDraw(this);
+    }
+    
     
     @Override
     public void setCollision(Collision c){
@@ -76,5 +81,12 @@ public class Enemy extends Character {
         return images.get(currentDir);
         //return getHitbox();
     }
+
+    @Override
+    public void unDraw() {
+        Scene.getInstance().removeFromDraw(this);
+    }
+    
+    
     
 }

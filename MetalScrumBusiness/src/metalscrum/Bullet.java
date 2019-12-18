@@ -37,6 +37,12 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
         CollisionController.getInstance().addObject(this);
         
         
+        
+    }
+    
+    @Override
+    public void draw(){
+        Scene.getInstance().addToDraw(this);
     }
 
     @Override
@@ -71,7 +77,7 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
             p.setHealth(currentHealth-damage);
         }
         
-        Scene.getInstance().removeFromDraw(this);
+        unDraw();
         CollisionController.getInstance().removeObject(this);
         active = false;
         
@@ -83,6 +89,21 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
     public Image getDraw() {
         return this.images.get(currentDir);
         //return getHitbox();
+    }
+
+    @Override
+    public void unDraw() {
+        Scene.getInstance().removeFromDraw(this);
+    }
+    
+    @Override
+    public void activeCollision() {
+        CollisionController.getInstance().addObject(this);
+    }
+
+    @Override
+    public void stopCollision() {
+       CollisionController.getInstance().removeObject(this); //To change body of generated methods, choose Tools | Templates.
     }
     
    
