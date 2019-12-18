@@ -23,6 +23,7 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
     private final static String LEFT_BULLET = "src/resources/leftbullet.png";
     private final static String RIGHT_BULLET = "src/resources/rightbullet.png";
     
+    
 
     public Bullet(Point position, int width, int heigth, String id, boolean isVisible,int damage,Direction currentDir) {
         super(position, width, heigth, id, isVisible);
@@ -32,6 +33,7 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
         this.images = new HashMap<>();
         images.put(Direction.SHOOTING_LEFT,super.loadImage(LEFT_BULLET));
         images.put(Direction.SHOOTING_RIGHT,super.loadImage(RIGHT_BULLET));
+        CollisionController.getInstance().addObject(this);
         
     }
 
@@ -68,7 +70,7 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
         }
         
         Drawer.removeFromDraw(this);
-        CollisionSystem.removeCollisionObject(this);
+        CollisionController.getInstance().removeObject(this);
         active = false;
         
     }

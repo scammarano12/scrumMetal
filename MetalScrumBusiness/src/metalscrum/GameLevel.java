@@ -95,7 +95,7 @@ public class GameLevel {
                         
                         Block b = new Block(new Point((count-last)*width,j*heigth),width*last ,heigth,"block",true);
                         Drawer.addToDraw(b);
-                        CollisionSystem.addCollisionObject(b);
+                        CollisionController.getInstance().addObject(b);
                        
                         last=0;
                         }

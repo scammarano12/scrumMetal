@@ -43,7 +43,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
         clock=new Timer(5,this);
         Drawer.setScene(new Scene());
-        CollisionSystem.setCollisionController(new CollisionController());
+        //CollisionSystem.setCollisionController(new CollisionController());
+        cc = CollisionController.getInstance();
         pause = new MenuPause();
         start = new MenuStart();
         setSize(1280, 720);
@@ -104,7 +105,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             case 1:
                 //set stage
                 Drawer.resetScene();
-                CollisionSystem.resetCollisionSystem();
+                CollisionController.getInstance().reset();
                 controllers.forEach(c-> c.deActive());
                 System.out.println("loading");
                 
@@ -123,7 +124,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 //check collision in game
                 //in game
                 
-                CollisionSystem.checkCollision();
+                cc.checkCollision();
                 int enemyCounter=-1;
                 for(CharacterController c :controllers){
                     c.updatePositions();
@@ -222,8 +223,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         Drawer.getScene().addKeyListener(controller);
        
         Drawer.addToDraw(player);
-        CollisionSystem.addCollisionSubject(player);
-        CollisionSystem.addCollisionObject(player);
+        cc.addSubject(player);
+        cc.addObject(player);
         
     }
     
@@ -247,7 +248,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             controller.addMovable(enemy);
             //associare all'enemy un timer per spostarsi e sparare!
             Drawer.addToDraw(enemy);
-            CollisionSystem.addCollisionSubject(enemy);
+            cc.addSubject(enemy);
             //CollisionSystem.addCollisionObject(enemy);
         }
         
@@ -327,7 +328,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     private MediaPlayer mp;
     private GameLevel gl=null;
     private Player player;
-    
+    private CollisionController cc;
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == clock){

@@ -42,7 +42,7 @@ public class Weapon {
                 }
                 
                 Drawer.addToDraw(b);
-                CollisionSystem.addCollisionObject(b);
+                
                 
                 return b;
                 

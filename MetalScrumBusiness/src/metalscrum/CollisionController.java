@@ -16,46 +16,58 @@ import javax.swing.SwingWorker;
  * @author stefano
  */
 public class CollisionController {
+    
+    private static CollisionController instance = null;
 
     private List<SolidObject> subjects;
     private List<SolidObject> objs;
     
+    private CollisionController(){
+         this.subjects = new LinkedList<>();
+        this.objs = new LinkedList<>();
+        
+    }
+    
+    public static CollisionController getInstance(){
+        if(CollisionController.instance == null){
+            instance = new CollisionController();
+            
+        }
+        
+        return instance;
+        
+    }
     
 
-    public synchronized void addSubject(SolidObject o) {
+    public void addSubject(SolidObject o) {
         subjects.add(o);
         
     }
 
-    public  synchronized void removeSubject(SolidObject o) {
+    public void removeSubject(SolidObject o) {
          subjects.remove(o);
         
         
     }
 
-    public  synchronized void addObj(SolidObject o) {
+    public  void addObject(SolidObject o) {
         objs.add(o);
            
     }
 
-    public synchronized void removeObj(SolidObject o) {
+    public void removeObject(SolidObject o) {
         objs.remove(o);
          
     }
 
-    public CollisionController() {
-        this.subjects = new LinkedList<>();
-        this.objs = new LinkedList<>();
-
-    }
     
     public void reset(){
-        objs.removeAll(objs);
-        subjects.removeAll(subjects);
+       List<SolidObject> subjects = new LinkedList<>();
+       List<SolidObject> objs = new LinkedList<>();
         
     }
 
-    public synchronized void checkCollision() {
+    public void checkCollision() {
         
         List<Collision> collisions = new LinkedList<>();
         
@@ -87,11 +99,7 @@ public class CollisionController {
                         collision.setLeft(true);
                     }
                     
-                    
-                   /* 
-                    subject.setCollision(collision);
-                    object.setCollision(collision);
-*/
+                   
                 } 
                 
                
