@@ -87,7 +87,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         mp=loadMusic("src/resources/music.mp3");
         mp.play();
         checkStatus();
-      
+        clock.start();
         
     }
     
@@ -97,16 +97,17 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
         gameStatus = GameStatus.getGameStatus();
         switch(gameStatus){
-            case -1:
+            case -1: 
                  player = new Player(new Point(0,0),50,45,"player",true,3,Direction.RIGHT,new Weapon(2));
                  GameStatus.setGameStatus(1);
-                 checkStatus();
+                 
             break;
             case 1:
                 //set stage
+               
                 sc.reset();
-                
                 cc.reset();
+                
                 controllers.forEach(c-> c.deActive());
                 System.out.println("loading");
                 
@@ -117,8 +118,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 GameStatus.setGameStatus(0);
                
                 sc.setVisible(true);
-               sc.requestFocusInWindow();
-                clock.start();
+                sc.requestFocusInWindow();
+              
             break;
             
             case 0:
@@ -135,7 +136,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 gl.setResumeEnemies(enemyCounter);
                 
             
-                repaint();
+               
                 if(enemyCounter==0)
                     GameStatus.setGameStatus(5);          
                  
@@ -144,40 +145,39 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             case 2:
                 
                 //menu pausa
-                clock.stop();
+               if(!pause.isVisible()){
                 pause.setVisible(true);
                 pause.requestFocusInWindow();
-                
+               }
                 
                 
                 
                 break;
             case 3:
-                
                 //primo menu start
-                initLevel();
-                //player = new Player(new Point(0,0),50,45,"player",true,3,Direction.RIGHT,new Weapon(2));
-                start.setVisible(true);
-                start.requestFocusInWindow();
                 
+                if(!start.isVisible()){
+                     initLevel();
+                      //player = new Player(new Point(0,0),50,45,"player",true,3,Direction.RIGHT,new Weapon(2));
+                     start.setVisible(true);
+                     start.requestFocusInWindow();
+                }
                
-                
-                    
                 break;
             case 4:
                 //menu sconfitta
+                if(!gameOver.isVisible()){
                 System.out.println("GameOver");
-                clock.stop();
                 sc.setVisible(false);
                 gameOver.setVisible(true);
                 gameOver.requestFocusInWindow();
-                
+                }
                 break;
             case 5:
                 //Stage Over Menu
-                
+                if(!stageOver.isVisible() && !levelOver.isVisible()){
                 gl.nextStage();
-                clock.stop();
+         
                 sc.setVisible(false);
                 if(gl.checkNextStage()){
                     stageOver.setVisible(true);
@@ -187,7 +187,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                     levelOver.requestFocusInWindow();
                     
                 }
-                    
+                }   
                 
                 break;
             
@@ -318,14 +318,17 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     }
     
     private Timer clock ;
+    
     private List<CharacterController> controllers;
     private int gameStatus;
+    
     private MenuPause pause ;
     private MenuStart start;
     private MenuGameOver gameOver;
     private MenuStageTerminated stageOver;
     private MenuLevelTerminated levelOver;
     private MediaPlayer mp;
+    
     private GameLevel gl=null;
     private Player player;
     
@@ -335,9 +338,10 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == clock){
-            checkStatus();
-            
-            
+            clock.stop();
+            checkStatus(); 
+            repaint();
+            clock.start();
         }
         
     }
@@ -357,7 +361,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             sc.requestFocusInWindow();
             pause.setVisible(false);
             GameStatus.setGameStatus(0);
-            clock.start();
+            
         }
     
     }
@@ -368,7 +372,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             pause.setVisible(false);
             GameStatus.setGameStatus(1);
-            checkStatus();
+            
         }
     
     }
@@ -380,7 +384,6 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             start.setVisible(false);
             gameOver.setVisible(false);
             GameStatus.setGameStatus(-1);
-            checkStatus();
         }
     
     }
@@ -392,7 +395,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             pause.setVisible(false);
             gameOver.setVisible(false);
             GameStatus.setGameStatus(3);
-            checkStatus();
+     
             
         }
 
@@ -406,12 +409,10 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             stageOver.setVisible(false);
             
             GameStatus.setGameStatus(1);
-            
-                
-            checkStatus();
         }
     
     }
+        
     private class PlayLevelOverListener implements ActionListener{
 
         @Override
@@ -419,7 +420,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             
             levelOver.setVisible(false);
             GameStatus.setGameStatus(3);
-            checkStatus();
+            
         }
     
     }

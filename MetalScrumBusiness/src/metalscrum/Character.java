@@ -51,7 +51,8 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     }
     
     public boolean isAlive(){
-        
+        if(this instanceof Player)
+        System.out.println("vita: "+health);
         return health>0;
     }
     

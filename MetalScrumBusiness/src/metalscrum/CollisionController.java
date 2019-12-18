@@ -62,13 +62,13 @@ public class CollisionController {
 
     
     public void reset(){
-       List<SolidObject> subjects = new LinkedList<>();
-       List<SolidObject> objs = new LinkedList<>();
+       subjects.removeAll(subjects);
+       objs.removeAll(objs);
         
     }
 
     public void checkCollision() {
-        
+        System.out.println("sog: "+subjects.size() + " oggetti: "+objs.size());
         List<Collision> collisions = new LinkedList<>();
         
         for (SolidObject subject : subjects) {

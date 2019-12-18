@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  * @author stefano
  */
 public class Scene extends JPanel {
-    List<Drawable> objects;
+    private List<Drawable> objects;
     public static Scene instance = null;
    
     
@@ -40,7 +40,7 @@ public class Scene extends JPanel {
     }
     
    public synchronized void reset(){
-       objects = new LinkedList<>();
+       objects.removeAll(objects);
    }
     
     
