@@ -99,6 +99,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         switch(gameStatus){
             case -1: 
                  player = new Player(new Point(0,0),50,45,"player",true,3,Direction.RIGHT,new Weapon(2));
+                 initLevel();
                  GameStatus.setGameStatus(1);
                  
             break;
