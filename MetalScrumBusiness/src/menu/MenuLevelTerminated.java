@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testmenu;
+package menu;
 
 import java.awt.event.ActionListener;
 
@@ -43,10 +43,10 @@ public class MenuLevelTerminated extends javax.swing.JPanel {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/levelUp.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/levelUp.png"))); // NOI18N
 
         playButton.setBackground(new java.awt.Color(0, 0, 0));
-        playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/play.png"))); // NOI18N
+        playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/play.png"))); // NOI18N
         playButton.setBorderPainted(false);
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,10 +55,10 @@ public class MenuLevelTerminated extends javax.swing.JPanel {
         });
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/emoticonWin.jpeg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/emoticonWin.jpeg"))); // NOI18N
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/emoticonWin.jpeg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/emoticonWin.jpeg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

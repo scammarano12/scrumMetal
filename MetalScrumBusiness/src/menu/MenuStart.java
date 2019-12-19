@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testmenu;
+package menu;
 
 import java.awt.event.ActionListener;
 
@@ -42,7 +42,7 @@ public class MenuStart extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
         volumeOnButton.setBackground(new java.awt.Color(0, 0, 0));
-        volumeOnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/volumeon.png"))); // NOI18N
+        volumeOnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/volumeon.png"))); // NOI18N
         volumeOnButton.setBorderPainted(false);
         volumeOnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,11 +51,11 @@ public class MenuStart extends javax.swing.JPanel {
         });
 
         volumeOffButton.setBackground(new java.awt.Color(0, 0, 0));
-        volumeOffButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/volumeof.png"))); // NOI18N
+        volumeOffButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/volumeof.png"))); // NOI18N
         volumeOffButton.setBorderPainted(false);
 
         jButton5.setBackground(new java.awt.Color(0, 0, 0));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/quit.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/quit.png"))); // NOI18N
         jButton5.setBorderPainted(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,17 +64,17 @@ public class MenuStart extends javax.swing.JPanel {
         });
 
         playButton.setBackground(new java.awt.Color(0, 0, 0));
-        playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/play.png"))); // NOI18N
+        playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/play.png"))); // NOI18N
         playButton.setBorderPainted(false);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/Titolo_metalScrum.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/Titolo_metalScrum.png"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/luna.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/luna.png"))); // NOI18N
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/plane.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/plane.png"))); // NOI18N
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/plane.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/plane.png"))); // NOI18N
         jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -97,7 +97,7 @@ public class MenuStart extends javax.swing.JPanel {
                 .addGap(0, 314, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                 .addGap(266, 266, 266)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(playButton, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)

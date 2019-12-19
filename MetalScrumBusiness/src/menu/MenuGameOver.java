@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testmenu;
+package menu;
 
 import java.awt.event.ActionListener;
 
@@ -49,28 +49,28 @@ public class MenuGameOver extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
         playButton.setBackground(new java.awt.Color(0, 0, 0));
-        playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/play.png"))); // NOI18N
+        playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/play.png"))); // NOI18N
         playButton.setBorderPainted(false);
 
         quitButton.setBackground(new java.awt.Color(0, 0, 0));
-        quitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/quit.png"))); // NOI18N
+        quitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/quit.png"))); // NOI18N
         quitButton.setBorderPainted(false);
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/gameover.jpeg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/gameover.jpeg"))); // NOI18N
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/gameover_smile.jpeg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/gameover_smile.jpeg"))); // NOI18N
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/gameover_smile.jpeg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/gameover_smile.jpeg"))); // NOI18N
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/gameover_smile.jpeg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/gameover_smile.jpeg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

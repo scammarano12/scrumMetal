@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testmenu;
+package menu;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -63,32 +63,30 @@ public class MenuPause extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(406, 304));
         setMinimumSize(new java.awt.Dimension(406, 304));
         setPreferredSize(new java.awt.Dimension(1280, 720));
-        setSize(new java.awt.Dimension(1280, 304));
 
         quitButton.setBackground(new java.awt.Color(0, 0, 0));
-        quitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/quit.png"))); // NOI18N
+        quitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/quit.png"))); // NOI18N
         quitButton.setBorderPainted(false);
-        quitButton.setSize(new java.awt.Dimension(97, 32));
 
         restartButton.setBackground(new java.awt.Color(0, 0, 0));
-        restartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/restart.png"))); // NOI18N
+        restartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/restart.png"))); // NOI18N
         restartButton.setBorderPainted(false);
 
         resumeButton.setBackground(new java.awt.Color(0, 0, 0));
-        resumeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/resume.png"))); // NOI18N
+        resumeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/resume.png"))); // NOI18N
         resumeButton.setBorder(null);
         resumeButton.setBorderPainted(false);
 
         volumeOnButton.setBackground(new java.awt.Color(0, 0, 0));
-        volumeOnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/volumeon.png"))); // NOI18N
+        volumeOnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/volumeon.png"))); // NOI18N
         volumeOnButton.setBorderPainted(false);
 
         volumeOffButton.setBackground(new java.awt.Color(0, 0, 0));
-        volumeOffButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/volumeof.png"))); // NOI18N
+        volumeOffButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/volumeof.png"))); // NOI18N
         volumeOffButton.setBorderPainted(false);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testmenu/bottoni/pausemenu_copia.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/bottoni/pausemenu_copia.png"))); // NOI18N
         jLabel1.setAlignmentX(0.5F);
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 

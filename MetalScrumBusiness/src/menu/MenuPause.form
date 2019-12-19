@@ -85,7 +85,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/quit.png"/>
+          <Image iconType="3" name="/menu/bottoni/quit.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
@@ -96,7 +96,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/restart.png"/>
+          <Image iconType="3" name="/menu/bottoni/restart.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
@@ -107,7 +107,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/resume.png"/>
+          <Image iconType="3" name="/menu/bottoni/resume.png"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
@@ -121,7 +121,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/volumeon.png"/>
+          <Image iconType="3" name="/menu/bottoni/volumeon.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
@@ -132,7 +132,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/volumeof.png"/>
+          <Image iconType="3" name="/menu/bottoni/volumeof.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
@@ -141,7 +141,7 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/pausemenu_copia.png"/>
+          <Image iconType="3" name="/menu/bottoni/pausemenu_copia.png"/>
         </Property>
         <Property name="alignmentX" type="float" value="0.5"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>

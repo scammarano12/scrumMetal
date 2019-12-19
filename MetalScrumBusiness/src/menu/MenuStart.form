@@ -101,7 +101,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/volumeon.png"/>
+          <Image iconType="3" name="/menu/bottoni/volumeon.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
@@ -118,7 +118,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/volumeof.png"/>
+          <Image iconType="3" name="/menu/bottoni/volumeof.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
@@ -132,7 +132,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/quit.png"/>
+          <Image iconType="3" name="/menu/bottoni/quit.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
@@ -146,7 +146,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/play.png"/>
+          <Image iconType="3" name="/menu/bottoni/play.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
@@ -155,28 +155,28 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/Titolo_metalScrum.png"/>
+          <Image iconType="3" name="/menu/bottoni/Titolo_metalScrum.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/luna.png"/>
+          <Image iconType="3" name="/menu/bottoni/luna.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/plane.png"/>
+          <Image iconType="3" name="/menu/bottoni/plane.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/testmenu/bottoni/plane.png"/>
+          <Image iconType="3" name="/menu/bottoni/plane.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel4"/>
       </Properties>
