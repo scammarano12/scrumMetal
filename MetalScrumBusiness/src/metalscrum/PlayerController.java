@@ -12,7 +12,12 @@ import java.awt.event.KeyListener;
  * @author stefano
  */
 public class PlayerController extends CharacterController implements KeyListener {
+    private PlayerDeadListener listener;
     private boolean avaiable=false;
+    
+    public void setListener(PlayerDeadListener listener){
+        this.listener=listener;
+    }
     @Override
     public void keyTyped(KeyEvent e) {
         
@@ -108,9 +113,9 @@ public class PlayerController extends CharacterController implements KeyListener
             
         }else{  
                 if(p.hasLives())
-                    GameStatus.setGameStatus(1);
+                    listener.playerHealthLevelEnded();
                 else
-                    GameStatus.setGameStatus(4);
+                    listener.playerDead();
                 p.unDraw();
                 p.stopCollision();
             }

@@ -5,6 +5,8 @@
  */
 package metalscrum;
 
+import java.util.List;
+
 /**
  *
  * @author stefano
@@ -12,4 +14,9 @@ package metalscrum;
 public interface State {
     public void execute();
     public void escape();
+    public void end();
+    public void setListener(EndStateListener listener);
+    public Player getPlayer();
+    public GameLevel getGameLevel();
+    public List<CharacterController> getControllers();
 }
