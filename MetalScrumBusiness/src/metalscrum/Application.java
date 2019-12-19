@@ -5,26 +5,17 @@
  */
 package metalscrum;
 
-import java.awt.Container;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Reader;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javax.swing.JPanel;
 import javax.swing.Timer;
 import testmenu.*;
 
@@ -37,14 +28,20 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     /**
      * Creates new form Application
      */
+    
+    private static State gameStatus;
+    
     public Application() {
         
         initComponents();
         
         clock=new Timer(5,this);
+        
         sc = Scene.getInstance();
+        
         //CollisionSystem.setCollisionController(new CollisionController());
         cc = CollisionController.getInstance();
+        
         pause = new MenuPause();
         start = new MenuStart();
         setSize(1280, 720);
@@ -64,13 +61,16 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         stageOver.setPlay(new PlayStageListener());
         levelOver= new MenuLevelTerminated();
         levelOver.setPlay(new PlayLevelOverListener());
+        
         getContentPane().add(gameOver);
         getContentPane().add(stageOver);
         getContentPane().add(start);
         getContentPane().add(pause);
         getContentPane().add(levelOver);
         getContentPane().add(sc);
+        
         sc.setSize(1280, 720);
+        
         gameOver.setSize(1280, 720);
         stageOver.setSize(1280, 720);
         pause.setSize(1280, 720);
@@ -81,18 +81,28 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         gameOver.setVisible(false);
         stageOver.setVisible(false);
         levelOver.setVisible(false);
+        
         sc.setVisible(false);
         
         controllers = new LinkedList<>();
         mp=loadMusic("src/resources/music.mp3");
         mp.play();
-        checkStatus();
+        //checkStatus();
+        setStatus(new StartMenuState());
         clock.start();
         
     }
     
-  
+    private static State getStatus(){
+        return gameStatus;
+    }
     
+    private static void setStatus(State newState){
+        gameStatus = newState;
+    } 
+    
+  
+    /*
     public void checkStatus(){
         
         gameStatus = GameStatus.getGameStatus();
@@ -198,6 +208,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 
         }
     }
+    */
     
     public void initLevel(){
         gl= new GameLevel(1,3);
@@ -312,7 +323,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Application().setVisible(true);
+                Application app = new Application();
+                app.setVisible(true);
             }
         });
     }
@@ -320,7 +332,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     private Timer clock ;
     
     private List<CharacterController> controllers;
-    private int gameStatus;
+//    private int gameStatus;
     
     private MenuPause pause ;
     private MenuStart start;
@@ -339,7 +351,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == clock){
             clock.stop();
-            checkStatus(); 
+            //checkStatus(); 
+            Application.gameStatus.execute();
             repaint();
             clock.start();
         }
@@ -360,7 +373,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             sc.setVisible(true);
             sc.requestFocusInWindow();
             pause.setVisible(false);
-            GameStatus.setGameStatus(0);
+            gameStatus.escape();
             
         }
     
@@ -456,10 +469,10 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode()==KeyEvent.VK_ESCAPE ){
-                    if(GameStatus.getGameStatus()==0){
+                    /*if(GameStatus.getGameStatus()==0){
                         GameStatus.setGameStatus(2);
                     }
-                    
+*/                   gameStatus.escape();
                 }
             }
 
@@ -470,8 +483,145 @@ public class Application extends javax.swing.JFrame implements ActionListener{
                 }
     
     
+    
+    public class LoadingLevelState implements State{
+        
+        public void execute(){
+            player = new Player(new Point(0,0),50,45,"player",true,3,Direction.RIGHT,new Weapon(2));
+            GameStatus.setGameStatus(1);
+        }
+    }
+    
+    public class StartMenuState implements State{
+        public void execute(){
+            if(!start.isVisible()){
+                     initLevel();
+                      //player = new Player(new Point(0,0),50,45,"player",true,3,Direction.RIGHT,new Weapon(2));
+                     start.setVisible(true);
+                     start.requestFocusInWindow();
+                }
+        }
+
+        @Override
+        public void escape() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+    
+    public class LoadingStageState implements State{
+        public void execute(){
+            sc.reset();
+                cc.reset();
+                
+                controllers.forEach(c-> c.deActive());
+                System.out.println("loading");
+                
+                initStage();
+                
+                sc.addKeyListener(new GameListener());
+                
+                GameStatus.setGameStatus(0);
+               
+                sc.setVisible(true);
+                sc.requestFocusInWindow();
+        }
+
+        @Override
+        public void escape() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+    
+    public class InGameState implements State{
+        
+        public void execute(){
+            cc.checkCollision();
+                int enemyCounter=-1;
+                for(CharacterController c :controllers){
+                    c.updatePositions();
+                    if(c.isActive)
+                        enemyCounter++;
+                }
+                gl.setResumeEnemies(enemyCounter);
+                
+            
+               
+                if(enemyCounter==0)
+                    GameStatus.setGameStatus(5);          
+                 
+               
+        }
+
+        @Override
+        public void escape() {
+            Application.setStatus(new PauseMenuState());
+        }
+        
+    }
+    
+    public class PauseMenuState implements State{
+        public void execute(){
+            if(!pause.isVisible()){
+                pause.setVisible(true);
+                pause.requestFocusInWindow();
+               }
+        }
+
+        @Override
+        public void escape() {
+            Application.setStatus(new InGameState()) ;//To change body of generated methods, choose Tools | Templates.
+        }
+    }
+    
+    public class GameOverMenu implements State{
+        
+        public void execute(){
+        if(!gameOver.isVisible()){
+                System.out.println("GameOver");
+                sc.setVisible(false);
+                gameOver.setVisible(true);
+                gameOver.requestFocusInWindow();
+                }
+        }
+
+        @Override
+        public void escape() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+    
+    public class StageOverMenuState implements State{
+        public void execute(){
+            if(!stageOver.isVisible() && !levelOver.isVisible()){
+                gl.nextStage();
+         
+                sc.setVisible(false);
+                if(gl.checkNextStage()){
+                    stageOver.setVisible(true);
+                    stageOver.requestFocusInWindow();
+                }else{
+                    levelOver.setVisible(true);
+                    levelOver.requestFocusInWindow();
+                    
+                }
+                }   
+        }
+
+        @Override
+        public void escape() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+    
+    
+    
+    
+    
+    
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
+
+
