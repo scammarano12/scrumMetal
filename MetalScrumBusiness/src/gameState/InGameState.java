@@ -35,10 +35,15 @@ public class InGameState implements State{
             this.gl=gl;
             this.gameListener = gameListener;
             this.player=player;
+            sc.removeKeyListener(gameListener);
             sc.addKeyListener(gameListener);
         }
         
         public void execute(){
+            if(!sc.isVisible()){
+                sc.setVisible(true);
+                sc.requestFocusInWindow();
+            }
             cc.checkCollision();
                 int enemyCounter=-1;
                 for(CharacterController c :controllers){

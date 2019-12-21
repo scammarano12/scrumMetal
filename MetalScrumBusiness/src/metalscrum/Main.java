@@ -6,12 +6,13 @@
 package metalscrum;
 
 import gameState.StartMenuState;
-import listeners.PlayLevelOverListener;
-import listeners.PlayListener;
-import listeners.PlayStageListener;
-import listeners.QuitListener;
-import listeners.RestartListener;
-import listeners.ResumeListener;
+import listeners.GameListener;
+import listeners.buttonListeners.PlayLevelOverListener;
+import listeners.buttonListeners.PlayListener;
+import listeners.buttonListeners.PlayStageListener;
+import listeners.buttonListeners.QuitListener;
+import listeners.buttonListeners.RestartListener;
+import listeners.buttonListeners.ResumeListener;
 import menu.MenuGameOver;
 import menu.MenuLevelTerminated;
 import menu.MenuPause;
@@ -81,7 +82,8 @@ public class Main {
     }
       private static MenuPause initPauseMenu(Application context){
         MenuPause pause = new MenuPause();
-        pause.setResume(new ResumeListener(context));
+        GameListener gameListener = new GameListener(context);
+        pause.setResume(new ResumeListener(context,gameListener));
         pause.setRestart(new RestartListener(context));
         pause.setQuit(new QuitListener(context));
        // pause.setVolumeOff(new Application.VolumeOffListener(context));

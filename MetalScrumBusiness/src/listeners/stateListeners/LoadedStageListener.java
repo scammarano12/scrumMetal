@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listeners;
+package listeners.stateListeners;
 
+import listeners.stateListeners.EndGameListener;
 import metalscrum.Application;
 import gameState.InGameState;
+import listeners.GameListener;
 import metalscrum.EndStateListener;
 import metalscrum.State;
 

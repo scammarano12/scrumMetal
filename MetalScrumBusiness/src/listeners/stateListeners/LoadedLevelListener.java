@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listeners;
+package listeners.stateListeners;
 
 import gameState.LoadingStageState;
 import java.util.LinkedList;
@@ -18,16 +18,18 @@ import metalscrum.State;
  */
  public class LoadedLevelListener implements EndStateListener{
         private Application context;
+        private PlayerListener pl;
 
         public LoadedLevelListener(Application context) {
             this.context = context;
+            this.pl= new PlayerListener(context);
         }
         
         
         @Override
         public void stateEnded() {
             
-            State s=new LoadingStageState(context.getCurrentGameLevel(),context.getCurrentPlayer(),new LinkedList<>(),new PlayerListener(context));
+            State s=new LoadingStageState(context.getCurrentGameLevel(),context.getCurrentPlayer(),new LinkedList<>(),pl);
             s.setListener(new LoadedStageListener(context));
             context.setStatus(s);
         }

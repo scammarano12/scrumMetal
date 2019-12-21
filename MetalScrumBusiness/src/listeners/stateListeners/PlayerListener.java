@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listeners;
+package listeners.stateListeners;
 
+import listeners.stateListeners.LoadedStageListener;
 import gameState.GameOverState;
 import gameState.LoadingStageState;
 import metalscrum.Application;

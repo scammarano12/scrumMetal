@@ -3,31 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listeners;
+package listeners.buttonListeners;
 
-import gameState.StartMenuState;
+import listeners.stateListeners.LoadedLevelListener;
+import gameState.LoadingLevelState;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import metalscrum.Application;
+import metalscrum.State;
 
 /**
  *
  * @author albc
  */
-public class QuitListener implements ActionListener{
+public class PlayLevelOverListener implements ActionListener{
         private Application context;
 
-        public QuitListener(Application context) {
+        public PlayLevelOverListener(Application context) {
             this.context = context;
         }
         
         
         @Override
         public void actionPerformed(ActionEvent e) {
+            
             context.getStatus().end();
-            context.setStatus(new StartMenuState(context.start));
-     
+            State s = new LoadingLevelState();
+            s.setListener(new LoadedLevelListener(context));
+            context.setStatus(s);
+//          GameStatus.setGameStatus(3);
             
         }
-
-}
+    
+    }

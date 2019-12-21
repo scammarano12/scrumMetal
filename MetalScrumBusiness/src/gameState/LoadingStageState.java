@@ -8,7 +8,7 @@ package gameState;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
-import listeners.PlayerListener;
+import listeners.stateListeners.PlayerListener;
 import metalscrum.Application;
 import metalscrum.CharacterController;
 import metalscrum.CollisionController;
@@ -32,6 +32,7 @@ public class LoadingStageState implements State{
         private PlayerListener pl;
         
         private EndStateListener listener;
+        
         public LoadingStageState(GameLevel gl,Player player,List<CharacterController> controllers,PlayerListener pl) {
             this.sc = Scene.getInstance();
             this.cc= CollisionController.getInstance();
@@ -101,8 +102,7 @@ public class LoadingStageState implements State{
 
             //GameStatus.setGameStatus(0);
 
-            sc.setVisible(true);
-            sc.requestFocusInWindow();
+            
             listener.stateEnded();
             
             
