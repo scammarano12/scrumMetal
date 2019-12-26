@@ -5,9 +5,6 @@
  */
 package metalscrum;
 
-import gameState.InGameState;
-import gameState.LoadingLevelState;
-import gameState.StartMenuState;
 import menu.MenuGameOver;
 import menu.MenuLevelTerminated;
 import menu.MenuPause;
@@ -21,9 +18,6 @@ import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javax.swing.Timer;
-import listeners.stateListeners.LoadedLevelListener;
-import listeners.buttonListeners.PlayLevelOverListener;
-import listeners.buttonListeners.PlayStageListener;
 
 /**
  *

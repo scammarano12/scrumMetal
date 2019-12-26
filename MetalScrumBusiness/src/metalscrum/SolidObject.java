@@ -6,12 +6,18 @@
 package metalscrum;
 
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 
@@ -46,10 +52,18 @@ public abstract class SolidObject {
     
     
     protected Image loadImage(String imageName) {
-
-        ImageIcon ii = new ImageIcon(imageName);
-        return ii.getImage();
+        try {
+            Image img = ImageIO.read(new File(imageName));
+            
+            img = img.getScaledInstance(4*img.getWidth(null), 4*img.getHeight(null), Image.SCALE_DEFAULT);
+            return img;
+            //ImageIcon ii = new ImageIcon(imageName);
+        } catch (IOException ex) {
+            Logger.getLogger(SolidObject.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
         
+        return null;
     }
 
     public Direction getCurrentDir() {
