@@ -32,26 +32,12 @@ public class PlayerWalkRight extends CharacterState{
         
     }
     
-    protected Image loadImage(String imageName) {
-        try {
-            Image img = ImageIO.read(new File(imageName));
-            
-            img = img.getScaledInstance(4*img.getWidth(null), 4*img.getHeight(null), Image.SCALE_DEFAULT);
-            return img;
-            //ImageIcon ii = new ImageIcon(imageName);
-        } catch (IOException ex) {
-            Logger.getLogger(SolidObject.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        
-        return null;
-    }
-    
+  
     private void setAnimation(){
         
         int step = 20;
-        Image walking = loadImage("src/resources/camminata/CamminataDestra.png");
-        Image stop = loadImage("src/resources/fermo/fermoDestra.png");
+        Image walking = SolidObject.loadImage("src/resources/camminata/CamminataDestra.png");
+        Image stop = SolidObject.loadImage("src/resources/fermo/fermoDestra.png");
         for(int j = 0;j<=20;j++ ){
             listImage.addFirst(stop);
         }

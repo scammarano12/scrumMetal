@@ -47,6 +47,7 @@ public class PlayerController extends CharacterController implements KeyListener
     @Override
     public void keyPressed (KeyEvent e) {
         //System.out.print("stefano è bello");
+        if(characters.size()>0){
         Player p = (Player) characters.get(0);
         switch (e.getKeyCode()) {
             case KeyEvent.VK_SPACE:
@@ -70,10 +71,12 @@ public class PlayerController extends CharacterController implements KeyListener
                 break;
 
         }
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if(characters.size()>0){
         Player p = (Player) characters.get(0);
         switch (e.getKeyCode()) {
             case KeyEvent.VK_SPACE:
@@ -92,6 +95,7 @@ public class PlayerController extends CharacterController implements KeyListener
                 break;
 
         }
+    }
     }
 
     @Override

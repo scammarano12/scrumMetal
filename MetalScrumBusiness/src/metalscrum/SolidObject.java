@@ -45,11 +45,11 @@ public abstract class SolidObject implements Drawable {
     
 
     
-    protected Image loadImage(String imageName) {
+    public static Image loadImage(String imageName) {
         try {
             Image img = ImageIO.read(new File(imageName));
             
-            img = img.getScaledInstance(4*img.getWidth(null), 4*img.getHeight(null), Image.SCALE_DEFAULT);
+            img = img.getScaledInstance(3*img.getWidth(null), 3*img.getHeight(null), Image.SCALE_DEFAULT);
             return img;
             //ImageIcon ii = new ImageIcon(imageName);
         } catch (IOException ex) {

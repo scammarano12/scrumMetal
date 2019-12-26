@@ -25,12 +25,18 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
     
     
 
-    public Bullet(Point position, int width, int heigth, String id, int damage, Direction d) {
-        super(position, width, heigth, id);
+    public Bullet(Point position,String id, int damage, Direction d) {
+        
+        super(position, 0, 0, id);
+        
+        this.image = super.loadImage(bullet);
+        super.setWidth(image.getWidth(null));
+        super.setHeigth(image.getHeight(null));
         this.damage=damage;
         active = true;
         this.d=d;
-        this.image = super.loadImage(bullet);
+        
+        
         CollisionController.getInstance().addObject(this);
         
         
@@ -85,6 +91,8 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
    
     @Override
     public Image getDraw() {
+      
+        
         return image;
         //return getHitbox();
     }

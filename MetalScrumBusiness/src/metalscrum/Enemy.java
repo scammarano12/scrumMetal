@@ -18,8 +18,8 @@ import java.util.Random;
  */
 public class Enemy extends Character {
     
-    private final static String rightEnemy="src/resources/enemyRight.png";
-    private final static String leftEnemy="src/resources/enemyLeft.png";
+    private final static String rightEnemy="src/resources/enemyLeft.png";
+    private final static String leftEnemy="src/resources/enemyRight.png";
     private final static String shootingright="src/resources/enemyRight.png";
     private final static String shootingleft="src/resources/enemyLeft.png";
     private double time ;

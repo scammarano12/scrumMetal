@@ -36,9 +36,10 @@ public class Weapon {
                 time = System.currentTimeMillis() ;
                 Bullet b = null;
                 if(d == Direction.RIGHT){
-                     b = new Bullet(new Point (position.x+width+10,position.y+heigth/2),57,19,"bullet",1,d);
+                     b = new Bullet(new Point (position.x+width+10,position.y+heigth/2),"bullet",1,d);
                 }else if(d == Direction.LEFT){
-                     b = new Bullet(new Point (position.x-49-10,position.y+heigth/2),49,19,"bullet",1,d);
+                     b = new Bullet(new Point (position.x-10,position.y+heigth/2),"bullet",1,d);
+                     b.getPosition().translate(-b.getWidth(), 0);
                 }
                 
                 b.draw();
