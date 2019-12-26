@@ -27,19 +27,20 @@ public class Weapon {
     public Weapon(int rateo) {
         this.rateo = rateo;
         this.time = System.currentTimeMillis();
-        //System.out.println("Time "+time);
+        System.out.println("Time "+time);
     }
     
     public Bullet shoot(Point position,Direction d,int width,int heigth){
             
             if(System.currentTimeMillis() - time > 1000/rateo){
-                //System.out.println("Time2 "+time);
+                System.out.println("time2: "+time);
+                System.out.println("System.currentTimeMillis: "+System.currentTimeMillis());
                 time = System.currentTimeMillis() ;
                 Bullet b = null;
                 if(d == Direction.SHOOTING_RIGHT){
-                     b = new Bullet(new Point (position.x+width+10,position.y+heigth/2),57,19,"bullet",true,1,d);
+                    b = new Bullet(new Point (position.x+width+10,position.y+heigth/2),57,19,"bullet",true,1,d);
                 }else if(d == Direction.SHOOTING_LEFT){
-                     b = new Bullet(new Point (position.x-49-10,position.y+heigth/2),49,19,"bullet",true,1,d);
+                    b = new Bullet(new Point (position.x-49-10,position.y+heigth/2),49,19,"bullet",true,1,d);
                 }
                 
                 Drawer.addToDraw(b);
