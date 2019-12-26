@@ -29,7 +29,7 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
         
         super(position, 0, 0, id);
         
-        this.image = super.loadImage(bullet);
+        this.image = SolidObject.loadImage(bullet);
         super.setWidth(image.getWidth(null));
         super.setHeigth(image.getHeight(null));
         this.damage=damage;
