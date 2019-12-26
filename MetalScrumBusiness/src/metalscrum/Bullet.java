@@ -19,31 +19,25 @@ import java.util.logging.Logger;
 public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
     private int damage;
     private boolean active;
-    private HashMap<Direction,Image> images;
-    private final static String LEFT_BULLET = "src/resources/leftbullet.png";
-    private final static String RIGHT_BULLET = "src/resources/rightbullet.png";
+    private Direction d;
+    
+    private final static String bullet = "src/resources/leftbullet.png";
     
     
 
-    public Bullet(Point position, int width, int heigth, String id, boolean isVisible,int damage,Direction currentDir) {
-        super(position, width, heigth, id, isVisible);
+    public Bullet(Point position, int width, int heigth, String id, int damage, Direction d) {
+        super(position, width, heigth, id);
         this.damage=damage;
         active = true;
-        this.currentDir=currentDir;
-        this.images = new HashMap<>();
-        images.put(Direction.SHOOTING_LEFT,super.loadImage(LEFT_BULLET));
-        images.put(Direction.SHOOTING_RIGHT,super.loadImage(RIGHT_BULLET));
-        
+        this.d=d;
+        this.image = super.loadImage(bullet);
         CollisionController.getInstance().addObject(this);
         
         
         
     }
     
-    @Override
-    public void draw(){
-        Scene.getInstance().addToDraw(this);
-    }
+    
 
     @Override
     public synchronized void move(int dx, int dy) {
@@ -62,6 +56,10 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
     
     public void setActive(boolean active){
         this.active = active;
+    }
+    
+    public Direction getDirection(){
+        return d;
     }
 
    
@@ -87,24 +85,13 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
    
     @Override
     public Image getDraw() {
-        return this.images.get(currentDir);
+        return image;
         //return getHitbox();
     }
 
-    @Override
-    public void unDraw() {
-        Scene.getInstance().removeFromDraw(this);
-    }
     
-    @Override
-    public void activeCollision() {
-        CollisionController.getInstance().addObject(this);
-    }
-
-    @Override
-    public void stopCollision() {
-       CollisionController.getInstance().removeObject(this); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    
     
    
     

@@ -105,7 +105,7 @@ public class GameLevel {
                     }else{
                         if((last>0 && c!='\t')){
                         
-                        Block b = new Block(new Point((count-last)*width,j*heigth),width*last ,heigth,"block",true);
+                        Block b = new Block(new Point((count-last)*width,j*heigth),width*last ,heigth,"block");
                         b.draw();
                         b.activeCollision();
                        

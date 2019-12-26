@@ -35,10 +35,10 @@ public class Weapon {
             if(System.currentTimeMillis() - time > 1000/rateo){
                 time = System.currentTimeMillis() ;
                 Bullet b = null;
-                if(d == Direction.SHOOTING_RIGHT){
-                     b = new Bullet(new Point (position.x+width+10,position.y+heigth/2),57,19,"bullet",true,1,d);
-                }else if(d == Direction.SHOOTING_LEFT){
-                     b = new Bullet(new Point (position.x-49-10,position.y+heigth/2),49,19,"bullet",true,1,d);
+                if(d == Direction.RIGHT){
+                     b = new Bullet(new Point (position.x+width+10,position.y+heigth/2),57,19,"bullet",1,d);
+                }else if(d == Direction.LEFT){
+                     b = new Bullet(new Point (position.x-49-10,position.y+heigth/2),49,19,"bullet",1,d);
                 }
                 
                 b.draw();

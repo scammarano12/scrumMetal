@@ -37,7 +37,7 @@ public class EnemyController extends CharacterController implements ActionListen
         //System.out.println(this.distance);
         
         this.timer = new Timer(rand.nextInt(2000-1000)+1000, this);
-        timer.start();
+       timer.start();
         
     }
         
@@ -136,10 +136,10 @@ public class EnemyController extends CharacterController implements ActionListen
                     b.unDraw();
                     b.stopCollision();
                 }
-                else if(b.getCurrentDir() == Direction.SHOOTING_LEFT){
+                else if(b.getDirection() == Direction.LEFT){
                         b.move(-10,0);
                     }
-                else if(b.getCurrentDir() == Direction.SHOOTING_RIGHT){
+                else if(b.getDirection() == Direction.RIGHT){
                     b.move(10,0);
                 }
             }

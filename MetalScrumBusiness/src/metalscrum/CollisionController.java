@@ -78,7 +78,7 @@ public class CollisionController {
             for (SolidObject object :objs) {
                
                 Rectangle objHitBox = object.getHitbox();
-                if (subjectHitBox.intersects(objHitBox) && object.isVisible() && !object.getId().equals(subject.getId())) {
+                if (subjectHitBox.intersects(objHitBox)&& !object.getId().equals(subject.getId())) {
                     collision.setObject(object);
                 
                     if (subjectHitBox.y  > objHitBox.y ) {

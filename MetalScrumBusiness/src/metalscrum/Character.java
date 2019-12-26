@@ -1,5 +1,6 @@
 package metalscrum;
 
+import characterState.CharacterState;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.HashMap;
@@ -20,11 +21,12 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     protected Weapon weapon;
     protected int health;
     protected List<Bullet> bullets;
+    protected CharacterState state;
 
 
-    public Character(Point position, int width, int heigth, String id, boolean isVisible,int health, Direction currentDir,Weapon weapon) {
-        super(position, width, heigth, id, isVisible);
-        
+    public Character(Point position, int width, int heigth, String id,int health,Weapon weapon) {
+        super(position, width, heigth, id);
+        state = null;
         this.health=health;
         this.currentDir=Direction.RIGHT;
         this.weapon=weapon;
@@ -58,18 +60,16 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     
     public void shoot(){
         
-        
-        if(currentDir==Direction.RIGHT)
-            currentDir=Direction.SHOOTING_RIGHT;
-        else if(currentDir==Direction.LEFT)
-            currentDir=Direction.SHOOTING_LEFT;
-        Bullet b = weapon.shoot(position, currentDir,this.width,this.heigth);
+        Bullet b = weapon.shoot(position, getCurrentDir(),this.width,this.heigth);
         
         if(b!=null)
             bullets.add(b);
         
     }
-
+    
+    public void setState(CharacterState state){
+        this.state = state;
+    }
     public int getHealth() {
         return health;
     }
@@ -79,19 +79,7 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     }
 
     public Direction getCurrentDir() {
-        return currentDir;
-    }
-
-    public void setCurrentDir(Direction currentDir) {
-        this.currentDir = currentDir;
-    }
-
-    public HashMap<Direction, Image> getImages() {
-        return images;
-    }
-
-    public void setImages(HashMap<Direction, Image> images) {
-        this.images = images;
+        return state.getDir();
     }
 
     public Point getPosition() {
@@ -134,13 +122,16 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     }
 
     @Override
-    public boolean isVisible() {
-        return visible;
+    public Image getDraw(){
+       Image i =  state.nextImage();
+       this.setHeigth(i.getHeight(null));
+       this.setWidth(i.getWidth(null));
+       return i;
     }
-
-    public void setIsVisible(boolean visible) {
-        this.visible = visible;
-    }
+    
+    
+    
+    
 
     
     

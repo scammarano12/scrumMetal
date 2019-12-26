@@ -24,15 +24,11 @@ import javax.imageio.ImageIO;
 public class Block extends SolidObject implements Drawable{
     private static final String platform = "src/resources/platform.png";
 
-    public Block(Point position, int width, int heigth, String id, boolean isVisible) {
-        super(position, width, heigth, id, isVisible);
-        images.put(Direction.RIGHT, super.loadImage(platform));
+    public Block(Point position, int width, int heigth, String id) {
+        super(position, width, heigth, id);
+        image = super.loadImage(platform);
     }
 
-    @Override
-    public void draw(){
-        Scene.getInstance().addToDraw(this);
-    }
     
     @Override
     public Image getDraw() {
@@ -46,7 +42,7 @@ public class Block extends SolidObject implements Drawable{
             images1[j] = new BufferedImage(40, 24, BufferedImage.TYPE_INT_RGB);
             Graphics2D g2d = images1[j].createGraphics();
             
-            g2d.drawImage(this.images.get(Direction.RIGHT),0, 0, 40, heigth, null);
+            g2d.drawImage(image,0, 0, 40, heigth, null);
             g2d.dispose();
         } 
         
@@ -71,19 +67,4 @@ public class Block extends SolidObject implements Drawable{
         
     }
 
-    @Override
-    public void unDraw() {
-        Scene.getInstance().removeFromDraw(this);
-    }
-
-    @Override
-    public void activeCollision() {
-        CollisionController.getInstance().addObject(this);
-    }
-
-    @Override
-    public void stopCollision() {
-       CollisionController.getInstance().removeObject(this); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

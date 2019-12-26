@@ -5,6 +5,7 @@
  */
 package gameState;
 
+import characterState.playerState.*;
 import java.awt.Point;
 import java.util.List;
 import metalscrum.CharacterController;
@@ -31,7 +32,8 @@ public class LoadingLevelState implements State{
         
         public void execute(){
             initLevel();
-            this.player = new Player(new Point(0,0),50,45,"player",true,3,Direction.RIGHT,new Weapon(2));
+            this.player = new Player(new Point(0,0),50,45,"player",new Weapon(2));
+            player.setState(new PlayerStopLeft());
             //GameStatus.setGameStatus(1);
             listener.stateEnded();
             

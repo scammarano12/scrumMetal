@@ -25,31 +25,25 @@ import javax.swing.ImageIcon;
  *
  * @author stefano
  */
-public abstract class SolidObject {
+public abstract class SolidObject implements Drawable {
     protected Point position;
     protected int width;
     protected int heigth;
     protected String id;
-    protected boolean visible;
     protected Collision collision;
-    protected HashMap<Direction,Image> images;
+    protected Image image;
     protected Direction currentDir;
     
 
-    public SolidObject(Point position, int width, int heigth, String id, boolean visible) {
+    public SolidObject(Point position, int width, int heigth, String id) {
         this.position = position;
         this.width = width;
         this.heigth = heigth;
         this.id = id;
-        this.visible = visible;
         this.collision=new Collision(this,null,false,false,false,false);
-        this.images=new HashMap<>();
-       
     }
     
-    public abstract void activeCollision();
-    public abstract void stopCollision();
-    
+
     
     protected Image loadImage(String imageName) {
         try {
@@ -66,16 +60,7 @@ public abstract class SolidObject {
         return null;
     }
 
-    public Direction getCurrentDir() {
-        return currentDir;
-    }
-
-    public void setCurrentDir(Direction currentDir) {
-        this.currentDir = currentDir;
-    }
-    
-    
-    
+   
     public Rectangle getHitbox(){
         return new Rectangle(position.x,position.y,width,heigth);
     }
@@ -119,14 +104,30 @@ public abstract class SolidObject {
     public void setId(String id) {
         this.id = id;
     }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-  
     
+    
+    public void activeCollision() {
+        CollisionController.getInstance().addObject(this);
+    }
+
+ 
+    public void stopCollision() {
+       CollisionController.getInstance().removeObject(this); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public void draw() {
+        Scene.getInstance().addToDraw(this);
+    }
+
+    @Override
+    public void unDraw() {
+        Scene.getInstance().removeFromDraw(this);
+    }
+
+    @Override
+    public abstract Image getDraw();
+    
+    
+ 
 }
