@@ -123,7 +123,7 @@ public class PlayerController extends CharacterController implements KeyListener
                 }
 
                 for (Bullet b : p.getFiredBullets()) {
-                    if (b.getHitbox().x > 1280 || b.getHitbox().x < 0) {
+                    if (b.getHitbox().x > GameSettings.FrameDimension.width || b.getHitbox().x < 0) {
 
                         b.setActive(false);
                         b.unDraw();

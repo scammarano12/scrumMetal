@@ -73,7 +73,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     private void initScene(){
         sc = Scene.getInstance();
         getContentPane().add(sc);
-        sc.setSize(800, 464);
+        sc.setSize(GameSettings.FrameDimension.width,GameSettings.FrameDimension.width);
         sc.setVisible(false);
         
     }
