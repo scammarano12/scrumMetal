@@ -15,8 +15,8 @@ import java.awt.Rectangle;
  */
 public class GameSettings {
     public static Rectangle FrameDimension = new Rectangle(1280,720);
-    public static Rectangle PlayerDimension = new Rectangle(20,18);
-    public static Rectangle EnemyDimension = new Rectangle(13,16);
+    public static Rectangle PlayerDimension = new Rectangle(40,36);
+    public static Rectangle EnemyDimension = new Rectangle(40,32);
     public static Rectangle BlockDimension = new Rectangle(40,24);
     public static Rectangle BulletDimension = new Rectangle(14,6);
     

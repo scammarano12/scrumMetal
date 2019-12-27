@@ -26,8 +26,18 @@ public class Block extends SolidObject implements Drawable{
 
     public Block(Point position, int width, int heigth, String id) {
         super(position, width, heigth, id);
-        image = SolidObject.loadImage(platform);
+        image = blockloadImage(platform);
         buildImage();
+    }
+    
+    
+    private Image blockloadImage(String s){
+        try {
+            return ImageIO.read(new File(s));
+        } catch (IOException ex) {
+            Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     

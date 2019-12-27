@@ -142,16 +142,17 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == clock){
-            clock.stop();
+            
             //checkStatus(); 
             gameStatus.execute();
             
             java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 repaint();
-                clock.start();
+               
             }
         });
+            
             
         }
         
