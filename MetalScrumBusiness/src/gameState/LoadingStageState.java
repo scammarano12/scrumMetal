@@ -17,6 +17,7 @@ import metalscrum.EndStateListener;
 import metalscrum.Enemy;
 import metalscrum.EnemyController;
 import metalscrum.GameLevel;
+import metalscrum.GameSettings;
 import metalscrum.Player;
 import metalscrum.PlayerController;
 import metalscrum.Scene;
@@ -64,7 +65,7 @@ public class LoadingStageState implements State{
         
             for(int i=0; i<positions.size(); i++){
                 //Aggiunto SSS
-                Enemy enemy = new Enemy(positions.get(i),50,45,"enemy",true,2,Direction.LEFT,new Weapon(2));
+                Enemy enemy = new Enemy(positions.get(i),GameSettings.EnemyDimension.width,GameSettings.EnemyDimension.height,"enemy",true,2,Direction.LEFT,new Weapon(2));
 
                 EnemyController controller = new EnemyController(100,300);
 

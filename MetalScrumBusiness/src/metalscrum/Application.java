@@ -5,6 +5,7 @@
  */
 package metalscrum;
 
+
 import menu.MenuGameOver;
 import menu.MenuLevelTerminated;
 import menu.MenuPause;
@@ -45,8 +46,8 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         initComponents();
         
         
-        clock=new Timer(5,this);
-        setSize(1280, 720);
+        clock=new Timer(8,this);
+        setSize(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height);
         setResizable(false);
         initScene();
         initCollisionController();
@@ -72,7 +73,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     private void initScene(){
         sc = Scene.getInstance();
         getContentPane().add(sc);
-        sc.setSize(1280, 720);
+        sc.setSize(800, 464);
         sc.setVisible(false);
         
     }

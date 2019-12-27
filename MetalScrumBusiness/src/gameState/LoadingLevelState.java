@@ -12,6 +12,7 @@ import metalscrum.CharacterController;
 import metalscrum.Direction;
 import metalscrum.EndStateListener;
 import metalscrum.GameLevel;
+import metalscrum.GameSettings;
 import metalscrum.Player;
 import metalscrum.State;
 import metalscrum.Weapon;
@@ -32,7 +33,7 @@ public class LoadingLevelState implements State{
         
         public void execute(){
             initLevel();
-            this.player = new Player(new Point(0,0),50,45,"player",new Weapon(2));
+            this.player = new Player(new Point(0,0),GameSettings.PlayerDimension.width,GameSettings.PlayerDimension.height,"player",new Weapon(2));
             player.setState(new PlayerStopLeft());
             //GameStatus.setGameStatus(1);
             listener.stateEnded();

@@ -76,7 +76,7 @@ public class Main {
         //start.setVolumeOff(new Application.VolumeOffListener());
         //start.setVolumeOn(new Application.VolumeOnListener());
         context.getContentPane().add(start);
-        start.setSize(1280, 720);
+        start.setSize(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height);
         start.setVisible(false);
         return start;
     }
@@ -89,7 +89,7 @@ public class Main {
        // pause.setVolumeOff(new Application.VolumeOffListener(context));
        // pause.setVolumeOn(new VolumeOnListener(context));
         context.getContentPane().add(pause);
-        pause.setSize(1280, 720);
+        pause.setSize(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height);
         pause.setVisible(false);
         return pause;
     }
@@ -99,7 +99,7 @@ public class Main {
         gameOver.setQuit(new QuitListener(context));
         gameOver.setPlay(new PlayListener(context));
         context.getContentPane().add(gameOver);
-        gameOver.setSize(1280, 720);
+        gameOver.setSize(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height);
         gameOver.setVisible(false);
         return gameOver;
     }
@@ -107,7 +107,7 @@ public class Main {
         MenuStageTerminated stageOver= new MenuStageTerminated();
         stageOver.setPlay(new PlayStageListener(context));
         context.getContentPane().add(stageOver);
-        stageOver.setSize(1280, 720);
+        stageOver.setSize(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height);
         stageOver.setVisible(false);
         return stageOver;
     }
@@ -115,7 +115,7 @@ public class Main {
         MenuLevelTerminated levelOver= new MenuLevelTerminated();
         levelOver.setPlay(new PlayLevelOverListener(context));
         context.getContentPane().add(levelOver);
-        levelOver.setSize(1280,720);
+        levelOver.setSize(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height);
         levelOver.setVisible(false);
         return levelOver;
     }

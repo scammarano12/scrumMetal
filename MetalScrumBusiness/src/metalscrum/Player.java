@@ -21,7 +21,7 @@ public class Player extends Character {
     private int playerHealth;
     
     public Player(Point position, int width, int heigth, String id, Weapon weapon) {
-        super(position, 20, 18, id, 4, weapon );  
+        super(position, width, heigth, id, 4, weapon );  
         numberOfLife=3;
         playerHealth=4;
     }

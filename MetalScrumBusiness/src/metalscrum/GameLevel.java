@@ -58,38 +58,39 @@ public class GameLevel {
     }
     public  List<Point> createStage(){
         
-        Drawable background = new Drawable() {
-            @Override
-            public Image getDraw() {
-                ImageIcon ii = new ImageIcon("src/resources/Levels/Level"+levelNumber+"/background.png");
-                return ii.getImage();
-            }
-
-            @Override
-            public Point getPosition() {
-                return new Point(0,0);
-            }
-
-            @Override
-            public void draw() {
-                Scene.getInstance().addToDraw(this);
-            }
-
-            @Override
-            public void unDraw() {
-                Scene.getInstance().removeFromDraw(this);
-            }
-        };
-        
-        background.draw();
-        
+//        Drawable background = new Drawable() {
+//            @Override
+//            public Image getDraw() {
+//                ImageIcon ii = new ImageIcon("src/resources/Levels/Level"+levelNumber+"/background.png");
+//     
+//                return ii.getImage();
+//            }
+//
+//            @Override
+//            public Point getPosition() {
+//                return new Point(0,0);
+//            }
+//
+//            @Override
+//            public void draw() {
+//                Scene.getInstance().addToDraw(this);
+//            }
+//
+//            @Override
+//            public void unDraw() {
+//                Scene.getInstance().removeFromDraw(this);
+//            }
+//        };
+//        
+//        background.draw();
+//        
         LinkedList<Point> positions = new LinkedList<>();
         try {
             System.out.println("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
             Reader is = new FileReader("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
             Scanner s = new Scanner(is);
-            int width =25;
-            int heigth =16;
+            int width =GameSettings.BlockDimension.width;
+            int heigth =GameSettings.BlockDimension.height;
             int j =0;
             int count = 0;
             int last = 0;

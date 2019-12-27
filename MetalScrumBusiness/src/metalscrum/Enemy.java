@@ -99,8 +99,6 @@ public class Enemy extends Character {
     @Override
     public Image getDraw() {
         Image i = images.get(currentDir);
-        this.setHeigth(i.getHeight(null));
-       this.setWidth(i.getWidth(null));
        return i;
         //return getHitbox();
     }

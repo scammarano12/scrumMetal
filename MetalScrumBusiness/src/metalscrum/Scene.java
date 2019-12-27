@@ -46,7 +46,7 @@ public class Scene extends JPanel {
     
     @Override
     public synchronized void paint(Graphics g){
-        System.out.println("oggetti: "+objects.size());
+       
         for(Drawable d: objects){
             g.drawImage(d.getDraw(), d.getPosition().x, d.getPosition().y, this);
            
