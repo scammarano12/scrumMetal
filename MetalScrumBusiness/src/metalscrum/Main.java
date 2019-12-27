@@ -48,14 +48,8 @@ public class Main {
             java.util.logging.Logger.getLogger(Application.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Application app = new Application();
-                
-                
-                MenuStart start = initStartMenu(app);
+        Application app = new Application();
+         MenuStart start = initStartMenu(app);
                 MenuPause pause = initPauseMenu(app);
                 MenuLevelTerminated levelOver = initLevelOverMenu(app);
                 MenuStageTerminated stageOver = initStageOverMenu(app);
@@ -66,6 +60,10 @@ public class Main {
                 app.levelOver=levelOver;
                 app.stageOver=stageOver;
                 app.setStatus(new StartMenuState(start));
+                
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
                 app.setVisible(true);
             }
         });

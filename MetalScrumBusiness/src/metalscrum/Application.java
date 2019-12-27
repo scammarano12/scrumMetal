@@ -146,8 +146,13 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             //checkStatus(); 
             gameStatus.execute();
             
-            repaint();
-            clock.start();
+            java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                repaint();
+                clock.start();
+            }
+        });
+            
         }
         
     }
