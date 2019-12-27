@@ -27,9 +27,10 @@ import metalscrum.Application;
         
         @Override
         public void actionPerformed(ActionEvent e) {
-            context.getStatus().end();
+           
+            context.end();
             context.setStatus(new InGameState(context.getCurrentControllers(), context.getCurrentGameLevel(),context.getCurrentPlayer(),gameListener));
-            
+           
             
             
         }

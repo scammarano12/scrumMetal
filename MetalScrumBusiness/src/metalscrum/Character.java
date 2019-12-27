@@ -80,45 +80,7 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     public Direction getCurrentDir() {
         return state.getDir();
     }
-
-    public Point getPosition() {
-        return position;
-    }
-
-    @Override
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
-    @Override
-    public int getWidth() {
-        return width;
-    }
-
-    @Override
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    @Override
-    public int getHeigth() {
-        return heigth;
-    }
-
-    @Override
-    public void setHeigth(int heigth) {
-        this.heigth = heigth;
-    }
-
-    @Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(String id) {
-        this.id = id;
-    }
+ 
 
     @Override
     public Image getDraw(){

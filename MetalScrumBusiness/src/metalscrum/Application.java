@@ -6,6 +6,7 @@
 package metalscrum;
 
 
+import gameState.StartMenuState;
 import menu.MenuGameOver;
 import menu.MenuLevelTerminated;
 import menu.MenuPause;
@@ -22,6 +23,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import menu.Menu;
 
 /**
  *
@@ -35,11 +37,11 @@ public class Application extends javax.swing.JFrame {
     
     private State gameStatus;
     private Timer clock ;
-    public MenuPause pause ;
-    public MenuStart start;
-    public MenuGameOver gameOver;
-    public MenuStageTerminated stageOver;
-    public MenuLevelTerminated levelOver;
+    private MenuPause pause ;
+    private MenuStart start;
+    private MenuGameOver gameOver;
+    private MenuStageTerminated stageOver;
+    private MenuLevelTerminated levelOver;
     private MediaPlayer mp;
     private CollisionController cc;
     private Scene sc;
@@ -54,24 +56,29 @@ public class Application extends javax.swing.JFrame {
         initScene();
         initCollisionController();
         //initMusic();
-        //gameStatus=new StartMenuState(start);
+        gameStatus=null;
         
     }
     
     public void run(){
         while(true){
             try {
-                System.out.println("pre-gameState: "+Thread.currentThread().getName());
+               // System.out.println("pre-gameState: "+Thread.currentThread().getName());
                 Thread.sleep(5);
-                gameStatus.execute();
+                     
+                         
+                        execute();
+                          
+                
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println("pre-repaint: "+Thread.currentThread().getName());
-                        repaint(); //To change body of generated methods, choose Tools | Templates.
+                       
+                        repaint(); 
+                    //To change body of generated methods, choose Tools | Templates.
                     }
                 }); 
-            
+                
             } catch (InterruptedException ex) {
                 Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -113,12 +120,63 @@ public class Application extends javax.swing.JFrame {
         mp.play();
     }
     
-    public  State getStatus(){
+    public void  setPause(MenuPause m){
+        pause=m;
+    }
+    public void setStart(MenuStart m){
+        start=m;
+    }
+    
+    public void setGameOver(MenuGameOver m){
+        gameOver=m;
+    }
+    public void setLevelOver(MenuLevelTerminated m){
+        levelOver=m;
+    }
+    public void setStageOver(MenuStageTerminated m){
+        stageOver=m;
+    }
+    
+    public synchronized void execute(){
+         
+        gameStatus.execute();
+        System.out.println("eseguito stato "+ Thread.currentThread().getName() +" "+ gameStatus.getClass());
+    }
+    
+    public synchronized void end(){
+        gameStatus.end();
+    } 
+    
+    public MenuPause getPause(){
+        return pause;
+    }
+    public MenuStart getStart(){
+        return start;
+    }
+    public MenuGameOver getGameOver(){
+        return gameOver;
+    }
+    public MenuLevelTerminated getLevelOver(){
+        return levelOver;
+    }
+    public MenuStageTerminated getStageOver(){
+        return stageOver;
+    }
+    
+    
+    
+    
+    
+    public synchronized State getStatus(){
         return gameStatus;
     }
     
-    public  void setStatus(State newState){
+    public synchronized void setStatus(State newState){
+        if(gameStatus!=null) 
+            gameStatus.end();
+        
         gameStatus = newState;
+         System.out.println("cambio stato "+ Thread.currentThread().getName() +" "+ gameStatus.getClass());
     } 
     
     public Player getCurrentPlayer(){

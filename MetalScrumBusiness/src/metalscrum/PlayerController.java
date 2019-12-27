@@ -9,6 +9,7 @@ import characterState.CharacterState;
 import characterState.playerState.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -137,9 +138,19 @@ public class PlayerController extends CharacterController implements KeyListener
 
             } else {
                 if (p.hasLives()) {
-                    listener.playerHealthLevelEnded();
+                    SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    listener.playerHealthLevelEnded();//To change body of generated methods, choose Tools | Templates.
+                }
+            });
+                    
                 } else {
+                    SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
                     listener.playerDead();
+                }});
                 }
                 p.unDraw();
                 p.stopCollision();

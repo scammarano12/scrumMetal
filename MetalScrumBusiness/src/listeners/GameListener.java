@@ -32,10 +32,11 @@ public class GameListener implements KeyListener{
                 if(e.getKeyCode()==KeyEvent.VK_ESCAPE ){
                     /*if(GameStatus.getGameStatus()==0){
                         GameStatus.setGameStatus(2);
-                    }*/                   
-                    context.getStatus().end();
-                    context.setStatus(new PauseMenuState(context.pause,context.getCurrentControllers(),context.getCurrentGameLevel(),context.getCurrentPlayer()));
-
+                    }*/   
+                     
+                    context.end();
+                    context.setStatus(new PauseMenuState(context.getPause(),context.getCurrentControllers(),context.getCurrentGameLevel(),context.getCurrentPlayer()));
+                    
                 }
             }
 

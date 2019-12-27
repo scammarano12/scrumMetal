@@ -5,7 +5,11 @@
  */
 package gameState;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 import menu.MenuGameOver;
 import metalscrum.CharacterController;
 import metalscrum.EndStateListener;
@@ -25,13 +29,15 @@ import metalscrum.State;
         }
         
         public void execute(){
+           
         if(!gameOver.isVisible()){
                 System.out.println("GameOver");
                 
                 gameOver.setVisible(true);
                 gameOver.requestFocusInWindow();
-                }
-        }
+              
+            
+        }}
 
         @Override
         public void escape() {
@@ -40,7 +46,9 @@ import metalscrum.State;
 
         @Override
         public void end() {
-            gameOver.setVisible(false);
+           
+                        gameOver.setVisible(false);
+                   
             
         }
 

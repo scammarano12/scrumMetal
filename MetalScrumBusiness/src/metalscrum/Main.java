@@ -6,6 +6,9 @@
 package metalscrum;
 
 import gameState.StartMenuState;
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import listeners.GameListener;
 import listeners.buttonListeners.PlayLevelOverListener;
@@ -50,26 +53,34 @@ public class Main {
         }
         //</editor-fold>
         Application app = new Application();
-         MenuStart start = initStartMenu(app);
-                MenuPause pause = initPauseMenu(app);
-                MenuLevelTerminated levelOver = initLevelOverMenu(app);
-                MenuStageTerminated stageOver = initStageOverMenu(app);
-                MenuGameOver gameOver = initGameOverMenu(app);
-                app.start=start;
-                app.pause=pause;
-                app.gameOver=gameOver;
-                app.levelOver=levelOver;
-                app.stageOver=stageOver;
-                app.setStatus(new StartMenuState(start));
                 
-        /* Create and display the form */
-                SwingUtilities.invokeLater(new Runnable(){
-            @Override
-            public void run() {
-                app.setVisible(true);
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
+        try {
+            /* Create and display the form */
+            SwingUtilities.invokeAndWait(new Runnable(){
+                @Override
+                public void run() {
+                    
+                    MenuStart start = initStartMenu(app);
+                    MenuPause pause = initPauseMenu(app);
+                    MenuLevelTerminated levelOver = initLevelOverMenu(app);
+                    MenuStageTerminated stageOver = initStageOverMenu(app);
+                    MenuGameOver gameOver = initGameOverMenu(app);
+                    app.setStart(start);
+                    app.setPause(pause);
+                    app.setGameOver(gameOver);
+                    app.setLevelOver(levelOver);
+                    app.setStageOver(stageOver);
+                    app.setStatus(new StartMenuState(start));
+                    
+                    app.setVisible(true);
+                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+            });
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 app.run();
                 
          

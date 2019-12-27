@@ -5,7 +5,11 @@
  */
 package gameState;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 import listeners.GameListener;
 import metalscrum.CharacterController;
 import metalscrum.CollisionController;
@@ -40,10 +44,12 @@ public class InGameState implements State{
         }
         
         public void execute(){
+            
             if(!sc.isVisible()){
                 sc.setVisible(true);
                 sc.requestFocusInWindow();
             }
+            
             cc.checkCollision();
                 int enemyCounter=-1;
                 for(CharacterController c :controllers){
@@ -69,8 +75,9 @@ public class InGameState implements State{
 
         @Override
         public void end() {
-            sc.setVisible(false);
-            sc.removeKeyListener(gameListener);
+                        sc.setVisible(false);
+                        sc.removeKeyListener(gameListener);
+                    
         }
 
         @Override

@@ -8,6 +8,7 @@ package gameState;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.SwingUtilities;
 import listeners.stateListeners.PlayerListener;
 import metalscrum.Application;
 import metalscrum.CharacterController;
@@ -101,11 +102,12 @@ public class LoadingStageState implements State{
 
             
 
-            //GameStatus.setGameStatus(0);
-
-            
-            listener.stateEnded();
-            
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    listener.stateEnded();//To change body of generated methods, choose Tools | Templates.
+                }
+            });
             
         }
 

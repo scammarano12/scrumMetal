@@ -5,7 +5,11 @@
  */
 package gameState;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 import menu.MenuPause;
 import metalscrum.CharacterController;
 import metalscrum.EndStateListener;
@@ -31,11 +35,13 @@ public class PauseMenuState implements State{
         }
         
         public void execute(){
+            
             if(!pause.isVisible()){
                 pause.setVisible(true);
                 pause.requestFocusInWindow();
                }
         }
+        
 
         @Override
         public void escape() {
@@ -44,7 +50,9 @@ public class PauseMenuState implements State{
 
         @Override
         public void end() {
-            pause.setVisible(false);
+            
+                        pause.setVisible(false);
+                    
         }
 
         @Override

@@ -5,7 +5,11 @@
  */
 package gameState;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 import menu.MenuStart;
 import metalscrum.CharacterController;
 import metalscrum.EndStateListener;
@@ -22,12 +26,15 @@ public class StartMenuState implements State{
         
         
         public void execute(){
-            
-            if(!start.isVisible()){
-                start.setVisible(true);
-                start.requestFocusInWindow();
+         if(!start.isVisible()){
+                        System.out.println("apro start");
+                        start.setVisible(true);
+                        start.requestFocusInWindow();
                      
             }
+            
+            
+                    
          
         }
 
@@ -38,8 +45,13 @@ public class StartMenuState implements State{
 
         @Override
         public void end() {
-            if(start.isVisible())
-               start.setVisible(false);
+           if(start.isVisible()){
+              System.out.println("chiudo start");
+              start.setVisible(false);
+           }
+            
+           
+        
         }
 
         @Override

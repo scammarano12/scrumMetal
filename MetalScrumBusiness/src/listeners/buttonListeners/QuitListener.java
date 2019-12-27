@@ -24,8 +24,9 @@ public class QuitListener implements ActionListener{
         
         @Override
         public void actionPerformed(ActionEvent e) {
-            context.getStatus().end();
-            context.setStatus(new StartMenuState(context.start));
+            
+            context.end();
+            context.setStatus(new StartMenuState(context.getStart()));
      
             
         }

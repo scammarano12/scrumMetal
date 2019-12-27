@@ -27,9 +27,9 @@ public class PlayStageListener implements ActionListener{
         
         @Override
         public void actionPerformed(ActionEvent e) {
+           
             
-            
-            context.getStatus().end();
+            context.end();
             State s=new LoadingStageState(context.getCurrentGameLevel(),context.getCurrentPlayer(),context.getCurrentControllers(),new PlayerListener(context));
             s.setListener(new LoadedStageListener(context));
             context.setStatus(s);

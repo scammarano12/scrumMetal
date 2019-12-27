@@ -8,6 +8,7 @@ package gameState;
 import characterState.playerState.*;
 import java.awt.Point;
 import java.util.List;
+import javax.swing.SwingUtilities;
 import metalscrum.CharacterController;
 import metalscrum.Direction;
 import metalscrum.EndStateListener;
@@ -36,9 +37,19 @@ public class LoadingLevelState implements State{
             this.player = new Player(new Point(0,0),GameSettings.PlayerDimension.width,GameSettings.PlayerDimension.height,"player",new Weapon(2));
             player.setState(new PlayerStopLeft());
             //GameStatus.setGameStatus(1);
-            listener.stateEnded();
-            
+                    SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    listener.stateEnded();//To change body of generated methods, choose Tools | Templates.
+                }
+            });
+                    
         }
+
+            
+           
+            
+        
 
         @Override
         public void escape() {

@@ -5,7 +5,11 @@
  */
 package gameState;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 import menu.MenuLevelTerminated;
 import menu.MenuStageTerminated;
 import metalscrum.CharacterController;
@@ -39,9 +43,10 @@ import metalscrum.State;
         
         
         public void execute(){
+          
             if(!stageOver.isVisible() && !levelOver.isVisible()){
                 gl.nextStage();
-         
+                
                 sc.setVisible(false);
                 if(gl.checkNextStage()){
                     stageOver.setVisible(true);
@@ -51,7 +56,7 @@ import metalscrum.State;
                     levelOver.requestFocusInWindow();
                     
                 }
-            }   
+            }
         }
 
         @Override
@@ -61,8 +66,10 @@ import metalscrum.State;
 
         @Override
         public void end() {
-            levelOver.setVisible(false);
-            stageOver.setVisible(false);
+            
+             levelOver.setVisible(false);
+             stageOver.setVisible(false);
+                    
         }
 
         @Override

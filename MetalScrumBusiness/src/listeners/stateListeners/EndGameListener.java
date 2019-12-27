@@ -23,8 +23,9 @@ import metalscrum.EndStateListener;
         
         @Override
         public void stateEnded() {
-            context.setStatus(new StageOverMenuState(context.stageOver,context.levelOver,context.getCurrentGameLevel(),context.getCurrentPlayer(),context.getCurrentControllers()));
-                
+            context.end();
+             context.setStatus(new StageOverMenuState(context.getStageOver(),context.getLevelOver(),context.getCurrentGameLevel(),context.getCurrentPlayer(),context.getCurrentControllers()));
+             
         }
         
     }

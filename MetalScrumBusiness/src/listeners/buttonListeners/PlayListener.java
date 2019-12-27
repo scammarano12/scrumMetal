@@ -25,10 +25,13 @@ public class PlayListener implements ActionListener{
         
         @Override
         public void actionPerformed(ActionEvent e) {
-            context.getStatus().end();
-            State s = new LoadingLevelState();
-            s.setListener(new LoadedLevelListener(context));
-            context.setStatus(s);
+            
+                //context.end();
+                State s = new LoadingLevelState();
+                s.setListener(new LoadedLevelListener(context));
+               
+                context.setStatus(s);
+            
         }
     
     }
