@@ -15,16 +15,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 /**
  *
  * @author stefano
  */
-public class Application extends javax.swing.JFrame implements ActionListener{
+public class Application extends javax.swing.JFrame {
 
     /**
      * Creates new form Application
@@ -45,8 +48,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         
         initComponents();
         
-        
-        clock=new Timer(8,this);
+         
         setSize(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height);
         setResizable(false);
         initScene();
@@ -54,6 +56,26 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         //initMusic();
         //gameStatus=new StartMenuState(start);
         
+    }
+    
+    public void run(){
+        while(true){
+            try {
+                System.out.println("pre-gameState: "+Thread.currentThread().getName());
+                Thread.sleep(5);
+                gameStatus.execute();
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("pre-repaint: "+Thread.currentThread().getName());
+                        repaint(); //To change body of generated methods, choose Tools | Templates.
+                    }
+                }); 
+            
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
    
@@ -66,7 +88,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     @Override
     public void setVisible(boolean isVisible){
         super.setVisible(isVisible);
-        clock.start();
+        
     }
     
     
@@ -139,50 +161,11 @@ public class Application extends javax.swing.JFrame implements ActionListener{
     
     
     
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == clock){
-            
-            //checkStatus(); 
-            gameStatus.execute();
-            
-            java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                repaint();
-               
-            }
-        });
-            
-            
-        }
-        
-    }
-
-    
-    
-    
-    
-    
-    
    
-     
-    
-     
-    
-    
-    
-    
-    
-    
-   
-    
-   
-    
-    
-        
-    
-    
-    
+            
+       
+            
+       
     
    
     
@@ -207,12 +190,14 @@ public class Application extends javax.swing.JFrame implements ActionListener{
         }
 
 }
+}
+
     
    
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-}
+
 
 

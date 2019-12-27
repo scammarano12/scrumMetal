@@ -6,6 +6,7 @@
 package metalscrum;
 
 import gameState.StartMenuState;
+import javax.swing.SwingUtilities;
 import listeners.GameListener;
 import listeners.buttonListeners.PlayLevelOverListener;
 import listeners.buttonListeners.PlayListener;
@@ -62,12 +63,20 @@ public class Main {
                 app.setStatus(new StartMenuState(start));
                 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+                SwingUtilities.invokeLater(new Runnable(){
+            @Override
             public void run() {
                 app.setVisible(true);
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
+                app.run();
+                
+         
     }
+    
+         
+            
      private static MenuStart initStartMenu(Application context){
         MenuStart start = new MenuStart();
         start.setPlay(new PlayListener(context));
