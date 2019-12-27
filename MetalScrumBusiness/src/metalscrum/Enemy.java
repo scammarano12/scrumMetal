@@ -69,7 +69,7 @@ public class Enemy extends Character {
         String id = so.getId();
         if(id.equals("player") && System.currentTimeMillis()-time > 5000 ){
             time = System.currentTimeMillis();
-           System.out.println("collisione con giocatore");
+           
            Character p = (Character) so;
             int currentHealth = p.getHealth();
             p.setHealth(currentHealth-1);

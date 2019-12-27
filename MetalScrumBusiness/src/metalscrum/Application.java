@@ -144,7 +144,7 @@ public class Application extends javax.swing.JFrame implements ActionListener{
             clock.stop();
             //checkStatus(); 
             gameStatus.execute();
-            System.out.println(gameStatus.getClass());
+            
             repaint();
             clock.start();
         }

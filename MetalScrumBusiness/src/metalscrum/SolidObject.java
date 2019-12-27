@@ -49,7 +49,7 @@ public abstract class SolidObject implements Drawable {
         try {
             Image img = ImageIO.read(new File(imageName));
             
-            img = img.getScaledInstance(3*img.getWidth(null), 3*img.getHeight(null), Image.SCALE_DEFAULT);
+            img = img.getScaledInstance(img.getWidth(null), img.getHeight(null), Image.SCALE_DEFAULT);
             return img;
             //ImageIcon ii = new ImageIcon(imageName);
         } catch (IOException ex) {

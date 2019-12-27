@@ -53,8 +53,7 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     }
     
     public boolean isAlive(){
-        if(this instanceof Player)
-        System.out.println("vita: "+health);
+        
         return health>0;
     }
     
@@ -124,8 +123,7 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     @Override
     public Image getDraw(){
        Image i =  state.nextImage();
-       this.setHeigth(i.getHeight(null));
-       this.setWidth(i.getWidth(null));
+      
        return i;
     }
     

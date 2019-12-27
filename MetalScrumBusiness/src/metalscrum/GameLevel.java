@@ -10,6 +10,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Reader;
 import java.util.LinkedList;
 import java.util.List;
@@ -87,8 +88,8 @@ public class GameLevel {
             System.out.println("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
             Reader is = new FileReader("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
             Scanner s = new Scanner(is);
-            int width =40;
-            int heigth =24;
+            int width =25;
+            int heigth =16;
             int j =0;
             int count = 0;
             int last = 0;
@@ -106,6 +107,7 @@ public class GameLevel {
                         if((last>0 && c!='\t')){
                         
                         Block b = new Block(new Point((count-last)*width,j*heigth),width*last ,heigth,"block");
+                        
                         b.draw();
                         b.activeCollision();
                        
@@ -130,9 +132,12 @@ public class GameLevel {
                 
                
             
-            
+          is.close();
+          s.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GameLevel.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return positions;
