@@ -27,7 +27,7 @@ public class StartMenuState implements State{
         
         public void execute(){
          if(!start.isVisible()){
-                        System.out.println("apro start");
+                        
                         start.setVisible(true);
                         start.requestFocusInWindow();
                      
@@ -46,7 +46,7 @@ public class StartMenuState implements State{
         @Override
         public void end() {
            if(start.isVisible()){
-              System.out.println("chiudo start");
+              
               start.setVisible(false);
            }
             

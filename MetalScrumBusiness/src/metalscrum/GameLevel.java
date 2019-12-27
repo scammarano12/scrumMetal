@@ -57,33 +57,8 @@ public class GameLevel {
         return stageLimit!=(stageNumber-1);
     }
     public  List<Point> createStage(){
-        
-//        Drawable background = new Drawable() {
-//            @Override
-//            public Image getDraw() {
-//                ImageIcon ii = new ImageIcon("src/resources/Levels/Level"+levelNumber+"/background.png");
-//     
-//                return ii.getImage();
-//            }
-//
-//            @Override
-//            public Point getPosition() {
-//                return new Point(0,0);
-//            }
-//
-//            @Override
-//            public void draw() {
-//                Scene.getInstance().addToDraw(this);
-//            }
-//
-//            @Override
-//            public void unDraw() {
-//                Scene.getInstance().removeFromDraw(this);
-//            }
-//        };
-//        
-//        background.draw();
-//        
+
+        Scene.getInstance().setBackground(new ImageIcon("src/resources/Levels/Level"+levelNumber+"/background.png").getImage().getScaledInstance(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height, Image.SCALE_DEFAULT));
         LinkedList<Point> positions = new LinkedList<>();
         try {
             System.out.println("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");

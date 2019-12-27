@@ -63,7 +63,7 @@ public class Application extends javax.swing.JFrame {
     public void run(){
         while(true){
             try {
-               // System.out.println("pre-gameState: "+Thread.currentThread().getName());
+               
                 Thread.sleep(5);
                      
                          
@@ -140,7 +140,7 @@ public class Application extends javax.swing.JFrame {
     public synchronized void execute(){
          
         gameStatus.execute();
-        System.out.println("eseguito stato "+ Thread.currentThread().getName() +" "+ gameStatus.getClass());
+        
     }
     
     public synchronized void end(){
@@ -176,7 +176,7 @@ public class Application extends javax.swing.JFrame {
             gameStatus.end();
         
         gameStatus = newState;
-         System.out.println("cambio stato "+ Thread.currentThread().getName() +" "+ gameStatus.getClass());
+        
     } 
     
     public Player getCurrentPlayer(){
