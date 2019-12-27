@@ -27,11 +27,12 @@ public class Block extends SolidObject implements Drawable{
     public Block(Point position, int width, int heigth, String id) {
         super(position, width, heigth, id);
         image = SolidObject.loadImage(platform);
+        buildImage();
     }
-
     
-    @Override
-    public Image getDraw() {
+    
+    public void buildImage(){
+        //System.out.println("build");
         int imagesCount = width/GameSettings.BlockDimension.width;
     
          
@@ -61,10 +62,15 @@ public class Block extends SolidObject implements Drawable{
         }
         g2d.dispose();
         
-        return concatImage;
-        
-        
-        
+        image = concatImage;
+    
+    }
+
+    
+    @Override
+    public Image getDraw() {
+        return image;
+  
     }
 
 }
