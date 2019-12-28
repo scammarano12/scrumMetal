@@ -15,7 +15,7 @@ import metalscrum.CharacterController;
 import metalscrum.CollisionController;
 import metalscrum.EndStateListener;
 import metalscrum.GameLevel;
-import metalscrum.Player;
+import character.Player;
 import metalscrum.Scene;
 import metalscrum.State;
 

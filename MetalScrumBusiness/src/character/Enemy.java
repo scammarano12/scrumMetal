@@ -3,14 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package metalscrum;
+package character;
 
+import character.Character;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.HashMap;
 
 import java.util.Random;
+import metalscrum.Collision;
+import metalscrum.SolidObject;
+import metalscrum.Weapon;
 
 /**
  *
@@ -29,15 +33,7 @@ public class Enemy extends Character {
         
     }
     
-    
-    
-    
-
-    
-    
-    
    
-    
     
     @Override
     public void setCollision(Collision c){
@@ -56,31 +52,9 @@ public class Enemy extends Character {
     }
     }
     
-    @Override
-    public void move(int dx, int dy) {
     
-        if (dx>0 && !collision.isRigth() || dx<0 && !collision.isLeft()){ 
-            if(dx>0)
-                currentDir = Direction.RIGHT;
-            else
-                currentDir = Direction.LEFT;
-                        
-            getPosition().translate(dx,0);
-        }
-        
-        if(dy<0 && !collision.isTop() || dy>0 && !collision.isDown() ){
-               
-                 getPosition().translate(0, dy) ;
-        }
-        
-    }
 
-    @Override
-    public Image getDraw() {
-        Image i = state.nextImage();
-        return i;
-        //return getHitbox();
-    }
+   
 
     
     

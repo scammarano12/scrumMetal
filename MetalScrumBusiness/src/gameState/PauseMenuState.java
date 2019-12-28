@@ -14,7 +14,7 @@ import menu.MenuPause;
 import metalscrum.CharacterController;
 import metalscrum.EndStateListener;
 import metalscrum.GameLevel;
-import metalscrum.Player;
+import character.Player;
 import metalscrum.State;
 
 /**

@@ -1,4 +1,4 @@
-package metalscrum;
+package character;
 
 import characterState.CharacterState;
 import java.awt.Image;
@@ -8,6 +8,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.swing.ImageIcon;
+import metalscrum.Bullet;
+import metalscrum.CollisionController;
+import metalscrum.Direction;
+import metalscrum.Drawable;
+import metalscrum.Movable;
+import metalscrum.SolidObject;
+import metalscrum.Weapon;
 
 /**
  *
@@ -87,6 +94,12 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
        Image i =  state.nextImage();
       
        return i;
+    }
+    
+    @Override
+    public synchronized void move(int dx, int dy) {
+        getPosition().translate(dx, dy);
+  
     }
     
     

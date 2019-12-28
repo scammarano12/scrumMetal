@@ -5,6 +5,8 @@
  */
 package gameState;
 
+import characterState.EnemyState.EnemyStopRight;
+import characterState.EnemyState.EnemyWalkRight;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,11 +17,11 @@ import metalscrum.CharacterController;
 import metalscrum.CollisionController;
 import metalscrum.Direction;
 import metalscrum.EndStateListener;
-import metalscrum.Enemy;
+import character.Enemy;
 import metalscrum.EnemyController;
 import metalscrum.GameLevel;
 import metalscrum.GameSettings;
-import metalscrum.Player;
+import character.Player;
 import metalscrum.PlayerController;
 import metalscrum.Scene;
 import metalscrum.State;
@@ -66,8 +68,8 @@ public class LoadingStageState implements State{
         
             for(int i=0; i<positions.size(); i++){
                 //Aggiunto SSS
-                Enemy enemy = new Enemy(positions.get(i),GameSettings.EnemyDimension.width,GameSettings.EnemyDimension.height,"enemy",true,2,Direction.LEFT,new Weapon(2));
-
+                Enemy enemy = new Enemy(positions.get(i),GameSettings.EnemyDimension.width,GameSettings.EnemyDimension.height,"enemy",2,new Weapon(2));
+                enemy.setState(new EnemyWalkRight());
                 EnemyController controller = new EnemyController(100,300);
 
                 controllers.add(controller);

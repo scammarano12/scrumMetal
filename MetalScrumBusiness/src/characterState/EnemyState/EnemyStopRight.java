@@ -27,7 +27,7 @@ public class EnemyStopRight extends CharacterState{
     private void setAnimation(){
         
        
-        Image stop = SolidObject.loadImage("src/resources/fermo/fermoSinistra.png");
+        Image stop = SolidObject.loadImage("src/resources/nemico1/fermo/fermoSinistra.png");
         listImage.add(stop);
         
         

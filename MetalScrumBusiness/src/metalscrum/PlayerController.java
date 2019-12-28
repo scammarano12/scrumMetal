@@ -5,6 +5,7 @@
  */
 package metalscrum;
 
+import character.Player;
 import characterState.CharacterState;
 import characterState.playerState.*;
 import java.awt.event.KeyEvent;
@@ -19,10 +20,7 @@ public class PlayerController extends CharacterController implements KeyListener
 
     private PlayerDeadListener listener;
     private boolean avaiable = false;
-    private CharacterState stopLeft;
-    private CharacterState stopRight;
-    private CharacterState walkRight;
-    private CharacterState walkLeft;
+    
 
     public PlayerController() {
         stopLeft = new PlayerStopLeft();

@@ -6,6 +6,7 @@
 package metalscrum;
 
 
+import character.Player;
 import gameState.StartMenuState;
 import menu.MenuGameOver;
 import menu.MenuLevelTerminated;

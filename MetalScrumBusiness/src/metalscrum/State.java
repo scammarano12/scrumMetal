@@ -5,6 +5,7 @@
  */
 package metalscrum;
 
+import character.Player;
 import java.util.List;
 
 /**

@@ -5,6 +5,7 @@
  */
 package metalscrum;
 
+import characterState.CharacterState;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,6 +21,11 @@ public abstract class CharacterController{
     protected int dy;
     protected boolean shoot;
     protected boolean isActive;
+    protected CharacterState stopLeft;
+    protected CharacterState stopRight;
+    protected CharacterState walkRight;
+    protected CharacterState walkLeft;
+    
     
     public CharacterController(){
         this.gravitylv=1;
@@ -48,6 +54,8 @@ public abstract class CharacterController{
     public boolean isActive(){
         return isActive;
     }
+    
+    
     
     
 }

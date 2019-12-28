@@ -1,10 +1,12 @@
-package metalscrum;
+package character;
 
+import character.Character;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.LinkedList;
+import metalscrum.Weapon;
 
 
 /**
@@ -26,11 +28,8 @@ public class Player extends Character {
         playerHealth=4;
     }
 
-    @Override
-    public synchronized void move(int dx, int dy) {
-        getPosition().translate(dx, dy);
-  
-    }
+    
+    
 
     public boolean hasLives(){
         

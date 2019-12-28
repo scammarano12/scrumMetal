@@ -5,6 +5,7 @@
  */
 package metalscrum;
 
+import character.Character;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;

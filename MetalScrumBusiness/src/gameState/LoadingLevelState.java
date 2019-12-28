@@ -14,7 +14,7 @@ import metalscrum.Direction;
 import metalscrum.EndStateListener;
 import metalscrum.GameLevel;
 import metalscrum.GameSettings;
-import metalscrum.Player;
+import character.Player;
 import metalscrum.State;
 import metalscrum.Weapon;
 

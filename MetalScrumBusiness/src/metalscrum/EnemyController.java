@@ -5,6 +5,9 @@
  */
 package metalscrum;
 
+import character.Enemy;
+import characterState.CharacterState;
+import characterState.EnemyState.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -17,7 +20,9 @@ import javax.swing.Timer;
  * @author SimonePadula
  */
 public class EnemyController extends CharacterController implements ActionListener {
-
+    
+    
+    
     private int count=0;
     private int rangeMin;
     private int rangeMax;
@@ -32,6 +37,10 @@ public class EnemyController extends CharacterController implements ActionListen
         super.deActive();
     }
     public EnemyController(int rangeMin, int rangeMax){
+        this.stopLeft = new EnemyStopLeft();
+        this.stopRight = new EnemyStopRight();
+        this.walkLeft = new EnemyWalkLeft();
+        this.walkRight = new EnemyWalkRight();
         this.rangeMin = rangeMin;
         this.rangeMax = rangeMax;
         Random rand = new Random();
@@ -39,7 +48,7 @@ public class EnemyController extends CharacterController implements ActionListen
         //System.out.println(this.distance);
         
         this.timer = new Timer(rand.nextInt(2000-1000)+1000, this);
-       timer.start();
+        timer.start();
         
     }
         
@@ -71,10 +80,11 @@ public class EnemyController extends CharacterController implements ActionListen
     @Override
     public void updatePositions() {
         
-        if (characters.size()==0)
+        if (characters.isEmpty())
             isActive=false;
         for (Movable m : characters) {  //si può togliere il foreach
             Enemy e = (Enemy) m;
+            
             if(e.isAlive()){
                 if(shoot){
                     e.shoot();
@@ -86,13 +96,14 @@ public class EnemyController extends CharacterController implements ActionListen
                 if(count < this.distance){
                     dx = 1;
                     count++;
+                    
                     //System.out.print("DX ");
                    //System.out.println(count);
                     
                 } else{
                     dx = -1;
                     count--;
-                    e.setCurrentDir(Direction.LEFT);
+                    e.setState(walkLeft);
                     //System.out.print("DX ");
                     //System.out.println(count);
                 }    
@@ -108,7 +119,7 @@ public class EnemyController extends CharacterController implements ActionListen
                 } else{
                     dx = 1;
                     count++;
-                    e.setCurrentDir(Direction.RIGHT);
+                    e.setState(walkRight);
                     //System.out.print("SX ");
                     //System.out.println(count);
                 }
@@ -116,23 +127,28 @@ public class EnemyController extends CharacterController implements ActionListen
             
             
             
+            
             Collision collision=e.getCollision();
+            
+            
             if (dx>0 && !collision.isRigth() || dx<0 && !collision.isLeft()){ 
-               
-                //System.out.println(dx);
-                m.move(dx,0);
+                
+                e.move(dx,0);
             }
+            
             if(collision.isDown())
                 dy=0;
-            else dy=gravitylv;
+            else 
+                dy=gravitylv;
+            
             
             if( dy>0 && !collision.isDown() ){
                 
-                m.move(0, dy) ;
+                e.move(0, dy) ;
             }
             
             for(Bullet b : e.getFiredBullets()){
-                if(b.getHitbox().x>1280 || b.getHitbox().x<0){
+                if(b.getHitbox().x>GameSettings.FrameDimension.width|| b.getHitbox().x<0){
                     
                     b.setActive(false);
                     b.unDraw();
