@@ -17,7 +17,7 @@ import metalscrum.SolidObject;
  */
 public class PlayerStopLeft extends CharacterState{
 
-    private final static String stopLeft="src/resources/fermo/fermoSinistra.png";
+    
     
     public PlayerStopLeft(){
         super.currentDir = Direction.LEFT;

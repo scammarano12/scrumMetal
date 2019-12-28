@@ -22,8 +22,7 @@ import metalscrum.SolidObject;
  */
 public class PlayerWalkLeft extends CharacterState{
 
-    private final static String walkingLeft="src/resources/camminata/camminataSinistra.png";
-    private final static String stopLeft="src/resources/fermo/fermoSinistra.png";
+    
     
     public PlayerWalkLeft(){
         super.currentDir = Direction.LEFT;

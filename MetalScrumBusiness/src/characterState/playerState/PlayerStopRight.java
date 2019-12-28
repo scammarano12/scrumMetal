@@ -22,7 +22,7 @@ import metalscrum.SolidObject;
  */
 public class PlayerStopRight extends CharacterState{
 
-    private final static String stopRight="src/resources/fermo/fermoDestra.png";
+    
     
     public PlayerStopRight(){
         super.currentDir = Direction.RIGHT;

@@ -18,42 +18,21 @@ import java.util.Random;
  */
 public class Enemy extends Character {
     
-    private final static String rightEnemy="src/resources/enemyLeft.png";
-    private final static String leftEnemy="src/resources/enemyRight.png";
-    private final static String shootingright="src/resources/enemyRight.png";
-    private final static String shootingleft="src/resources/enemyLeft.png";
-    private double time ;
-    private Direction d;
-    private HashMap<Direction,Image> images = new HashMap<>();
+    private long time;
+    
 
-    public Enemy(Point position, int width, int heigth, String id, boolean isVisible, int health, Direction currentDir, Weapon weapon) {
+    public Enemy(Point position, int width, int heigth, String id, int health, Weapon weapon) {
         super(position, width, heigth, id,health, weapon);
-        d=currentDir;
-        images.put(Direction.RIGHT,loadImage(rightEnemy));
-        images.put(Direction.LEFT,loadImage(leftEnemy));
-        images.put(Direction.SHOOTING_RIGHT,loadImage(shootingright));
-        images.put(Direction.SHOOTING_LEFT,loadImage(shootingleft));
+        
         time = System.currentTimeMillis();
         
         
     }
     
-    public void setCurrentDir(Direction d){
-        this.d = d;
-    }
     
-    @Override
-    public Direction getCurrentDir(){
-        return d;
-    }
-    public void shoot(){
-        
-        Bullet b = weapon.shoot(position, getCurrentDir(),this.width,this.heigth);
-        
-        if(b!=null)
-            bullets.add(b);
-        
-    }
+    
+    
+
     
     
     
@@ -98,8 +77,8 @@ public class Enemy extends Character {
 
     @Override
     public Image getDraw() {
-        Image i = images.get(currentDir);
-       return i;
+        Image i = state.nextImage();
+        return i;
         //return getHitbox();
     }
 
