@@ -8,6 +8,8 @@ package metalscrum;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 
 /**
@@ -80,11 +82,12 @@ public class EnemyController extends CharacterController implements ActionListen
                 }
 
             if( e.getCurrentDir()==Direction.RIGHT ){
+                
                 if(count < this.distance){
                     dx = 1;
                     count++;
                     //System.out.print("DX ");
-                    //System.out.println(count);
+                   //System.out.println(count);
                     
                 } else{
                     dx = -1;
@@ -116,7 +119,7 @@ public class EnemyController extends CharacterController implements ActionListen
             Collision collision=e.getCollision();
             if (dx>0 && !collision.isRigth() || dx<0 && !collision.isLeft()){ 
                
-                    
+                //System.out.println(dx);
                 m.move(dx,0);
             }
             if(collision.isDown())
