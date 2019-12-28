@@ -72,7 +72,7 @@ public class Main {
                     app.setLevelOver(levelOver);
                     app.setStageOver(stageOver);
                     app.setStatus(new StartMenuState(start));
-                    app.initMusic();
+                    
                     app.setVisible(true);
                     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                 }
@@ -82,6 +82,7 @@ public class Main {
         } catch (InvocationTargetException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+                app.initMusic();
                 app.run();
                 
          
