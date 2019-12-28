@@ -55,13 +55,10 @@ public class Application extends javax.swing.JFrame {
     public Application() {
         
         initComponents();
-        
-         
         setSize(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height);
         setResizable(false);
         initScene();
         initCollisionController();
-        
         gameStatus=null;
         
     }
@@ -71,17 +68,13 @@ public class Application extends javax.swing.JFrame {
             try {
                
                 Thread.sleep(5);
-                     
-                         
-                        execute();
-                          
-                
+                execute();
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
                        
                         repaint(); 
-                    //To change body of generated methods, choose Tools | Templates.
+                    
                     }
                 }); 
                 
@@ -105,7 +98,7 @@ public class Application extends javax.swing.JFrame {
     }
     
     
-    private synchronized void initScene(){
+    private  void initScene(){
         sc = Scene.getInstance();
         getContentPane().add(sc);
         sc.setSize(GameSettings.FrameDimension.width,GameSettings.FrameDimension.width);
@@ -117,7 +110,7 @@ public class Application extends javax.swing.JFrame {
         cc = CollisionController.getInstance();
     }
     
-    public synchronized void initMusic() {
+    public  void initMusic() {
         try {
             clip = AudioSystem.getClip();
             
@@ -148,17 +141,17 @@ public class Application extends javax.swing.JFrame {
 
     
     
-    public synchronized void  setPause(MenuPause m){
+    public  void  setPause(MenuPause m){
         pause=m;
     }
-    public synchronized void setStart(MenuStart m){
+    public  void setStart(MenuStart m){
         start=m;
     }
     
-    public synchronized void setGameOver(MenuGameOver m){
+    public  void setGameOver(MenuGameOver m){
         gameOver=m;
     }
-    public synchronized void setLevelOver(MenuLevelTerminated m){
+    public  void setLevelOver(MenuLevelTerminated m){
         levelOver=m;
     }
     public void setStageOver(MenuStageTerminated m){
@@ -171,23 +164,23 @@ public class Application extends javax.swing.JFrame {
         
     }
     
-    public synchronized void end(){
-        gameStatus.end();
-    } 
+   
     
-    public synchronized MenuPause getPause(){
+    
+    
+    public  MenuPause getPause(){
         return pause;
     }
-    public synchronized MenuStart getStart(){
+    public  MenuStart getStart(){
         return start;
     }
-    public synchronized MenuGameOver getGameOver(){
+    public  MenuGameOver getGameOver(){
         return gameOver;
     }
-    public synchronized MenuLevelTerminated getLevelOver(){
+    public  MenuLevelTerminated getLevelOver(){
         return levelOver;
     }
-    public synchronized MenuStageTerminated getStageOver(){
+    public  MenuStageTerminated getStageOver(){
         return stageOver;
     }
     
@@ -195,27 +188,27 @@ public class Application extends javax.swing.JFrame {
     
     
     
-    public synchronized State getStatus(){
-        return gameStatus;
-    }
+    
     
     public synchronized void setStatus(State newState){
-        if(gameStatus!=null) 
+       
+        if(gameStatus!=null) {
             gameStatus.end();
-        
-        gameStatus = newState;
-        
+        }
+            gameStatus = newState;
+            
+            gameStatus.start();
     } 
     
-    public synchronized Player getCurrentPlayer(){
+    public  Player getCurrentPlayer(){
         return gameStatus.getPlayer();
     }
     
-    public synchronized GameLevel getCurrentGameLevel(){
+    public  GameLevel getCurrentGameLevel(){
         return gameStatus.getGameLevel();
     }
     
-    public List<CharacterController> getCurrentControllers(){
+    public  List<CharacterController> getCurrentControllers(){
         return gameStatus.getControllers();
     }
     

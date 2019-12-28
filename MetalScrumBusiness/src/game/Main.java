@@ -7,10 +7,6 @@ package game;
 
 import game.frame.Application;
 import game.state.StartMenuState;
-import java.lang.reflect.InvocationTargetException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.SwingUtilities;
 import game.listeners.GameListener;
 import game.listeners.PlayLevelOverListener;
 import game.listeners.PlayListener;
@@ -31,11 +27,12 @@ import game.menu.MenuStart;
  */
 public class Main {
     public static void main(String args[]) {
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+        */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -53,37 +50,23 @@ public class Main {
             java.util.logging.Logger.getLogger(Application.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        Application app = new Application();
-                
-        try {
-            /* Create and display the form */
-            SwingUtilities.invokeAndWait(new Runnable(){
-                @Override
-                public void run() {
-                    
-                    MenuStart start = initStartMenu(app);
-                    MenuPause pause = initPauseMenu(app);
-                    MenuLevelTerminated levelOver = initLevelOverMenu(app);
-                    MenuStageTerminated stageOver = initStageOverMenu(app);
-                    MenuGameOver gameOver = initGameOverMenu(app);
-                    app.setStart(start);
-                    app.setPause(pause);
-                    app.setGameOver(gameOver);
-                    app.setLevelOver(levelOver);
-                    app.setStageOver(stageOver);
-                    app.setStatus(new StartMenuState(start));
-                    
-                    app.setVisible(true);
-                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-            });
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvocationTargetException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                Application app = new Application();
+                MenuStart start = initStartMenu(app);
+                MenuPause pause = initPauseMenu(app);
+                MenuLevelTerminated levelOver = initLevelOverMenu(app);
+                MenuStageTerminated stageOver = initStageOverMenu(app);
+                MenuGameOver gameOver = initGameOverMenu(app);
+                app.setStart(start);
+                app.setPause(pause);
+                app.setGameOver(gameOver);
+                app.setLevelOver(levelOver);
+                app.setStageOver(stageOver);
+                app.setStatus(new StartMenuState(start));
+                app.setVisible(true);
                 app.initMusic();
+ 
                 app.run();
+        
                 
          
     }
@@ -93,8 +76,7 @@ public class Main {
      private static MenuStart initStartMenu(Application context){
         MenuStart start = new MenuStart();
         start.setPlay(new PlayListener(context));
-        //start.setVolumeOff(new Application.VolumeOffListener());
-        //start.setVolumeOn(new Application.VolumeOnListener());
+        
         context.getContentPane().add(start);
         start.setSize(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height);
         start.setVisible(false);
@@ -106,8 +88,7 @@ public class Main {
         pause.setResume(new ResumeListener(context,gameListener));
         pause.setRestart(new RestartListener(context));
         pause.setQuit(new QuitListener(context));
-       // pause.setVolumeOff(new Application.VolumeOffListener(context));
-       // pause.setVolumeOn(new VolumeOnListener(context));
+       
         context.getContentPane().add(pause);
         pause.setSize(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height);
         pause.setVisible(false);

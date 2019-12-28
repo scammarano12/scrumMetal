@@ -39,25 +39,10 @@ import game.scene.Scene;
         
         public void execute(){
           
-            if(!stageOver.isVisible() && !levelOver.isVisible()){
-                gl.nextStage();
-                
-                sc.setVisible(false);
-                if(gl.checkNextStage()){
-                    stageOver.setVisible(true);
-                    stageOver.requestFocusInWindow();
-                }else{
-                    levelOver.setVisible(true);
-                    levelOver.requestFocusInWindow();
-                    
-                }
-            }
-        }
-
-        @Override
-        public void escape() {
             
         }
+
+       
 
         @Override
         public void end() {
@@ -86,4 +71,21 @@ import game.scene.Scene;
         public List<CharacterController> getControllers() {
             return controllers;
         }
+
+    @Override
+    public void start() {
+        if(!stageOver.isVisible() && !levelOver.isVisible()){
+                gl.nextStage();
+                
+                sc.setVisible(false);
+                if(gl.checkNextStage()){
+                    stageOver.setVisible(true);
+                    stageOver.requestFocusInWindow();
+                }else{
+                    levelOver.setVisible(true);
+                    levelOver.requestFocusInWindow();
+                    
+                }
+            }
+    }
     }

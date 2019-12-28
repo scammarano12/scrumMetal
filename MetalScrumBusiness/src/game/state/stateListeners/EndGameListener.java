@@ -22,8 +22,8 @@ import game.frame.Application;
         
         @Override
         public void stateEnded() {
-            context.end();
-             context.setStatus(new StageOverMenuState(context.getStageOver(),context.getLevelOver(),context.getCurrentGameLevel(),context.getCurrentPlayer(),context.getCurrentControllers()));
+            
+            context.setStatus(new StageOverMenuState(context.getStageOver(),context.getLevelOver(),context.getCurrentGameLevel(),context.getCurrentPlayer(),context.getCurrentControllers()));
              
         }
         

@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import game.listeners.GameListener;
 import game.frame.Application;
+import game.state.State;
+import game.state.stateListeners.LoadedLevelListener;
 
 /**
  *
@@ -28,8 +30,9 @@ import game.frame.Application;
         @Override
         public void actionPerformed(ActionEvent e) {
            
-            context.end();
-            context.setStatus(new InGameState(context.getCurrentControllers(), context.getCurrentGameLevel(),context.getCurrentPlayer(),gameListener));
+            State s = new InGameState(context.getCurrentControllers(), context.getCurrentGameLevel(),context.getCurrentPlayer(),gameListener);
+            s.setListener(new LoadedLevelListener(context));
+            context.setStatus(s);
            
             
             

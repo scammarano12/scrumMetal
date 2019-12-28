@@ -89,7 +89,7 @@ public class LoadingStageState implements State{
         
              
     }
-        public void execute(){
+        public void start(){
             sc.reset();
             cc.reset();
 
@@ -106,13 +106,14 @@ public class LoadingStageState implements State{
                     listener.stateEnded();//To change body of generated methods, choose Tools | Templates.
                 }
             });
+        }
+            
+        public void execute(){
+            
             
         }
 
-        @Override
-        public void escape() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
+       
 
         @Override
         public void end() {

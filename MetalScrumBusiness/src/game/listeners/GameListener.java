@@ -34,7 +34,7 @@ public class GameListener implements KeyListener{
                         GameStatus.setGameStatus(2);
                     }*/   
                      
-                    context.end();
+                  
                     context.setStatus(new PauseMenuState(context.getPause(),context.getCurrentControllers(),context.getCurrentGameLevel(),context.getCurrentPlayer()));
                     
                 }

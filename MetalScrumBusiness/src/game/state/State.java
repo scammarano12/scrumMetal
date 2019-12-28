@@ -17,7 +17,7 @@ import game.levels.GameLevel;
  */
 public interface State {
     public void execute();
-    public void escape();
+    public void start();
     public void end();
     public void setListener(EndStateListener listener);
     public Player getPlayer();

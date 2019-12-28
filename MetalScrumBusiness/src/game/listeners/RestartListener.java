@@ -27,7 +27,7 @@ public class RestartListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             
-            context.end();
+
             State s= new LoadingLevelState();
             s.setListener(new LoadedLevelListener(context));
             context.setStatus(s);

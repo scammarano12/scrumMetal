@@ -23,7 +23,7 @@ public class LoadedStageListener implements EndStateListener{
         }
         @Override
         public void stateEnded() {
-            context.end();
+        
             State s= new InGameState(context.getCurrentControllers(),context.getCurrentGameLevel(),context.getCurrentPlayer(),new GameListener(context));
             s.setListener(new EndGameListener(context));
             context.setStatus(s);

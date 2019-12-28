@@ -35,7 +35,7 @@ public class Scene extends JPanel {
         objects.add(d);
     }
     
-    public synchronized void removeFromDraw(Drawable d){
+    public synchronized  void removeFromDraw(Drawable d){
        objects.remove(d);
         
     }

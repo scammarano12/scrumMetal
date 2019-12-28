@@ -30,17 +30,22 @@ public class LoadingLevelState implements State{
             this.gl= new GameLevel(1,3);
         }
         
-        public void execute(){
+        
+        public void start(){
             initLevel();
             this.player = new Player(new Point(0,0),GameSettings.PlayerDimension.width,GameSettings.PlayerDimension.height,"player",new Weapon(2));
             player.setState(new PlayerStopLeft());
-            //GameStatus.setGameStatus(1);
+            
                     SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
                     listener.stateEnded();//To change body of generated methods, choose Tools | Templates.
                 }
             });
+        }
+        
+        public void execute(){
+            
                     
         }
 
@@ -49,10 +54,7 @@ public class LoadingLevelState implements State{
             
         
 
-        @Override
-        public void escape() {
-            
-        }
+        
 
         @Override
         public void end() {

@@ -28,25 +28,24 @@ public class PauseMenuState implements State{
             this.controllers=controllers;
             this.player=player;
         }
-        
-        public void execute(){
-            
-            if(!pause.isVisible()){
+        public void start(){
+        if(!pause.isVisible()){
                 pause.setVisible(true);
                 pause.requestFocusInWindow();
                }
         }
+        public void execute(){
+            
+            
+        }
         
 
-        @Override
-        public void escape() {
-//            
-        }
+       
 
         @Override
         public void end() {
             
-                        pause.setVisible(false);
+           pause.setVisible(false);
                     
         }
 

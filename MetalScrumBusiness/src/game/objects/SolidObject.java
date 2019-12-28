@@ -12,13 +12,11 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+
 import game.collisions.Collision;
 import game.collisions.CollisionController;
 import game.objects.movable.Direction;
@@ -78,11 +76,12 @@ public abstract class SolidObject implements Drawable {
         return collision;
     } 
 
+    @Override
     public synchronized Point getPosition() {
         return position;
     }
 
-    public synchronized  void setPosition(Point position) {
+    public synchronized void setPosition(Point position) {
         this.position = position;
     }
 

@@ -13,6 +13,7 @@ import game.levels.GameLevel;
 import game.character.Player;
 import game.character.controller.CharacterController;
 import game.scene.Scene;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -38,13 +39,18 @@ public class InGameState implements State{
             sc.addKeyListener(gameListener);
         }
         
-        public void execute(){
-            
-            if(!sc.isVisible()){
+        public void start(){
+         if(!sc.isVisible()){
                 sc.setVisible(true);
                 sc.requestFocusInWindow();
             }
+        
             
+        }
+        
+        public void execute(){
+            
+           
             cc.checkCollision();
                 int enemyCounter=-1;
                 for(CharacterController c :controllers){
@@ -57,16 +63,19 @@ public class InGameState implements State{
             
                
                 if(enemyCounter==0)
+                    SwingUtilities.invokeLater(new Runnable(){
+                @Override
+                public void run() {
                     listener.stateEnded();
-                    //GameStatus.setGameStatus(5);          
+                }
+            });
+                    
+                             
                  
                
         }
 
-        @Override
-        public void escape() {
-            
-        }
+       
 
         @Override
         public void end() {

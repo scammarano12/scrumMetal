@@ -23,8 +23,9 @@ import game.character.controller.CharacterController;
             this.gameOver = gameOver;
         }
         
-        public void execute(){
-           
+        
+        public void start(){
+        
         if(!gameOver.isVisible()){
                 System.out.println("GameOver");
                 
@@ -33,12 +34,13 @@ import game.character.controller.CharacterController;
               
             
         }}
-
-        @Override
-        public void escape() {
-            
+        
+        
+        public void execute(){
+           
         }
 
+      
         @Override
         public void end() {
            

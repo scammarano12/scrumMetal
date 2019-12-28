@@ -19,24 +19,21 @@ public class StartMenuState implements State{
             this.start = start;
         }
         
-        
-        public void execute(){
-         if(!start.isVisible()){
+        public void start(){
+            if(!start.isVisible()){
                         
                         start.setVisible(true);
                         start.requestFocusInWindow();
                      
             }
-            
-            
-                    
-         
+        }
+        
+        
+        public void execute(){
+        
         }
 
-        @Override
-        public void escape() {
-            
-        }
+        
 
         @Override
         public void end() {

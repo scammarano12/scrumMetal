@@ -26,15 +26,13 @@ public class PlayerListener implements PlayerDeadListener{
         @Override
         public void playerDead() {
             
-            context.getStatus().end();
             context.setStatus(new GameOverState(context.getGameOver()));
             
         }
 
         @Override
         public void playerHealthLevelEnded() {
-            
-            context.end();
+           
             State s= new LoadingStageState(context.getCurrentGameLevel(), context.getCurrentPlayer(), context.getCurrentControllers(),new PlayerListener(context));
             s.setListener(new LoadedStageListener(context));
             context.setStatus(s);
