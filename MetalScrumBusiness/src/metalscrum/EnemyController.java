@@ -8,6 +8,8 @@ package metalscrum;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 
 /**
@@ -78,26 +80,26 @@ public class EnemyController extends CharacterController implements ActionListen
                     e.shoot();
                     shoot=false;
                 }
+
+            if( e.getCurrentDir()==Direction.RIGHT ){
                 
- 
-            if( ((Enemy)m).getCurrentDir()==Direction.RIGHT ){
                 if(count < this.distance){
                     dx = 1;
                     count++;
                     //System.out.print("DX ");
-                    //System.out.println(count);
+                   //System.out.println(count);
                     
                 } else{
                     dx = -1;
                     count--;
-                    ((Enemy)m).setCurrentDir(Direction.LEFT);
+                    e.setCurrentDir(Direction.LEFT);
                     //System.out.print("DX ");
                     //System.out.println(count);
                 }    
             }
             
             
-            if( ((Enemy)m).getCurrentDir()==Direction.LEFT ){
+            if( e.getCurrentDir()==Direction.LEFT ){
                 if( count>0 ){ //dx==((Enemy)m).getDistance()
                     dx = -1;
                     count--;
@@ -106,7 +108,7 @@ public class EnemyController extends CharacterController implements ActionListen
                 } else{
                     dx = 1;
                     count++;
-                    ((Enemy)m).setCurrentDir(Direction.RIGHT);
+                    e.setCurrentDir(Direction.RIGHT);
                     //System.out.print("SX ");
                     //System.out.println(count);
                 }
@@ -114,10 +116,10 @@ public class EnemyController extends CharacterController implements ActionListen
             
             
             
-            Collision collision=((Enemy)m).getCollision();
+            Collision collision=e.getCollision();
             if (dx>0 && !collision.isRigth() || dx<0 && !collision.isLeft()){ 
                
-                    
+                //System.out.println(dx);
                 m.move(dx,0);
             }
             if(collision.isDown())
@@ -129,7 +131,7 @@ public class EnemyController extends CharacterController implements ActionListen
                 m.move(0, dy) ;
             }
             
-            for(Bullet b : ((Enemy)m).getFiredBullets()){
+            for(Bullet b : e.getFiredBullets()){
                 if(b.getHitbox().x>1280 || b.getHitbox().x<0){
                     
                     b.setActive(false);
