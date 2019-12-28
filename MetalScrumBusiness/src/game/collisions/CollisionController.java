@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package game.collisions;
+import game.GameSettings;
 import game.objects.SolidObject;
+import java.awt.Image;
+import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 import java.util.List;
@@ -31,7 +35,12 @@ public class CollisionController {
         if(CollisionController.instance == null){
             instance = new CollisionController();
             
+            
+        
+        
+            
         }
+        
         
         return instance;
         
@@ -63,6 +72,18 @@ public class CollisionController {
     public void reset(){
        subjects.removeAll(subjects);
        objs.removeAll(objs);
+       instance.addObject(new SolidObject(new Point(-5,0),5,GameSettings.FrameDimension.height,"border"){
+                @Override
+                public Image getDraw() {
+                    return new BufferedImage(0,0,0); //To change body of generated methods, choose Tools | Templates.
+                }
+            });
+            instance.addObject(new SolidObject(new Point(GameSettings.FrameDimension.width+5,0),5,GameSettings.FrameDimension.height,"border"){
+                @Override
+                public Image getDraw() {
+                    return new BufferedImage(0,0,0); //To change body of generated methods, choose Tools | Templates.
+                }
+            });
         
     }
 

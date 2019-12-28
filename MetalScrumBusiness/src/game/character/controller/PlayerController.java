@@ -117,6 +117,7 @@ public class PlayerController extends CharacterController implements KeyListener
                 }
                 Collision collision = p.getCollision();
                 if (dx > 0 && !collision.isRigth() || dx < 0 && !collision.isLeft()) {
+                       
                        p.move(dx, 0);
                 }
                 if (dy != gravitylv) {
