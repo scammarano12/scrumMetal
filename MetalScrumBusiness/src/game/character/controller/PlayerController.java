@@ -163,7 +163,6 @@ public class PlayerController extends CharacterController implements KeyListener
                 p.stopCollision();
             }
         }
-
     }
 
 }

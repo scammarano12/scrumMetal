@@ -12,7 +12,11 @@ import game.state.stateListeners.EndStateListener;
 import game.levels.GameLevel;
 import game.character.Player;
 import game.character.controller.CharacterController;
+import game.character.state.playerState.*;
+import game.objects.movable.Direction;
 import game.scene.Scene;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.SwingUtilities;
 
 /**
@@ -39,17 +43,27 @@ public class InGameState implements State{
             sc.addKeyListener(gameListener);
         }
         
+        @Override
         public void start(){
-         if(!sc.isVisible()){
+            
+            if(player.getCurrentDir() == Direction.LEFT)
+                player.setState(new PlayerStopLeft());
+            else
+                 player.setState(new PlayerStopRight());
+            if(!sc.isVisible()){
                 sc.setVisible(true);
                 sc.requestFocusInWindow();
+                KeyListener[] kls = sc.getKeyListeners();
+                //risoluzione problema -> key released non veniva intercettato
+                for(KeyListener kl : kls){
+                    kl.keyReleased(new KeyEvent(sc,19,System.currentTimeMillis(),19,KeyEvent.VK_LEFT,'z'));
+                }
             }
         
             
         }
         
         public void execute(){
-            
            
             cc.checkCollision();
                 int enemyCounter=-1;

@@ -70,7 +70,7 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
         
     }
     
-    public void setState(CharacterState state){
+    public synchronized void setState(CharacterState state){
         this.state = state;
     }
     public int getHealth() {
@@ -81,13 +81,13 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
         this.health = health;
     }
 
-    public Direction getCurrentDir() {
+    public synchronized Direction getCurrentDir() {
         return state.getDir();
     }
  
 
     @Override
-    public Image getDraw(){
+    public synchronized Image getDraw(){
        Image i =  state.nextImage();
       
        return i;
