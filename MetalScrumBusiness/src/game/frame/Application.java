@@ -105,7 +105,7 @@ public class Application extends javax.swing.JFrame {
     }
     
     
-    private void initScene(){
+    private synchronized void initScene(){
         sc = Scene.getInstance();
         getContentPane().add(sc);
         sc.setSize(GameSettings.FrameDimension.width,GameSettings.FrameDimension.width);
@@ -113,11 +113,11 @@ public class Application extends javax.swing.JFrame {
         
     }
     
-    private void initCollisionController(){
+    private  void initCollisionController(){
         cc = CollisionController.getInstance();
     }
     
-    public void initMusic() {
+    public synchronized void initMusic() {
         try {
             clip = AudioSystem.getClip();
             
@@ -148,17 +148,17 @@ public class Application extends javax.swing.JFrame {
 
     
     
-    public void  setPause(MenuPause m){
+    public synchronized void  setPause(MenuPause m){
         pause=m;
     }
-    public void setStart(MenuStart m){
+    public synchronized void setStart(MenuStart m){
         start=m;
     }
     
-    public void setGameOver(MenuGameOver m){
+    public synchronized void setGameOver(MenuGameOver m){
         gameOver=m;
     }
-    public void setLevelOver(MenuLevelTerminated m){
+    public synchronized void setLevelOver(MenuLevelTerminated m){
         levelOver=m;
     }
     public void setStageOver(MenuStageTerminated m){
@@ -175,19 +175,19 @@ public class Application extends javax.swing.JFrame {
         gameStatus.end();
     } 
     
-    public MenuPause getPause(){
+    public synchronized MenuPause getPause(){
         return pause;
     }
-    public MenuStart getStart(){
+    public synchronized MenuStart getStart(){
         return start;
     }
-    public MenuGameOver getGameOver(){
+    public synchronized MenuGameOver getGameOver(){
         return gameOver;
     }
-    public MenuLevelTerminated getLevelOver(){
+    public synchronized MenuLevelTerminated getLevelOver(){
         return levelOver;
     }
-    public MenuStageTerminated getStageOver(){
+    public synchronized MenuStageTerminated getStageOver(){
         return stageOver;
     }
     
@@ -207,11 +207,11 @@ public class Application extends javax.swing.JFrame {
         
     } 
     
-    public Player getCurrentPlayer(){
+    public synchronized Player getCurrentPlayer(){
         return gameStatus.getPlayer();
     }
     
-    public GameLevel getCurrentGameLevel(){
+    public synchronized GameLevel getCurrentGameLevel(){
         return gameStatus.getGameLevel();
     }
     
