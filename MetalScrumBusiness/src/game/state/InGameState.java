@@ -33,6 +33,7 @@ public class InGameState implements State{
         private GameListener gameListener;
         private Player player;
         private HealthBar bar;
+        private boolean inGame;
 
         public InGameState(List<CharacterController> controllers,GameLevel gl,Player player, GameListener gameListener) {
             this.sc = Scene.getInstance();
@@ -44,11 +45,12 @@ public class InGameState implements State{
             sc.removeKeyListener(gameListener);
             sc.addKeyListener(gameListener);
             bar = new HealthBar(player);
-            
+
         }
         
         @Override
         public void start(){
+            inGame=true;
            controllers.forEach(c -> c.startLucaHaDecisoCosi());
             bar.draw();
             System.out.println("disegno barra vita");
@@ -69,30 +71,36 @@ public class InGameState implements State{
             
         }
         
+        @Override
         public void execute(){
-           
+           if(inGame){
             cc.checkCollision();
                 int enemyCounter=-1;
                 for(CharacterController c :controllers){
                     c.updatePositions();
                     if(c.isActive())
                         enemyCounter++;
+                   
                 }
+                
                 gl.setResumeEnemies(enemyCounter);
                 
             
                
-                if(enemyCounter==0)
+                if(enemyCounter==0){
+                    inGame=false;
                     SwingUtilities.invokeLater(new Runnable(){
                 @Override
                 public void run() {
                     listener.stateEnded();
                 }
             });
+                }
                     
                              
                  
                
+        }
         }
 
        

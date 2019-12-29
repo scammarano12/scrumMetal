@@ -43,25 +43,28 @@ public class GameLevel {
     }
 
     public synchronized void setResumeEnemies(int resumeEnemies) {
+        //System.out.println("setresumeenemies :"+Thread.currentThread().getName());
         this.resumeEnemies = resumeEnemies;
     }
 
     public synchronized int getResumeEnemies() {
+        System.out.println("getresumeenemies :"+Thread.currentThread().getName());
         return resumeEnemies;
     }
 
     public synchronized void nextStage() {
+        System.out.println("nextstage :"+Thread.currentThread().getName());
         this.stageNumber++;
     }
     
     
     
     public synchronized boolean checkNextStage(){
-       
+       System.out.println("check :"+Thread.currentThread().getName());
         return (stageNumber-1)<stageLimit;
     }
     public synchronized List<Point> createStage(){
-
+        System.out.println("create :"+Thread.currentThread().getName());
         Scene.getInstance().setBackground(new ImageIcon("src/resources/Levels/Level"+levelNumber+"/background.png").getImage().getScaledInstance(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height, Image.SCALE_DEFAULT));
         LinkedList<Point> positions = new LinkedList<>();
         try {

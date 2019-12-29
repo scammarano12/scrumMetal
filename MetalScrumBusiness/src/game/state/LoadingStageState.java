@@ -99,13 +99,8 @@ public class LoadingStageState implements State{
             initStage();
 
             
-
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    listener.stateEnded();//To change body of generated methods, choose Tools | Templates.
-                }
-            });
+             listener.stateEnded();//To change body of generated methods, choose Tools | Templates.
+              
         }
             
         public void execute(){
