@@ -40,5 +40,8 @@ public class Player extends Character {
         
         
     }
+    public int getNumberOfLife(){
+        return numberOfLife;
+    }
 
 }
