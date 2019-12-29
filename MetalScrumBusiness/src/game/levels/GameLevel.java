@@ -30,10 +30,10 @@ import javax.swing.JLabel;
  */
 public class GameLevel {
     
-    private int levelNumber;
+    private final int levelNumber;
     private int resumeEnemies;
     private int stageNumber;
-    private int stageLimit;
+    private final int stageLimit;
 
     public GameLevel(int levelNumber,int stageLimit) {
         this.levelNumber = levelNumber;
@@ -58,7 +58,7 @@ public class GameLevel {
     
     public synchronized boolean checkNextStage(){
        
-        return stageLimit!=(stageNumber-1);
+        return (stageNumber-1)<stageLimit;
     }
     public synchronized List<Point> createStage(){
 
