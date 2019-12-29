@@ -12,6 +12,7 @@ import game.listeners.GameListener;
 import game.frame.Application;
 import game.state.State;
 import game.state.stateListeners.LoadedLevelListener;
+import game.state.stateListeners.LoadedStageListener;
 
 /**
  *
@@ -31,7 +32,7 @@ import game.state.stateListeners.LoadedLevelListener;
         public void actionPerformed(ActionEvent e) {
            
             State s = new InGameState(context.getCurrentControllers(), context.getCurrentGameLevel(),context.getCurrentPlayer(),gameListener);
-            s.setListener(new LoadedLevelListener(context));
+            s.setListener(new LoadedStageListener(context));
             context.setStatus(s);
            
             

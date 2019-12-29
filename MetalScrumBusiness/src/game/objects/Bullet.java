@@ -14,6 +14,11 @@ import game.objects.movable.Direction;
 import game.scene.Drawable;
 import game.GameSettings;
 import game.objects.movable.Movable;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  *
@@ -23,6 +28,9 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
     private int damage;
     private boolean active;
     private Direction d;
+    private Clip clip;
+    private Clip damageSound;
+    
     
     private final static String bullet = "src/resources/objects/bullet.png";
     
@@ -31,7 +39,7 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
     public Bullet(Point position,String id, int damage, Direction d) {
         
         super(position, 0, 0, id);
-        
+        initMusic();
         this.image = SolidObject.loadImage(bullet);
         super.setWidth(GameSettings.BulletDimension.width);
         super.setHeigth(GameSettings.BulletDimension.height);
@@ -45,6 +53,45 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
         
         
     }
+    
+    public  void initMusic() {
+        try {
+            clip = AudioSystem.getClip();
+           
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(new FileInputStream("src/resources/GameSounds/boom1.wav")));
+             BufferedInputStream bf = new BufferedInputStream(inputStream);
+            
+             inputStream = new AudioInputStream(bf,inputStream.getFormat(),inputStream.getFrameLength());
+             clip.open(inputStream);
+             clip.start();
+             
+             damageSound = AudioSystem.getClip();
+             inputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(new FileInputStream("src/resources/GameSounds/damage.wav")));
+             bf = new BufferedInputStream(inputStream);
+             inputStream = new AudioInputStream(bf,inputStream.getFormat(),inputStream.getFrameLength());
+             damageSound.open(inputStream);
+             
+             
+            
+             
+             
+             
+             
+             
+             
+             
+            
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    
+    }
+    
+        
+      
+         
+         
+    
     
     
 
@@ -64,6 +111,8 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
     }
     
     public void setActive(boolean active){
+        
+   
         this.active = active;
     }
     
@@ -78,7 +127,8 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
         SolidObject so =c.getSubject();
         String id = so.getId();
         if(id.equals("player") || id.equals("enemy" ) ){
-           
+            
+            damageSound.start();
             Character p = (Character) so;
             int currentHealth = p.getHealth();
             p.setHealth(currentHealth-damage);

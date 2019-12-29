@@ -4,8 +4,14 @@
  * and open the template in the editor.
  */
 package game.objects;
+import game.frame.Application;
 import java.awt.Point;
 import game.objects.movable.Direction;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  *long startTime = System.currentTimeMillis();
@@ -25,15 +31,21 @@ public class Weapon {
     private int rateo;
     private long time ;
     
+    
     public Weapon(int rateo) {
+        
         this.rateo = rateo;
         time = System.currentTimeMillis();
         
     }
     
+    
+     
+    
     public Bullet shoot(Point position,Direction d,int width,int heigth){
             
             if(System.currentTimeMillis() - time > 1000/rateo){
+                ;
                 time = System.currentTimeMillis() ;
                 Bullet b = null;
                 if(d == Direction.RIGHT){

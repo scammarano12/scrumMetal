@@ -12,6 +12,11 @@ import game.scene.Drawable;
 import game.objects.movable.Movable;
 import game.objects.SolidObject;
 import game.objects.Weapon;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  *
@@ -26,10 +31,12 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     protected int health;
     protected List<Bullet> bullets;
     protected CharacterState state;
+    private Clip deathSound;
 
 
     public Character(Point position, int width, int heigth, String id,int health,Weapon weapon) {
         super(position, width, heigth, id);
+        initMusic();
         state = null;
         this.health=health;
         this.currentDir=Direction.RIGHT;
@@ -37,6 +44,23 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
         this.bullets = new LinkedList<>();
         
     }
+    
+    public  void initMusic() {
+        try {
+            deathSound = AudioSystem.getClip();
+           
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(new FileInputStream("src/resources/GameSounds/enemyDeath.wav")));
+             BufferedInputStream bf = new BufferedInputStream(inputStream);
+            
+             inputStream = new AudioInputStream(bf,inputStream.getFormat(),inputStream.getFrameLength());
+             deathSound.open(inputStream);
+             
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    
+    }
+    
     
     @Override
     public void activeCollision() {
@@ -57,8 +81,12 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     }
     
     public boolean isAlive(){
-        
-        return health>0;
+        if(health<=0){
+            deathSound.start();
+            return false;
+        }
+        else
+            return true;
     }
     
     public void shoot(){
