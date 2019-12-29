@@ -42,25 +42,25 @@ public class GameLevel {
         this.stageLimit=stageLimit;
     }
 
-    public void setResumeEnemies(int resumeEnemies) {
+    public synchronized void setResumeEnemies(int resumeEnemies) {
         this.resumeEnemies = resumeEnemies;
     }
 
-    public int getResumeEnemies() {
+    public synchronized int getResumeEnemies() {
         return resumeEnemies;
     }
 
-    public void nextStage() {
+    public synchronized void nextStage() {
         this.stageNumber++;
     }
     
     
     
-    public boolean checkNextStage(){
+    public synchronized boolean checkNextStage(){
        
         return stageLimit!=(stageNumber-1);
     }
-    public  List<Point> createStage(){
+    public synchronized List<Point> createStage(){
 
         Scene.getInstance().setBackground(new ImageIcon("src/resources/Levels/Level"+levelNumber+"/background.png").getImage().getScaledInstance(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height, Image.SCALE_DEFAULT));
         LinkedList<Point> positions = new LinkedList<>();
