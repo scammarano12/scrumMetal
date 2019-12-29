@@ -31,26 +31,19 @@ import javax.swing.JLabel;
 public class GameLevel {
     
     private final int levelNumber;
-    private int resumeEnemies;
     private int stageNumber;
     private final int stageLimit;
 
     public GameLevel(int levelNumber,int stageLimit) {
         this.levelNumber = levelNumber;
-        this.resumeEnemies = 0;
+      
         this.stageNumber = 1;
         this.stageLimit=stageLimit;
     }
 
-    public synchronized void setResumeEnemies(int resumeEnemies) {
-        //System.out.println("setresumeenemies :"+Thread.currentThread().getName());
-        this.resumeEnemies = resumeEnemies;
-    }
+   
 
-    public synchronized int getResumeEnemies() {
-        System.out.println("getresumeenemies :"+Thread.currentThread().getName());
-        return resumeEnemies;
-    }
+    
 
     public synchronized void nextStage() {
         System.out.println("nextstage :"+Thread.currentThread().getName());
@@ -107,7 +100,7 @@ public class GameLevel {
                     if(c=='e'){
                          positions.addLast(new Point(count*width,j*heigth));
                          count++;
-                         resumeEnemies++;
+                         
                     }
                 }
                 j++;

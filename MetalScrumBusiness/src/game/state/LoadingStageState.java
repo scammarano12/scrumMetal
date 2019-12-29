@@ -98,7 +98,6 @@ public class LoadingStageState implements State{
 
             initStage();
 
-            
              listener.stateEnded();//To change body of generated methods, choose Tools | Templates.
               
         }

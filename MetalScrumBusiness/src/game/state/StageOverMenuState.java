@@ -13,6 +13,8 @@ import game.levels.GameLevel;
 import game.character.Player;
 import game.character.controller.CharacterController;
 import game.scene.Scene;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -72,11 +74,12 @@ import game.scene.Scene;
             return controllers;
         }
 
+        
     @Override
     public void start() {
         if(!stageOver.isVisible() && !levelOver.isVisible()){
                 gl.nextStage();
-                
+            
                 sc.setVisible(false);
                 if(gl.checkNextStage()){
                     stageOver.setVisible(true);

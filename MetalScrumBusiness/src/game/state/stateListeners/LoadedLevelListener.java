@@ -27,7 +27,7 @@ import game.state.State;
         @Override
         public void stateEnded() {
            
-            State s=new LoadingStageState(context.getCurrentGameLevel(),context.getCurrentPlayer(),new LinkedList<>(),pl);
+            State s=new LoadingStageState(context.getCurrentGameLevel() ,context.getCurrentPlayer(),new LinkedList<>(),pl);
             s.setListener(new LoadedStageListener(context));
             context.setStatus(s);
             

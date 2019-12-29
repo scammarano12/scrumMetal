@@ -195,12 +195,14 @@ public class Application extends javax.swing.JFrame {
         if(gameStatus!=null) {
             gameStatus.end();
         }
+        System.out.println("cambioStato: "+Thread.currentThread().getId());
             gameStatus = newState;
             
             gameStatus.start();
     } 
     
     public  Player getCurrentPlayer(){
+        
         return gameStatus.getPlayer();
     }
     

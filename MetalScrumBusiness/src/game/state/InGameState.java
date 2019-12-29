@@ -18,6 +18,8 @@ import game.objects.movable.Direction;
 import game.scene.Scene;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 
 /**
@@ -83,16 +85,20 @@ public class InGameState implements State{
                    
                 }
                 
-                gl.setResumeEnemies(enemyCounter);
+                
                 
             
                
                 if(enemyCounter==0){
+                    
                     inGame=false;
                     SwingUtilities.invokeLater(new Runnable(){
                 @Override
                 public void run() {
-                    listener.stateEnded();
+                    
+                        listener.stateEnded();
+                    
+                   
                 }
             });
                 }
