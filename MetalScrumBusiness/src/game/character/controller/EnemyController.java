@@ -41,6 +41,9 @@ public class EnemyController extends CharacterController implements ActionListen
         timer.stop();
         super.deActive();
     }
+    
+ 
+    
     public EnemyController(int rangeMin, int rangeMax){
         this.stopLeft = new EnemyStopLeft();
         this.stopRight = new EnemyStopRight();
@@ -182,13 +185,21 @@ public class EnemyController extends CharacterController implements ActionListen
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==timer){
-            
+            Random rand = new Random();
+            timer.setDelay(rand.nextInt(2000));
         for (Movable m : characters) {
             shoot=true;
             
         }
         
         }
+    }
+    
+    public void stopLucaHaDecisoCosi(){
+        timer.stop();
+    }
+    public void startLucaHaDecisoCosi(){
+        timer.start();
     }
     
 

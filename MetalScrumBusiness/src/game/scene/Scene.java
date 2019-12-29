@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package game.scene;
+import game.menu.HealthBar;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.LinkedList;
@@ -18,10 +19,12 @@ public class Scene extends JPanel {
     private List<Drawable> objects;
     public static Scene instance = null;
     private Image background; 
+    private Drawable bar;
     
     private Scene(){
         objects = new LinkedList<>();
         background = null;
+        bar = null;
     }
     
     public static Scene getInstance(){
@@ -49,6 +52,10 @@ public class Scene extends JPanel {
     public synchronized void paint(Graphics g){
         if(background != null)
           g.drawImage(background, 0, 0, this);
+        
+        if(bar!=null)
+             g.drawImage(bar.getDraw(), bar.getPosition().x, bar.getPosition().y, this);
+        
         for(Drawable d: objects){
             g.drawImage(d.getDraw(), d.getPosition().x, d.getPosition().y, this);
            
@@ -59,6 +66,10 @@ public class Scene extends JPanel {
 
     public synchronized void setBackground(Image background) {
         this.background = background;
+    }
+    
+    public synchronized void setBar(Drawable bar) {
+        this.bar = bar;
     }
         
     

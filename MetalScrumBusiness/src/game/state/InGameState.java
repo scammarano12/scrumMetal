@@ -5,6 +5,7 @@
  */
 package game.state;
 
+import game.menu.HealthBar;
 import java.util.List;
 import game.listeners.GameListener;
 import game.collisions.CollisionController;
@@ -31,6 +32,7 @@ public class InGameState implements State{
         private EndStateListener listener;
         private GameListener gameListener;
         private Player player;
+        private HealthBar bar;
 
         public InGameState(List<CharacterController> controllers,GameLevel gl,Player player, GameListener gameListener) {
             this.sc = Scene.getInstance();
@@ -41,11 +43,15 @@ public class InGameState implements State{
             this.player=player;
             sc.removeKeyListener(gameListener);
             sc.addKeyListener(gameListener);
+            bar = new HealthBar(player);
+            
         }
         
         @Override
         public void start(){
-            
+           controllers.forEach(c -> c.startLucaHaDecisoCosi());
+            bar.draw();
+            System.out.println("disegno barra vita");
             if(player.getCurrentDir() == Direction.LEFT)
                 player.setState(new PlayerStopLeft());
             else
@@ -93,6 +99,7 @@ public class InGameState implements State{
 
         @Override
         public void end() {
+                        controllers.forEach(c -> c.stopLucaHaDecisoCosi());
                         sc.setVisible(false);
                         sc.removeKeyListener(gameListener);
                     

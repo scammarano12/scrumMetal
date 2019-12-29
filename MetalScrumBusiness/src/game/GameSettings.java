@@ -19,6 +19,7 @@ public class GameSettings {
     public static Rectangle EnemyDimension = new Rectangle(28,38);
     public static Rectangle BlockDimension = new Rectangle(40,24);
     public static Rectangle BulletDimension = new Rectangle(14,6);
+    public static Rectangle HealthBarDimension = new Rectangle(150,150/3);
     
     
     

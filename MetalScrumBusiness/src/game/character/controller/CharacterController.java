@@ -35,6 +35,14 @@ public abstract class CharacterController{
         this.characters=new LinkedList<>();
         this.shoot=false;
         this.isActive=true;
+        
+    }
+    
+    public void startLucaHaDecisoCosi(){
+        //vuoto
+    }
+    public void stopLucaHaDecisoCosi(){
+        //vuoto
     }
     
     public void addMovable(Movable m){
