@@ -33,7 +33,7 @@ public class PlayerWeaponDecorator implements PlayerInterface, ActionListener {
     private Timer timer;
     
     public PlayerWeaponDecorator(PlayerInterface p) {
-        p.setState(new PlayerArmoredState());
+       
         this.p = p;
         rateoMultiplier = 3;
         weapon = p.getWeapon();

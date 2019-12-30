@@ -6,6 +6,7 @@
 package game;
 
 import game.character.state.CharacterState;
+import game.character.state.playerState.PlayerArmoredState;
 import game.collisions.Collision;
 import game.objects.Bullet;
 import game.objects.SolidObject;
@@ -26,6 +27,7 @@ public class PlayerArmorDecorator implements PlayerInterface{
     
     
     public PlayerArmorDecorator(PlayerInterface p){
+         p.setState(new PlayerArmoredState());
         this.p = p;
         resistanceMultiplier = 3;
         p.setHealth(resistanceMultiplier*p.getHealth());
