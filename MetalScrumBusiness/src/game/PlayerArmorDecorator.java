@@ -9,6 +9,7 @@ import game.character.state.CharacterState;
 import game.collisions.Collision;
 import game.objects.Bullet;
 import game.objects.SolidObject;
+import game.objects.Weapon;
 import game.objects.movable.Direction;
 import game.objects.movable.Movable;
 import java.awt.Image;
@@ -27,6 +28,7 @@ public class PlayerArmorDecorator implements PlayerInterface{
     public PlayerArmorDecorator(PlayerInterface p){
         this.p = p;
         resistanceMultiplier = 3;
+        p.setHealth(resistanceMultiplier*p.getHealth());
     }
 
     @Override
@@ -117,6 +119,16 @@ public class PlayerArmorDecorator implements PlayerInterface{
     @Override
     public void stopCollision() {
         p.stopCollision(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Weapon getWeapon() {
+       return p.getWeapon();//To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setHealth(int nh) {
+        p.setHealth(nh); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

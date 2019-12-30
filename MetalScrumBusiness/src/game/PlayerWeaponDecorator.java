@@ -131,5 +131,10 @@ public class PlayerWeaponDecorator implements PlayerInterface {
     public Weapon getWeapon() {
         return p.getWeapon();
     }
+
+    @Override
+    public void setHealth(int nh) {
+         p.setHealth(nh);
+    }
     
 }

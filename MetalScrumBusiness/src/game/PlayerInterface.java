@@ -42,5 +42,6 @@ public interface PlayerInterface {
     public boolean hasLives();
     public void stopCollision();
     public Weapon getWeapon();
+    public void setHealth(int nh);
     
 }
