@@ -14,8 +14,9 @@ import game.collisions.CollisionController;
 import game.state.stateListeners.EndStateListener;
 import game.levels.GameLevel;
 import game.GameSettings;
+import game.PlayerInterface;
 import game.character.Enemy;
-import game.character.Player;
+
 import game.character.controller.CharacterController;
 import game.character.controller.EnemyController;
 import game.character.controller.PlayerController;
@@ -26,14 +27,14 @@ import game.objects.Weapon;
 public class LoadingStageState implements State{
         private Scene sc;
         private CollisionController cc;
-        private Player player;
+        private PlayerInterface player;
         private List<CharacterController> controllers;
         private GameLevel gl;
         private PlayerListener pl;
         
         private EndStateListener listener;
         
-        public LoadingStageState(GameLevel gl,Player player,List<CharacterController> controllers,PlayerListener pl) {
+        public LoadingStageState(GameLevel gl,PlayerInterface player,List<CharacterController> controllers,PlayerListener pl) {
             this.sc = Scene.getInstance();
             this.cc= CollisionController.getInstance();
             this.gl=gl;
@@ -42,18 +43,18 @@ public class LoadingStageState implements State{
             this.pl=pl;
             
         }
-        public void initPlayer(Point position,Player player){
+        public void initPlayer(Point position,PlayerInterface player){
              player.setPosition(position);
 
              PlayerController controller = new PlayerController();
              controller.setListener(pl);
              controllers.add(controller);
 
-             controller.addMovable(player);
+             controller.addMovable(player.getMovable());
              sc.addKeyListener(controller);
              player.draw();
-             cc.addSubject(player);
-             cc.addObject(player);  
+             cc.addSubject(player.getSolidObject());
+             cc.addObject(player.getSolidObject());  
     }
         public void initEnemy(List<Point> positions){
         
@@ -120,7 +121,7 @@ public class LoadingStageState implements State{
         }
 
         @Override
-        public Player getPlayer() {
+        public PlayerInterface getPlayer() {
             return player;
         }
 

@@ -5,11 +5,12 @@
  */
 package game.state;
 
+import game.PlayerInterface;
 import java.util.List;
 import game.menu.MenuPause;
 import game.state.stateListeners.EndStateListener;
 import game.levels.GameLevel;
-import game.character.Player;
+
 import game.character.controller.CharacterController;
 
 /**
@@ -20,9 +21,9 @@ public class PauseMenuState implements State{
         private MenuPause pause;
         private List<CharacterController> controllers;
         private GameLevel gl;
-        private Player player;
+        private PlayerInterface player;
 
-        public PauseMenuState(MenuPause pause, List<CharacterController> controllers, GameLevel gl, Player player) {
+        public PauseMenuState(MenuPause pause, List<CharacterController> controllers, GameLevel gl, PlayerInterface player) {
             this.pause = pause;
             this.gl=gl;
             this.controllers=controllers;
@@ -55,7 +56,7 @@ public class PauseMenuState implements State{
         }
 
         @Override
-        public Player getPlayer() {
+        public PlayerInterface getPlayer() {
             return player;
         }
 

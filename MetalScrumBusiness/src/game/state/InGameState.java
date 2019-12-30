@@ -5,13 +5,14 @@
  */
 package game.state;
 
+import game.PlayerInterface;
 import game.menu.HealthBar;
 import java.util.List;
 import game.listeners.GameListener;
 import game.collisions.CollisionController;
 import game.state.stateListeners.EndStateListener;
 import game.levels.GameLevel;
-import game.character.Player;
+
 import game.character.controller.CharacterController;
 import game.character.state.playerState.*;
 import game.objects.movable.Direction;
@@ -33,11 +34,11 @@ public class InGameState implements State{
         private GameLevel gl;
         private EndStateListener listener;
         private GameListener gameListener;
-        private Player player;
+        private PlayerInterface player;
         private HealthBar bar;
         private boolean inGame;
 
-        public InGameState(List<CharacterController> controllers,GameLevel gl,Player player, GameListener gameListener) {
+        public InGameState(List<CharacterController> controllers,GameLevel gl,PlayerInterface player, GameListener gameListener) {
             this.sc = Scene.getInstance();
             this.cc= CollisionController.getInstance();
             this.controllers=controllers;
@@ -125,7 +126,7 @@ public class InGameState implements State{
         }
 
         @Override
-        public Player getPlayer() {
+        public PlayerInterface getPlayer() {
             return player;
         }
 

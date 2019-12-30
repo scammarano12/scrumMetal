@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 import game.state.stateListeners.EndStateListener;
 import game.levels.GameLevel;
 import game.GameSettings;
+import game.PlayerInterface;
 import game.character.Player;
 import game.character.controller.CharacterController;
 import game.character.state.playerState.PlayerStopLeft;
@@ -22,7 +23,7 @@ import game.objects.Weapon;
  */
 public class LoadingLevelState implements State{
         private GameLevel gl;
-        private Player player;
+        private PlayerInterface player;
         private EndStateListener listener;
         
         public LoadingLevelState(){
@@ -66,7 +67,7 @@ public class LoadingLevelState implements State{
         }
 
         @Override
-        public Player getPlayer() {
+        public PlayerInterface getPlayer() {
             return player;
         }
 

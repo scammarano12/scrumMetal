@@ -27,7 +27,8 @@ import javax.sound.sampled.Clip;
 import game.collisions.CollisionController;
 import game.levels.GameLevel;
 import game.GameSettings;
-import game.character.Player;
+import game.PlayerInterface;
+
 import game.character.controller.CharacterController;
 import game.scene.Scene;
 
@@ -201,7 +202,7 @@ public class Application extends javax.swing.JFrame {
             gameStatus.start();
     } 
     
-    public  Player getCurrentPlayer(){
+    public  PlayerInterface getCurrentPlayer(){
         
         return gameStatus.getPlayer();
     }

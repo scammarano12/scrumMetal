@@ -5,8 +5,9 @@
  */
 package game.state;
 
+import game.PlayerInterface;
 import game.character.controller.CharacterController;
-import game.character.Player;
+
 import java.util.List;
 import game.state.stateListeners.EndStateListener;
 import game.levels.GameLevel;
@@ -20,7 +21,7 @@ public interface State {
     public void start();
     public void end();
     public void setListener(EndStateListener listener);
-    public Player getPlayer();
+    public PlayerInterface getPlayer();
     public GameLevel getGameLevel();
     public List<CharacterController> getControllers();
 }

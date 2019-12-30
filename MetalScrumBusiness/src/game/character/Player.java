@@ -1,7 +1,11 @@
 package game.character;
 
+import game.PlayerInterface;
+import game.objects.SolidObject;
 import java.awt.Point;
 import game.objects.Weapon;
+import game.objects.movable.Movable;
+
 
 
 /**
@@ -12,7 +16,7 @@ import game.objects.Weapon;
  *
  * @author albc
  */
-public class Player extends Character {
+public class Player extends Character implements PlayerInterface {
  
     private int numberOfLife;
     private int playerHealth;
@@ -44,4 +48,19 @@ public class Player extends Character {
         return numberOfLife;
     }
 
+    @Override
+    public SolidObject getSolidObject() {
+        return (SolidObject) this; 
+    }
+
+    @Override
+    public Movable getMovable() {
+        return (Movable) this; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+   
+   
+  
 }

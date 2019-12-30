@@ -2,7 +2,8 @@ package game.menu;
 
 
 import game.GameSettings;
-import game.character.Player;
+import game.PlayerInterface;
+
 import game.objects.SolidObject;
 import game.scene.Drawable;
 import game.scene.Scene;
@@ -28,7 +29,7 @@ import javax.swing.text.Position;
  * @author lucap
  */
 public class HealthBar implements Drawable{
-    private Player p;
+    private PlayerInterface p;
     private int health;
     private int lives;
     private Image bar;
@@ -36,7 +37,7 @@ public class HealthBar implements Drawable{
     private int maxHealth;
     private Image currentBar;
     private Image life;
-    public HealthBar(Player p){
+    public HealthBar(PlayerInterface p){
          maxHealth=4;
         health=0;
         lives =0;

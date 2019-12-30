@@ -14,7 +14,8 @@ import game.objects.Bullet;
 import game.collisions.Collision;
 import game.objects.movable.Direction;
 import game.GameSettings;
-import game.character.Player;
+import game.PlayerInterface;
+
 import game.character.state.playerState.PlayerStopLeft;
 import game.character.state.playerState.PlayerStopRight;
 import game.character.state.playerState.PlayerWalkLeft;
@@ -56,7 +57,7 @@ public class PlayerController extends CharacterController implements KeyListener
     public void keyPressed (KeyEvent e) {
         //System.out.print("stefano è bello");
         if(characters.size()>0){
-        Player p = (Player) characters.get(0);
+        PlayerInterface p = (PlayerInterface) characters.get(0);
         switch (e.getKeyCode()) {
             case KeyEvent.VK_SPACE:
                 shoot = true;
@@ -85,7 +86,7 @@ public class PlayerController extends CharacterController implements KeyListener
     @Override
     public void keyReleased(KeyEvent e) {
         if(characters.size()>0){
-        Player p = (Player) characters.get(0);
+        PlayerInterface p = (PlayerInterface) characters.get(0);
         switch (e.getKeyCode()) {
             case KeyEvent.VK_SPACE:
                 shoot = false;
@@ -110,7 +111,7 @@ public class PlayerController extends CharacterController implements KeyListener
     public void updatePositions() {
 
         for (Movable m : characters) {
-            Player p = (Player) m;
+            PlayerInterface p = (PlayerInterface) m;
             if (p.isAlive()) {
                 if (shoot) {
                     p.shoot();

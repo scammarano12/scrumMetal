@@ -5,11 +5,12 @@
  */
 package game.state;
 
+import game.PlayerInterface;
 import java.util.List;
 import game.menu.MenuGameOver;
 import game.state.stateListeners.EndStateListener;
 import game.levels.GameLevel;
-import game.character.Player;
+
 import game.character.controller.CharacterController;
 
 /**
@@ -55,7 +56,7 @@ import game.character.controller.CharacterController;
         }
 
         @Override
-        public Player getPlayer() {
+        public PlayerInterface getPlayer() {
             return null;
         }
 

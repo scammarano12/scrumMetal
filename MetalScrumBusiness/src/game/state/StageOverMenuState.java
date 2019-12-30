@@ -5,12 +5,13 @@
  */
 package game.state;
 
+import game.PlayerInterface;
 import java.util.List;
 import game.menu.MenuLevelTerminated;
 import game.menu.MenuStageTerminated;
 import game.state.stateListeners.EndStateListener;
 import game.levels.GameLevel;
-import game.character.Player;
+
 import game.character.controller.CharacterController;
 import game.scene.Scene;
 import java.util.logging.Level;
@@ -26,10 +27,10 @@ import java.util.logging.Logger;
         private MenuLevelTerminated levelOver;
         private GameLevel gl;
         private Scene sc;
-        private Player player;
+        private PlayerInterface player;
         private List<CharacterController> controllers;
         
-        public StageOverMenuState(MenuStageTerminated stageOver, MenuLevelTerminated levelOver,GameLevel gl, Player player,List<CharacterController> controllers) {
+        public StageOverMenuState(MenuStageTerminated stageOver, MenuLevelTerminated levelOver,GameLevel gl, PlayerInterface player,List<CharacterController> controllers) {
             this.stageOver = stageOver;
             this.levelOver = levelOver;
             this.gl=gl;
@@ -60,7 +61,7 @@ import java.util.logging.Logger;
         }
 
         @Override
-        public Player getPlayer() {
+        public PlayerInterface getPlayer() {
             return player;
         }
 
