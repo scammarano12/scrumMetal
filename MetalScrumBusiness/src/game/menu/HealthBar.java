@@ -57,12 +57,13 @@ public class HealthBar implements Drawable{
     
     private synchronized Image setBarLevel(){
         if(health != p.getHealth()){
+            maxHealth= p.getMaxHealth();
             System.out.println("costruisco la barra");
             health = p.getHealth();
             lives = p.getNumberOfLife();
             BufferedImage current = new BufferedImage(GameSettings.HealthBarDimension.width+10+lives*(life.getWidth(null)+5),GameSettings.HealthBarDimension.height,BufferedImage.TRANSLUCENT);
             Graphics g = current.createGraphics();
-            //g.drawImage(barLevel.getSubimage(0, 0,(int)(0.2*bar.getWidth(null)+ 0.8*bar.getWidth(null)/maxHealth*health) , bar.getHeight(null)), 0, 0, null);
+            g.drawImage(barLevel.getSubimage(0, 0,(int)(0.2*bar.getWidth(null)+ 0.8*bar.getWidth(null)/maxHealth*health) , bar.getHeight(null)), 0, 0, null);
             g.drawImage(bar, 0, 0, null);
             for(int i =0; i< lives ;i++){
                 g.drawImage(life,bar.getWidth(null)+10 +i*(life.getWidth(null)+5), bar.getHeight(null)/2 -life.getHeight(null)/2 , null);

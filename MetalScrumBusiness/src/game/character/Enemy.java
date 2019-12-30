@@ -33,7 +33,7 @@ public class Enemy extends Character {
     public void setCollision(Collision c){
         super.setCollision(c);
         
-        SolidObject so =c.getObject();
+       for(SolidObject so : c.getObject()){
         if(so!=null){
         String id = so.getId();
         if(id.equals("player") && System.currentTimeMillis()-time > 5000 ){
@@ -44,6 +44,8 @@ public class Enemy extends Character {
             p.setHealth(currentHealth-1);
         }
     }
+       }  
+        
     }
     
     

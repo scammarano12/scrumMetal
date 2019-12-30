@@ -151,5 +151,15 @@ public class PlayerWeaponDecorator implements PlayerInterface, ActionListener {
             weapon.setRateo(currentRateo);
         }
     }
+
+    @Override
+    public int getMaxHealth() {
+       return p.getMaxHealth();
+    }
+
+    @Override
+    public void setMaxHealth(int max) {
+       p.setHealth(max); 
+    }
     
 }

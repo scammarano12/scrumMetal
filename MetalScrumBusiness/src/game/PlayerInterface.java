@@ -43,5 +43,8 @@ public interface PlayerInterface {
     public void stopCollision();
     public Weapon getWeapon();
     public void setHealth(int nh);
+    public int getMaxHealth();
+    public void setMaxHealth(int max);
+    
     
 }

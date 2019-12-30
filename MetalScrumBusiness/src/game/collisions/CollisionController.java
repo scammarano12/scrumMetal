@@ -96,11 +96,12 @@ public class CollisionController {
             Rectangle subjectHitBox = subject.getHitbox();
             
             for (SolidObject object :objs) {
-               
-                Rectangle objHitBox = object.getHitbox();
-                if (subjectHitBox.intersects(objHitBox)&& !object.getId().equals(subject.getId())) {
-                    collision.setObject(object);
                 
+                
+                Rectangle objHitBox = object.getHitbox();
+                if (subjectHitBox.intersects(objHitBox) && !object.getId().equals(subject.getId())) {
+                    collision.setObject(object);
+                    
                     if (subjectHitBox.y  > objHitBox.y ) {
                         collision.setTop(true);
                         
@@ -118,21 +119,23 @@ public class CollisionController {
                     if (subjectHitBox.x == objHitBox.x + objHitBox.width - 1 && (subjectHitBox.y+subjectHitBox.height -1 > objHitBox.y || subjectHitBox.y < objHitBox.y + objHitBox.height)) {
                         collision.setLeft(true);
                     }
+                    }
                     
-                   
-                } 
+                
+                
                 
                
              }
+            
              collisions.add(collision);
             
         }
         
         for(Collision c : collisions){
-            c.getSubject().setCollision(c);
+               c.getSubject().setCollision(c);
             
-            if(c.getObject()!= null){
-                c.getObject().setCollision(c);
+            if(!c.getObject().isEmpty() ) {
+                c.getObject().forEach(o -> o.setCollision(c));
             }
             
         }

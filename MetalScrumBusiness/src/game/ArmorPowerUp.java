@@ -17,15 +17,20 @@ import java.awt.Point;
  * @author stefano
  */
 public class ArmorPowerUp extends SolidObject implements Drawable {
-   
+       private final int  animation = 20;
+       private int  count;
     public ArmorPowerUp(Point position, int width, int heigth, String id) {
         super(position, width, heigth, id);
         image = SolidObject.loadImage("src/resources/powerUp/armor.png"); 
+        count=0;
     }
 
     @Override
     public Image getDraw() {
-        return image; //To change body of generated methods, choose Tools | Templates.
+       
+        
+         
+        return image; //To [change body of generated methods, choose Tools | Templates.
     }
     
     @Override

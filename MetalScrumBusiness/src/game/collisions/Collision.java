@@ -6,6 +6,8 @@
 package game.collisions;
 
 import game.objects.SolidObject;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -17,7 +19,7 @@ public class Collision {
     private boolean top;
     private boolean down;
     private SolidObject subject;
-    private SolidObject object;
+    private List<SolidObject> object;
     
     public Collision(SolidObject subject,SolidObject object, boolean left,boolean rigth,boolean top,boolean down){
         this.left=left;
@@ -25,7 +27,7 @@ public class Collision {
         this.down = down;
         this.top = top;
         this.subject=subject;
-        this.object=object;
+        this.object= new LinkedList<>();
     }
 
     public boolean isLeft() {
@@ -68,12 +70,12 @@ public class Collision {
         this.subject = subject;
     }
 
-    public SolidObject getObject() {
+    public List<SolidObject> getObject() {
         return object;
     }
 
     public void setObject(SolidObject object) {
-        this.object = object;
+        this.object.add(object);
     }
 
     @Override

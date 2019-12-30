@@ -28,7 +28,13 @@ public class Player extends Character implements PlayerInterface {
     }
 
     
+    public synchronized int getMaxHealth(){
+        return playerHealth;
+    }
     
+    public synchronized void setMaxHealth(int max){
+        playerHealth=max;
+    }
     
   
 

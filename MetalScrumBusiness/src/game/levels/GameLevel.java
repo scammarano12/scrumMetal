@@ -113,7 +113,7 @@ public class GameLevel {
                          
                     }
                     if(c=='a'){
-                         ArmorPowerUp ap = new ArmorPowerUp(new Point(count*width,j*heigth),30,30,"apowerup");
+                         ArmorPowerUp ap = new ArmorPowerUp(new Point(count*width,j*heigth),12,12,"powerUp");
                          ap.draw();
                          ap.activeCollision();
                          count++;
