@@ -31,7 +31,7 @@ import javax.swing.JLabel;
  */
 public class GameLevel {
     
-    private final int levelNumber;
+    private  int levelNumber;
     private int stageNumber;
     private final int stageLimit;
 
@@ -138,6 +138,11 @@ public class GameLevel {
         }
         
         return positions;
+    }
+
+    public void setLevel(int i, int i0) {
+        this.stageNumber=i0 ;
+        this.levelNumber= i ; 
     }
 
     

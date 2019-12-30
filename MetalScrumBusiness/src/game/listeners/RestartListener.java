@@ -28,7 +28,7 @@ public class RestartListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             
 
-            State s= new LoadingLevelState();
+            State s= new LoadingLevelState(context.getCurrentGameLevel());
             s.setListener(new LoadedLevelListener(context));
             context.setStatus(s);
             //GameStatus.setGameStatus(1);

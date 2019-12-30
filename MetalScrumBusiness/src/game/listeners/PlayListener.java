@@ -27,7 +27,7 @@ public class PlayListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             
                 //context.end();
-                State s = new LoadingLevelState();
+                State s = new LoadingLevelState(context.getCurrentGameLevel());
                 s.setListener(new LoadedLevelListener(context));
                
                 context.setStatus(s);

@@ -26,14 +26,14 @@ public class LoadingLevelState implements State{
         private PlayerInterface player;
         private EndStateListener listener;
         
-        public LoadingLevelState(){
-//            initLevel();
+        public LoadingLevelState(GameLevel gl){
+             this.gl = gl;
             this.player = new Player(new Point(0,0),GameSettings.PlayerDimension.width,GameSettings.PlayerDimension.height,"player",new Weapon(2));
         }
         
         
         public void initLevel(){
-            this.gl= new GameLevel(1,3);
+            gl.setLevel(1,3);
             
         }
         

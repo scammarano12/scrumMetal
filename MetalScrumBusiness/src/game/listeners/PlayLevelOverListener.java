@@ -28,7 +28,7 @@ public class PlayLevelOverListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             
              
-                State s = new LoadingLevelState();
+                State s = new LoadingLevelState(context.getCurrentGameLevel());
                 System.out.println(s.getClass());
                 
                 s.setListener(new LoadedLevelListener(context));
