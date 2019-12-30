@@ -10,6 +10,7 @@ import game.character.state.CharacterState;
 import game.collisions.Collision;
 import game.objects.Bullet;
 import game.objects.SolidObject;
+import game.objects.Weapon;
 import game.objects.movable.Direction;
 import game.objects.movable.Movable;
 import java.awt.Image;
@@ -40,5 +41,6 @@ public interface PlayerInterface {
     public void move(int dx, int dy);
     public boolean hasLives();
     public void stopCollision();
+    public Weapon getWeapon();
     
 }
