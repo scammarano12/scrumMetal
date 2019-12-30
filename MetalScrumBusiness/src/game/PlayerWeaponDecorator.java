@@ -14,25 +14,32 @@ import game.objects.movable.Direction;
 import game.objects.movable.Movable;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.Timer;
 
 /**
  *
  * @author SimonePadula
  */
-public class PlayerWeaponDecorator implements PlayerInterface {
+public class PlayerWeaponDecorator implements PlayerInterface, ActionListener {
 
     private PlayerInterface p;
     private int rateoMultiplier;
     private Weapon weapon;
     private int currentRateo;
+    private Timer timer;
     
-    public PlayerWeaponDecorator(PlayerInterface p) {
+    
+    public PlayerWeaponDecorator(PlayerInterface p){
         this.p = p;
         rateoMultiplier = 3;
         weapon = p.getWeapon();
         currentRateo = weapon.getRateo();
         weapon.setRateo(currentRateo*rateoMultiplier);
+        this.timer = new Timer(5000, this);
+        timer.start();
     }
     
     
@@ -135,6 +142,13 @@ public class PlayerWeaponDecorator implements PlayerInterface {
     @Override
     public void setHealth(int nh) {
          p.setHealth(nh);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == timer){
+            weapon.setRateo(currentRateo);
+        }
     }
     
 }
