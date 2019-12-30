@@ -55,7 +55,7 @@ public class InGameState implements State{
         public void start(){
             inGame=true;
            controllers.forEach(c -> c.startLucaHaDecisoCosi());
-            bar.draw();
+           bar.draw();
             System.out.println("disegno barra vita");
             if(player.getCurrentDir() == Direction.LEFT)
                 player.setState(new PlayerStopLeft());

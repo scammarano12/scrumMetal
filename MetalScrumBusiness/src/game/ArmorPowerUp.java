@@ -32,6 +32,8 @@ public class ArmorPowerUp extends SolidObject implements Drawable {
     public void setCollision(Collision c){
        
         if(c.getSubject().getId().equals("player") ){
+            this.unDraw();
+            this.stopCollision();
             PlayerInterface p = (PlayerInterface) c.getSubject();
             p = new PlayerArmorDecorator(p);
          }

@@ -23,12 +23,17 @@ import java.util.List;
  */
 public class PlayerArmorDecorator implements PlayerInterface{
     private PlayerInterface p;
+    private final int multiplier = 3; 
     
     
     public PlayerArmorDecorator(PlayerInterface player){
+        
+        int current = player.getHealth() * multiplier;
+        //System.out.println("vita con moltiplicatore" + current);
+        player.setHealth(current);
+        //System.out.println("vita che ho settato: " + player.getHealth());
         p = player;
-        int current = p.getHealth();
-        p.setHealth(3*current);
+        //System.out.println("vita post copia referenza" + p.getHealth());
     }
 
     @Override
