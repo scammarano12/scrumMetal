@@ -24,7 +24,7 @@ import javax.swing.Timer;
  *
  * @author SimonePadula
  */
-public class PlayerWeaponDecorator implements PlayerInterface, ActionListener {
+public class PlayerWeaponDecorator extends PowerUpDecorator implements ActionListener {
 
     private PlayerInterface p;
     private int rateoMultiplier;
@@ -33,7 +33,7 @@ public class PlayerWeaponDecorator implements PlayerInterface, ActionListener {
     private Timer timer;
     
     public PlayerWeaponDecorator(PlayerInterface p) {
-       
+       super(p);
         this.p = p;
         rateoMultiplier = 3;
         weapon = p.getWeapon();
@@ -42,108 +42,6 @@ public class PlayerWeaponDecorator implements PlayerInterface, ActionListener {
         this.timer = new Timer(5000, this);
         timer.start();
     }
-    
-    
-
-    @Override
-    public void setState(CharacterState s) {
-        p.setState(s);
-    }
-
-    @Override
-    public void draw() {
-        p.draw();
-    }
-
-    @Override
-    public void unDraw() {
-        p.unDraw();
-    }
-
-    @Override
-    public Image getDraw() {
-        return p.getDraw();
-    }
-
-    @Override
-    public Point getPosition() {
-        return p.getPosition();
-    }
-
-    @Override
-    public boolean isAlive() {
-        return p.isAlive();
-    }
-
-    @Override
-    public int getHealth() {
-        return p.getHealth();
-    }
-
-    @Override
-    public Direction getCurrentDir() {
-        return p.getCurrentDir();
-    }
-
-    @Override
-    public int getNumberOfLife() {
-        return p.getNumberOfLife();
-    }
-
-    @Override
-    public void setPosition(Point p) {
-        this.p.setPosition(p);
-    }
-
-    @Override
-    public SolidObject getSolidObject() {
-        return this.p.getSolidObject();
-    }
-
-    @Override
-    public Movable getMovable() {
-        return p.getMovable();
-    }
-
-    @Override
-    public void shoot() {
-        p.shoot();
-    }
-
-    @Override
-    public Collision getCollision() {
-        return p.getCollision();
-    }
-
-    @Override
-    public List<Bullet> getFiredBullets() {
-        return p.getFiredBullets();
-    }
-
-    @Override
-    public void move(int dx, int dy) {
-        p.move(dx, dy);
-    }
-
-    @Override
-    public boolean hasLives() {
-        return p.hasLives();
-    }
-
-    @Override
-    public void stopCollision() {
-        p.stopCollision();
-    }
-
-    @Override
-    public Weapon getWeapon() {
-        return p.getWeapon();
-    }
-
-    @Override
-    public void setHealth(int nh) {
-         p.setHealth(nh);
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -151,15 +49,8 @@ public class PlayerWeaponDecorator implements PlayerInterface, ActionListener {
             weapon.setRateo(currentRateo);
         }
     }
+    
 
-    @Override
-    public int getMaxHealth() {
-       return p.getMaxHealth();
-    }
-
-    @Override
-    public void setMaxHealth(int max) {
-       p.setHealth(max); 
-    }
+   
     
 }
