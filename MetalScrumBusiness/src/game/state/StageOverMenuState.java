@@ -85,7 +85,9 @@ import java.util.logging.Logger;
                 if(gl.checkNextStage()){
                     stageOver.setVisible(true);
                     stageOver.requestFocusInWindow();
+                    System.out.println("stage disponibile");
                 }else{
+                    System.out.println("stage finiti riparto da capo");
                     levelOver.setVisible(true);
                     levelOver.requestFocusInWindow();
                     
