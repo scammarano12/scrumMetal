@@ -23,14 +23,12 @@ import java.util.List;
  */
 public class PlayerArmorDecorator implements PlayerInterface{
     private PlayerInterface p;
-    private int resistanceMultiplier;
     
     
-    public PlayerArmorDecorator(PlayerInterface p){
-         p.setState(new PlayerArmoredState());
-        this.p = p;
-        resistanceMultiplier = 3;
-        p.setHealth(resistanceMultiplier*p.getHealth());
+    public PlayerArmorDecorator(PlayerInterface player){
+        p = player;
+        int current = p.getHealth();
+        p.setHealth(3*current);
     }
 
     @Override

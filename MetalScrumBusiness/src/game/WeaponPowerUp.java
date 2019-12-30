@@ -16,16 +16,14 @@ import java.awt.Point;
  * @author SimonePadula
  */
 public class WeaponPowerUp extends SolidObject implements Drawable {
-
-    private Image img;
     
     public WeaponPowerUp(Point position, int width, int heigth, String id) {
         super(position, width, heigth, id);
-        img = SolidObject.loadImage("src/resources/powerUp/weapon.png");
+        image = SolidObject.loadImage("src/resources/powerUp/weapon.png");
     }
 
     public Image getImg() {
-        return img;
+        return image;
     }
 
     public void setCollision(Collision c){
@@ -38,7 +36,7 @@ public class WeaponPowerUp extends SolidObject implements Drawable {
     
     @Override
     public Image getDraw() {
-        return img;
+        return image;
     }
     
 }

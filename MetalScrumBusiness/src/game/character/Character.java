@@ -103,11 +103,11 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     public synchronized void setState(CharacterState state){
         this.state = state;
     }
-    public int getHealth() {
+    public synchronized int getHealth() {
         return health;
     }
 
-    public void setHealth(int health) {
+    public synchronized void setHealth(int health) {
         this.health = health;
     }
 

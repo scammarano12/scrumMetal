@@ -17,10 +17,10 @@ import java.awt.Point;
  * @author stefano
  */
 public class ArmorPowerUp extends SolidObject implements Drawable {
-    private Image img;
+   
     public ArmorPowerUp(Point position, int width, int heigth, String id) {
         super(position, width, heigth, id);
-        img = SolidObject.loadImage("src/resources/powerUp/armor.png"); 
+        image = SolidObject.loadImage("src/resources/powerUp/armor.png"); 
     }
 
     @Override
@@ -30,7 +30,7 @@ public class ArmorPowerUp extends SolidObject implements Drawable {
     
     @Override
     public void setCollision(Collision c){
-        super.setCollision(c);
+       
         if(c.getSubject().getId().equals("player") ){
             PlayerInterface p = (PlayerInterface) c.getSubject();
             p = new PlayerArmorDecorator(p);

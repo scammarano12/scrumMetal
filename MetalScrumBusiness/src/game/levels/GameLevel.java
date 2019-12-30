@@ -5,6 +5,7 @@
  */
 package game.levels;
 
+import game.ArmorPowerUp;
 import game.scene.Scene;
 import game.GameSettings;
 import game.objects.Block;
@@ -110,6 +111,17 @@ public class GameLevel {
                          positions.addLast(new Point(count*width,j*heigth));
                          count++;
                          
+                    }
+                    if(c=='a'){
+                         ArmorPowerUp ap = new ArmorPowerUp(new Point(count*width,j*heigth),30,30,"apowerup");
+                         ap.draw();
+                         ap.activeCollision();
+                         count++;
+                    
+                    }
+                    if(c=='w'){
+                         positions.addLast(new Point(count*width,j*heigth));
+                         count++;
                     }
                 }
                 j++;
