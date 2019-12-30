@@ -6,6 +6,7 @@
 package game;
 
 import game.character.state.CharacterState;
+import game.character.state.playerState.PlayerArmoredState;
 import game.collisions.Collision;
 import game.objects.Bullet;
 import game.objects.SolidObject;
@@ -28,11 +29,13 @@ public class PlayerWeaponDecorator implements PlayerInterface {
     private int currentRateo;
     
     public PlayerWeaponDecorator(PlayerInterface p) {
+        p.setState(new PlayerArmoredState());
         this.p = p;
         rateoMultiplier = 3;
         weapon = p.getWeapon();
         currentRateo = weapon.getRateo();
         weapon.setRateo(currentRateo*rateoMultiplier);
+       
     }
     
     
