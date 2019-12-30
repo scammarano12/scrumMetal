@@ -47,6 +47,7 @@ public class GameLevel {
 
     public synchronized void nextStage() {
         System.out.println("nextstage :"+Thread.currentThread().getName());
+        
         this.stageNumber++;
     }
     
@@ -54,7 +55,14 @@ public class GameLevel {
     
     public synchronized boolean checkNextStage(){
        System.out.println("check :"+Thread.currentThread().getName());
-        return (stageNumber-1)<stageLimit;
+        //return 
+        if((stageNumber-1)<stageLimit)
+            return true;
+        else{
+            stageNumber = 1;
+            return false;
+        }
+                    
     }
     public synchronized List<Point> createStage(){
         System.out.println("create :"+Thread.currentThread().getName());
@@ -62,6 +70,7 @@ public class GameLevel {
         LinkedList<Point> positions = new LinkedList<>();
         try {
             System.out.println("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
+            
             Reader is = new FileReader("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
             Scanner s = new Scanner(is);
             int width =GameSettings.BlockDimension.width;

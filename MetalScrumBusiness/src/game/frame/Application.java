@@ -51,6 +51,7 @@ public class Application extends javax.swing.JFrame {
     private Clip clip;
     private CollisionController cc;
     private Scene sc;
+    private GameLevel gl;
     
     public Application() {
         
@@ -60,6 +61,8 @@ public class Application extends javax.swing.JFrame {
         initScene();
         initCollisionController();
         gameStatus=null;
+        gl = new GameLevel(1,3);
+        
         
     }
     
@@ -201,17 +204,17 @@ public class Application extends javax.swing.JFrame {
             gameStatus.start();
     } 
     
-    public  Player getCurrentPlayer(){
+    public  synchronized Player getCurrentPlayer(){
         
         return gameStatus.getPlayer();
     }
     
-    public  GameLevel getCurrentGameLevel(){
+    public synchronized GameLevel getCurrentGameLevel(){
         System.out.println("ottengo livello "+Thread.currentThread().getName());
-        return gameStatus.getGameLevel();
+        return gl;
     }
     
-    public  List<CharacterController> getCurrentControllers(){
+    public  synchronized List<CharacterController> getCurrentControllers(){
         return gameStatus.getControllers();
     }
     

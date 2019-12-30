@@ -26,19 +26,21 @@ public class LoadingLevelState implements State{
         private EndStateListener listener;
         
         public LoadingLevelState(){
-            initLevel();
+//            initLevel();
             this.player = new Player(new Point(0,0),GameSettings.PlayerDimension.width,GameSettings.PlayerDimension.height,"player",new Weapon(2));
         }
         
         
         public void initLevel(){
             this.gl= new GameLevel(1,3);
+            
         }
         
         
         public void start(){
             player.setState(new PlayerStopLeft());
             listener.stateEnded();//To change body of generated methods, choose Tools | Templates.
+            
         }
         
         public void execute(){
@@ -46,12 +48,7 @@ public class LoadingLevelState implements State{
                     
         }
 
-            
-           
-            
-        
-
-        
+   
 
         @Override
         public void end() {

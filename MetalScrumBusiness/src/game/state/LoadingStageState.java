@@ -82,7 +82,6 @@ public class LoadingStageState implements State{
         public void initStage(){
             controllers = new LinkedList<>();
 
-
             List<Point> l = gl.createStage();
             initPlayer(l.remove(0),player);
             initEnemy(l);
