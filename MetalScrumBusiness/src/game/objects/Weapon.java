@@ -39,6 +39,14 @@ public class Weapon {
         
     }
     
+    public int getRateo(){
+        return rateo;
+    }
+    
+    public void setRateo(int rateo){
+        this.rateo=rateo;
+    }
+    
     
      
     

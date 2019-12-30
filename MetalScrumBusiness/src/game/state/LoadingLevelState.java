@@ -7,7 +7,7 @@ package game.state;
 
 import java.awt.Point;
 import java.util.List;
-import javax.swing.SwingUtilities;
+
 import game.state.stateListeners.EndStateListener;
 import game.levels.GameLevel;
 import game.GameSettings;

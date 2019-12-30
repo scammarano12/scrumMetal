@@ -60,6 +60,9 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
         }
     
     }
+    public Weapon getWeapon(){
+        return weapon;
+    }
     
     
     @Override
