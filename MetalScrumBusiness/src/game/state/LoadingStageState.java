@@ -45,7 +45,7 @@ public class LoadingStageState implements State{
         }
         public void initPlayer(Point position,PlayerInterface player){
              player.setPosition(position);
-             player.setHealth(player.getHealth()*4/player.getMaxHealth());
+             player.setHealth(player.getHealth()*player.getMaxHealth()/4);
              player.setMaxHealth(4);
              player.getWeapon().setRateo(3);
 
