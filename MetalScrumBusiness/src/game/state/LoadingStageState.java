@@ -26,6 +26,8 @@ import game.character.state.FlyingEnemyState.FlyingEnemyWalkRight;
 import game.character.state.enemyState.EnemyWalkRight;
 import game.scene.Scene;
 import game.objects.Weapon;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoadingStageState implements State{
         private Scene sc;
@@ -64,32 +66,39 @@ public class LoadingStageState implements State{
              cc.addSubject(player.getSolidObject());
              cc.addObject(player.getSolidObject());  
     }
-        public void initEnemy(List<Point> positions){
+        public void initEnemy(List<Point> positions,String type){
         
         //da spostare, magari, in quale classe apposita a fare ciò!
  
         
         
         
-            for(int i=0; i<positions.size()-1; i+=2){
+            for(int i=0; i<positions.size(); i++){
+                
+                Enemy enemy = null;
+                
+                CharacterController controller = null;
                 //Aggiunto SSS
-                Enemy enemy = new Enemy(positions.get(i+1),GameSettings.EnemyDimension.width,GameSettings.EnemyDimension.height,"enemy",2,new Weapon(2));
-                enemy.setState(new EnemyWalkRight());
-                EnemyController controller = new EnemyController(100,300);
+                if(type.equals("e")){
+                    enemy = new Enemy(positions.get(i),GameSettings.EnemyDimension.width,GameSettings.EnemyDimension.height,"enemy",2,new Weapon(2));
+                    enemy.setState(new EnemyWalkRight());
+                    controller = new EnemyController(100,300);
+                }
+                else{
+                    enemy = new FlyingEnemy(positions.get(i),GameSettings.EnemyDimension.width,GameSettings.EnemyDimension.height,"enemy",2,new Weapon(2));
+                    enemy.setState(new FlyingEnemyWalkRight());
+                    controller = new FlyingEnemyController(100,300);
+                }
+               
                 
-                FlyingEnemy enemy1 = new FlyingEnemy(positions.get(i),GameSettings.EnemyDimension.width,GameSettings.EnemyDimension.height,"enemy",2,new Weapon(2));
-                enemy1.setState(new FlyingEnemyWalkRight());
-                FlyingEnemyController controller1 = new FlyingEnemyController(100,300);
-                
-                controllers.add(controller1);
                 controllers.add(controller);
-
                 controller.addMovable(enemy);
-                controller1.addMovable(enemy1);
+                
                 //associare all'enemy un timer per spostarsi e sparare!
                 enemy.draw();
-                enemy1.draw();
+               
                 enemy.activeCollision();
+            
                 //CollisionSystem.addCollisionObject(enemy);
             }
         
@@ -98,9 +107,10 @@ public class LoadingStageState implements State{
         public void initStage(){
             controllers = new LinkedList<>();
 
-            List<Point> l = gl.createStage();
-            initPlayer(l.remove(0),player);
-            initEnemy(l);
+            Map<String,List<Point>> l = gl.createStage();
+            initPlayer( l.get("p").get(0) , player);
+            initEnemy(l.get("e"),"e");
+            initEnemy(l.get("f"),"f");
         
              
     }

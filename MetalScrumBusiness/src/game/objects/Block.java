@@ -52,7 +52,7 @@ public class Block extends SolidObject implements Drawable{
            
         BufferedImage images1[] = new BufferedImage[imagesCount];
         for(int j = 0; j < images1.length; j++) {
-            images1[j] = new BufferedImage(GameSettings.BlockDimension.width, GameSettings.BlockDimension.height, BufferedImage.TYPE_INT_RGB);
+            images1[j] = new BufferedImage(GameSettings.BlockDimension.width, GameSettings.BlockDimension.height, BufferedImage.TRANSLUCENT);
             Graphics2D g2d = images1[j].createGraphics();
             
             g2d.drawImage(image,0, 0, GameSettings.BlockDimension.width, heigth, null);
@@ -65,7 +65,7 @@ public class Block extends SolidObject implements Drawable{
         }
         
         int widthCurr = 0;
-        BufferedImage concatImage = new BufferedImage(widthTotal, heigth, BufferedImage.TYPE_INT_RGB);
+        BufferedImage concatImage = new BufferedImage(widthTotal, heigth, BufferedImage.TRANSLUCENT);
         Graphics2D g2d = concatImage.createGraphics();
      
         for(int j = 0; j < images1.length; j++) {

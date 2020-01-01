@@ -18,8 +18,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,10 +68,13 @@ public class GameLevel {
         }
                     
     }
-    public synchronized List<Point> createStage(){
+    public synchronized Map<String,List<Point>> createStage(){
         System.out.println("create :"+Thread.currentThread().getName());
         Scene.getInstance().setBackground(new ImageIcon("src/resources/Levels/Level"+levelNumber+"/background.png").getImage().getScaledInstance(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height, Image.SCALE_DEFAULT));
-        LinkedList<Point> positions = new LinkedList<>();
+        HashMap<String,List<Point>> positions = new HashMap<>();
+        LinkedList<Point> enemy = new LinkedList<>();
+        LinkedList<Point> player = new LinkedList<>();
+        LinkedList<Point> fenemy = new LinkedList<>();
         try {
             System.out.println("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
             
@@ -102,14 +107,19 @@ public class GameLevel {
                         }
                     }
                     if(c=='p'){
-                        positions.addFirst(new Point(count*width,j*heigth));
+                        player.add(new Point(count*width,j*heigth));
                         count++;
                     }
                     if(c=='0'){
                         count++;
                     }
                     if(c=='e'){
-                         positions.addLast(new Point(count*width,j*heigth));
+                         enemy.add(new Point(count*width,j*heigth));
+                         count++;
+                         
+                    }
+                    if(c=='f'){
+                         fenemy.add(new Point(count*width,j*heigth));
                          count++;
                          
                     }
@@ -124,7 +134,7 @@ public class GameLevel {
                         WeaponPowerUp wp = new WeaponPowerUp(new Point(count*width,j*heigth),14,20,"powerUp");
                         wp.draw();
                         wp.activeCollision();
-                         positions.addLast(new Point(count*width,j*heigth));
+                       
                          count++;
                     }
                 }
@@ -140,6 +150,10 @@ public class GameLevel {
         } catch (IOException ex) {
             Logger.getLogger(GameLevel.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        positions.put("p", player);
+        positions.put("e", enemy);
+        positions.put("f", fenemy);
         
         return positions;
     }
