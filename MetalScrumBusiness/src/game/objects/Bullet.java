@@ -32,7 +32,7 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
     private Clip damageSound;
     
     
-    private final static String bullet = "src/resources/objects/bullet.png";
+    String bullet;
     
     
 
@@ -40,6 +40,7 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
         
         super(position, 0, 0, id);
         initMusic();
+        bullet = "src/resources/objects/bullet.png";
         this.image = SolidObject.loadImage(bullet);
         super.setWidth(GameSettings.BulletDimension.width);
         super.setHeigth(GameSettings.BulletDimension.height);
@@ -97,7 +98,7 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
 
     @Override
     public synchronized void move(int dx, int dy) {
-         position.translate(dx, 0);
+         position.translate(dx, dy);
     }
 
     @Override

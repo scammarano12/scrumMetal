@@ -14,12 +14,15 @@ import game.collisions.CollisionController;
 import game.state.stateListeners.EndStateListener;
 import game.levels.GameLevel;
 import game.GameSettings;
-import game.PlayerInterface;
+import game.character.PlayerInterface;
 import game.character.Enemy;
+import game.character.FlyingEnemy;
 
 import game.character.controller.CharacterController;
 import game.character.controller.EnemyController;
+import game.character.controller.FlyingEnemyController;
 import game.character.controller.PlayerController;
+import game.character.state.FlyingEnemyState.FlyingEnemyWalkRight;
 import game.character.state.enemyState.EnemyWalkRight;
 import game.scene.Scene;
 import game.objects.Weapon;
@@ -68,17 +71,24 @@ public class LoadingStageState implements State{
         
         
         
-            for(int i=0; i<positions.size(); i++){
+            for(int i=0; i<positions.size()-1; i+=2){
                 //Aggiunto SSS
-                Enemy enemy = new Enemy(positions.get(i),GameSettings.EnemyDimension.width,GameSettings.EnemyDimension.height,"enemy",2,new Weapon(2));
+                Enemy enemy = new Enemy(positions.get(i+1),GameSettings.EnemyDimension.width,GameSettings.EnemyDimension.height,"enemy",2,new Weapon(2));
                 enemy.setState(new EnemyWalkRight());
                 EnemyController controller = new EnemyController(100,300);
-
+                
+                FlyingEnemy enemy1 = new FlyingEnemy(positions.get(i),GameSettings.EnemyDimension.width,GameSettings.EnemyDimension.height,"enemy",2,new Weapon(2));
+                enemy1.setState(new FlyingEnemyWalkRight());
+                FlyingEnemyController controller1 = new FlyingEnemyController(100,300);
+                
+                controllers.add(controller1);
                 controllers.add(controller);
 
                 controller.addMovable(enemy);
+                controller1.addMovable(enemy1);
                 //associare all'enemy un timer per spostarsi e sparare!
                 enemy.draw();
+                enemy1.draw();
                 enemy.activeCollision();
                 //CollisionSystem.addCollisionObject(enemy);
             }

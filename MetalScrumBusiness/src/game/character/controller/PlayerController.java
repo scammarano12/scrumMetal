@@ -14,7 +14,7 @@ import game.objects.Bullet;
 import game.collisions.Collision;
 import game.objects.movable.Direction;
 import game.GameSettings;
-import game.PlayerInterface;
+import game.character.PlayerInterface;
 
 import game.character.state.playerState.PlayerStopLeft;
 import game.character.state.playerState.PlayerStopRight;

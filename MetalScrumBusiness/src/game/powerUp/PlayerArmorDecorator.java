@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package game.powerUp;
 
+import game.character.PlayerInterface;
 import game.character.state.CharacterState;
 import game.collisions.Collision;
 import game.objects.Bullet;

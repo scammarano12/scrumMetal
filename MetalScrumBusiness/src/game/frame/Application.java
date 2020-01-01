@@ -27,7 +27,7 @@ import javax.sound.sampled.Clip;
 import game.collisions.CollisionController;
 import game.levels.GameLevel;
 import game.GameSettings;
-import game.PlayerInterface;
+import game.character.PlayerInterface;
 
 import game.character.controller.CharacterController;
 import game.scene.Scene;

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package game.powerUp;
 
+import game.character.PlayerInterface;
 import game.collisions.Collision;
 import game.objects.SolidObject;
 import game.scene.Drawable;
@@ -29,6 +30,8 @@ public class WeaponPowerUp extends SolidObject implements Drawable {
     public void setCollision(Collision c){
         super.setCollision(c);
         if(c.getSubject().getId().equals("player")){
+            this.unDraw();
+            this.stopCollision();
             PlayerInterface pi = (PlayerInterface) c.getSubject();
             pi = new PlayerWeaponDecorator(pi);
         }

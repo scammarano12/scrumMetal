@@ -5,7 +5,7 @@
  */
 package game.state;
 
-import game.PlayerInterface;
+import game.character.PlayerInterface;
 import game.menu.HealthBar;
 import java.util.List;
 import game.listeners.GameListener;

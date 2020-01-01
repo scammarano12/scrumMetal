@@ -1,6 +1,5 @@
 package game.character;
 
-import game.PlayerInterface;
 import game.objects.SolidObject;
 import java.awt.Point;
 import game.objects.Weapon;

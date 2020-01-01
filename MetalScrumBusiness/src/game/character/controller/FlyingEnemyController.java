@@ -5,30 +5,25 @@
  */
 package game.character.controller;
 
-import game.character.state.enemyState.EnemyStopLeft;
-import game.character.state.enemyState.EnemyStopRight;
-import game.character.state.enemyState.EnemyWalkLeft;
-import game.character.state.enemyState.EnemyWalkRight;
+import game.GameSettings;
+import game.character.Enemy;
+import game.character.state.FlyingEnemyState.*;
+
+import game.collisions.Collision;
+import game.objects.Bullet;
+import game.objects.movable.Direction;
+import game.objects.movable.Movable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 import javax.swing.Timer;
-import game.objects.Bullet;
-import game.collisions.Collision;
-import game.objects.movable.Direction;
-import game.GameSettings;
-import game.character.Enemy;
-import game.objects.movable.Movable;
 
 /**
  *
- * @author SimonePadula
+ * @author stefano
  */
-public class EnemyController extends CharacterController implements ActionListener {
-    
-    
-    
-    private int count=0;
+public class FlyingEnemyController extends CharacterController implements ActionListener {
+     private int count=0;
     private int rangeMin;
     private int rangeMax;
     
@@ -44,11 +39,11 @@ public class EnemyController extends CharacterController implements ActionListen
     
  
     
-    public EnemyController(int rangeMin, int rangeMax){
-        this.stopLeft = new EnemyStopLeft();
-        this.stopRight = new EnemyStopRight();
-        this.walkLeft = new EnemyWalkLeft();
-        this.walkRight = new EnemyWalkRight();
+    public FlyingEnemyController(int rangeMin, int rangeMax){
+        this.stopLeft = new FlyingEnemyStopLeft();
+        this.stopRight = new FlyingEnemyStopRight();
+        this.walkLeft = new FlyingEnemyWalkLeft();
+        this.walkRight = new FlyingEnemyWalkRight();
         this.rangeMin = rangeMin;
         this.rangeMax = rangeMax;
         Random rand = new Random();
@@ -156,7 +151,7 @@ public class EnemyController extends CharacterController implements ActionListen
             }
             
             for(Bullet b : e.getFiredBullets()){
-                if(b.getHitbox().x>GameSettings.FrameDimension.width|| b.getHitbox().x<0){
+                if(b.getHitbox().y >GameSettings.FrameDimension.height){
                     
                     b.setActive(false);
                     b.unDraw();
@@ -168,7 +163,7 @@ public class EnemyController extends CharacterController implements ActionListen
                 else if(b.getDirection() == Direction.RIGHT){
                     b.move(10,0);
                 } else if(b.getDirection() == Direction.DOWN){
-                    b.move(0,1);
+                    b.move(0,5);
                 }
                 
             }
@@ -204,6 +199,4 @@ public class EnemyController extends CharacterController implements ActionListen
     public void startLucaHaDecisoCosi(){
         timer.start();
     }
-    
-
 }

@@ -5,7 +5,7 @@
  */
 package game.state;
 
-import game.PlayerInterface;
+import game.character.PlayerInterface;
 import game.character.controller.CharacterController;
 
 import java.util.List;

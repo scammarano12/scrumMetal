@@ -5,9 +5,10 @@
  */
 package game.levels;
 
-import game.ArmorPowerUp;
+import game.powerUp.ArmorPowerUp;
 import game.scene.Scene;
 import game.GameSettings;
+import game.powerUp.WeaponPowerUp;
 import game.objects.Block;
 import game.frame.Application;
 import java.awt.Color;
@@ -120,6 +121,9 @@ public class GameLevel {
                     
                     }
                     if(c=='w'){
+                        WeaponPowerUp wp = new WeaponPowerUp(new Point(count*width,j*heigth),14,20,"powerUp");
+                        wp.draw();
+                        wp.activeCollision();
                          positions.addLast(new Point(count*width,j*heigth));
                          count++;
                     }

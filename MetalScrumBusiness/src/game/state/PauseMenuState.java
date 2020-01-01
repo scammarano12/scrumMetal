@@ -5,7 +5,7 @@
  */
 package game.state;
 
-import game.PlayerInterface;
+import game.character.PlayerInterface;
 import java.util.List;
 import game.menu.MenuPause;
 import game.state.stateListeners.EndStateListener;
