@@ -35,7 +35,8 @@ public class Weapon {
     public Weapon(int rateo) {
         
         this.rateo = rateo;
-        time = System.currentTimeMillis();
+        //time = System.currentTimeMillis();
+        time = 0;
         
     }
     
@@ -52,9 +53,8 @@ public class Weapon {
     
     public Bullet shoot(Point position,Direction d,int width,int heigth){
             
-            if(System.currentTimeMillis() - time > 1000/rateo){
-                ;
-                time = System.currentTimeMillis() ;
+        if(System.currentTimeMillis() - time >= 1000/rateo){
+            
                 Bullet b = null;
                 
                 if(d == Direction.RIGHT){
@@ -69,7 +69,7 @@ public class Weapon {
                 
                 b.draw();
                 
-                
+                time = System.currentTimeMillis() ;
                 return b;
                 
                 
