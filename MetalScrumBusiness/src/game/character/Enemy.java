@@ -28,16 +28,13 @@ public class Enemy extends Character {
     @Override
     public void setCollision(Collision c) {
         
-        System.out.println("Sono in setCollision!");
         super.setCollision(c);
 
         for (SolidObject so : c.getObject()) {
             if (so != null) {
                 String id = so.getId();
                 if (id.equals("player") && System.currentTimeMillis() - time > 5000) {
-                    
-                    
-                    System.out.println("Decremento!");
+
                     Character p = (Character) so;
                     int currentHealth = p.getHealth();
                     p.setHealth(currentHealth - 1);
