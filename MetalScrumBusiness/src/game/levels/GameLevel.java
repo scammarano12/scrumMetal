@@ -101,7 +101,7 @@ public class GameLevel {
             Reader is = new FileReader("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
             Scanner s = new Scanner(is);
             int width =GameSettings.BlockDimension.width;
-            int heigth =GameSettings.BlockDimension.height;
+            int height =GameSettings.BlockDimension.height;
             int j =0;
             int count = 0;
             int last = 0;
@@ -118,7 +118,7 @@ public class GameLevel {
                     }else{
                         if((last>0 && c!='\t')){
                         
-                        Block b = new Block(new Point((count-last)*width,j*heigth),width*last ,heigth,"block");
+                        Block b = new Block(new Point((count-last)*width,j*height),width*last ,height,"block");
                         
                         b.draw();
                         b.activeCollision();
@@ -127,36 +127,36 @@ public class GameLevel {
                         }
                     }
                     if(c=='p'){
-                        player.add(new Point(count*width,j*heigth));
+                        player.add(new Point(count*width,j*height));
                         count++;
                     }
                     if(c=='0'){
                         count++;
                     }
                     if(c=='e'){
-                         enemy.add(new Point(count*width,j*heigth));
+                         enemy.add(new Point(count*width,j*height));
                          count++;
                          
                     }
                     if(c=='f'){
-                         fenemy.add(new Point(count*width,j*heigth));
+                         fenemy.add(new Point(count*width,j*height));
                          count++;
                          
                     }
                     if(c=='a'){
-                         ArmorPowerUp ap = new ArmorPowerUp(new Point(count*width,j*heigth),GameSettings.ArmorPowerUp.width,GameSettings.ArmorPowerUp.height,"powerUp");
+                         ArmorPowerUp ap = new ArmorPowerUp(new Point(count*width,j*height),GameSettings.ArmorPowerUp.width,GameSettings.ArmorPowerUp.height,"powerUp");
                          ap.draw();
                          ap.activeCollision();
                          count++;
                     
                     }
                     if(c=='b'){
-                        boss.add(new Point(count*width,j*heigth));
+                        boss.add(new Point(count*width,j*height));
                         count++;
                         
                     }
                     if(c=='w'){
-                        WeaponPowerUp wp = new WeaponPowerUp(new Point(count*width,j*heigth),GameSettings.WeaponPowerUp.width,GameSettings.WeaponPowerUp.height,"powerUp");
+                        WeaponPowerUp wp = new WeaponPowerUp(new Point(count*width,j*height),GameSettings.WeaponPowerUp.width,GameSettings.WeaponPowerUp.height,"powerUp");
                         wp.draw();
                         wp.activeCollision();
                        

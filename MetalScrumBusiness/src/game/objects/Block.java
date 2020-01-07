@@ -26,8 +26,8 @@ import game.GameSettings;
 public class Block extends SolidObject implements Drawable{
     private static final String platform = "src/resources/objects/platform.png";
 
-    public Block(Point position, int width, int heigth, String id) {
-        super(position, width, heigth, id);
+    public Block(Point position, int width, int height, String id) {
+        super(position, width, height, id);
         image = blockloadImage(platform);
         buildImage();
     }
@@ -55,7 +55,7 @@ public class Block extends SolidObject implements Drawable{
             images1[j] = new BufferedImage(GameSettings.BlockDimension.width, GameSettings.BlockDimension.height, BufferedImage.TRANSLUCENT);
             Graphics2D g2d = images1[j].createGraphics();
             
-            g2d.drawImage(image,0, 0, GameSettings.BlockDimension.width, heigth, null);
+            g2d.drawImage(image,0, 0, GameSettings.BlockDimension.width, height, null);
             g2d.dispose();
         } 
         
@@ -65,11 +65,11 @@ public class Block extends SolidObject implements Drawable{
         }
         
         int widthCurr = 0;
-        BufferedImage concatImage = new BufferedImage(widthTotal, heigth, BufferedImage.TRANSLUCENT);
+        BufferedImage concatImage = new BufferedImage(widthTotal, height, BufferedImage.TRANSLUCENT);
         Graphics2D g2d = concatImage.createGraphics();
      
         for(int j = 0; j < images1.length; j++) {
-            g2d.drawImage(images1[j],widthCurr, 0, GameSettings.BlockDimension.width, heigth, null);
+            g2d.drawImage(images1[j],widthCurr, 0, GameSettings.BlockDimension.width, height, null);
             widthCurr += images1[j].getWidth();
         }
         g2d.dispose();

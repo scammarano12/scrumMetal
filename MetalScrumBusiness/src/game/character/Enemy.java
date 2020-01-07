@@ -19,8 +19,8 @@ public class Enemy extends Character {
     private long time;
     
 
-    public Enemy(Point position, int width, int heigth, String id, int health, Weapon weapon) {
-        super(position, width, heigth, id,health, weapon);
+    public Enemy(Point position, int width, int height, String id, int health, Weapon weapon) {
+        super(position, width, height, id,health, weapon);
         
         time = System.currentTimeMillis();
         

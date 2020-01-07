@@ -69,7 +69,7 @@ public class PlayerArmorDecorator extends PowerUpDecorator implements Drawable{
     public Image getDraw() {
         if(p.isAlive()){
         Image img = p.getDraw();
-        BufferedImage armor = new BufferedImage(p.getSolidObject().getWidth(),p.getSolidObject().getHeigth(),BufferedImage.TRANSLUCENT);
+        BufferedImage armor = new BufferedImage(p.getSolidObject().getWidth(),p.getSolidObject().getHeight(),BufferedImage.TRANSLUCENT);
         Graphics g = armor.createGraphics();
         
         g.drawImage(img, 0, 0, null);

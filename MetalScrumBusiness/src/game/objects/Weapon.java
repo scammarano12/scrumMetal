@@ -50,7 +50,7 @@ public class Weapon {
     
      
     
-    public Bullet shoot(Point position,Direction d,int width,int heigth, String id){
+    public Bullet shoot(Point position,Direction d,int width,int height, String id){
             
             if(System.currentTimeMillis() - time > 1000/rateo){
                 
@@ -58,12 +58,12 @@ public class Weapon {
                 Bullet b = null;
                 
                 if(d == Direction.RIGHT){
-                     b = new Bullet(new Point (position.x+width+game.GameSettings.BulletDimension.width+1,position.y+heigth/2),"bullet"+id,1,d);
+                     b = new Bullet(new Point (position.x+width+game.GameSettings.BulletDimension.width+1,position.y+height/2),"bullet"+id,1,d);
                 }else if(d == Direction.LEFT){
-                     b = new Bullet(new Point (position.x-game.GameSettings.BulletDimension.width-1,position.y+heigth/2),"bullet"+id,1,d);
+                     b = new Bullet(new Point (position.x-game.GameSettings.BulletDimension.width-1,position.y+height/2),"bullet"+id,1,d);
                      b.getPosition().translate(-b.getWidth(), 0);
                 }else if(d == Direction.DOWN){
-                     b = new FlyingEnemyBullet(new Point (position.x+width/2,position.y+heigth+10),"bullet"+id,1,d);
+                     b = new FlyingEnemyBullet(new Point (position.x+width/2,position.y+height+10),"bullet"+id,1,d);
                      b.getPosition().translate(-b.getWidth(), 0);
                 }
                 

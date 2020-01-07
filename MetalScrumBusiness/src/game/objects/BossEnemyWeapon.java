@@ -27,10 +27,10 @@ public class BossEnemyWeapon extends Weapon{
     }
     
     @Override
-    public Bullet shoot(Point position,Direction d,int width,int heigth, String id){
+    public Bullet shoot(Point position,Direction d,int width,int height, String id){
        if(true){
            
-            int f=heigth/10*(2+3*shooted);
+            int f=height/10*(2+3*shooted);
             Point p = new Point(position.x-game.GameSettings.BulletDimension.width-1,position.y+f);
             Bullet lastShooted = new Bullet(p,"bullet"+id,2,Direction.LEFT);
             

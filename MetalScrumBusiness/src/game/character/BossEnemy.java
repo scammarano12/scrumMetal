@@ -14,8 +14,8 @@ import java.awt.Point;
  */
 public class BossEnemy extends Enemy{
     
-    public BossEnemy(Point position, int width, int heigth, String id, int health, Weapon weapon) {
-        super(position, width, heigth, id, health, weapon);
+    public BossEnemy(Point position, int width, int height, String id, int health, Weapon weapon) {
+        super(position, width, height, id, health, weapon);
     }
     
     

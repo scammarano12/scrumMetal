@@ -31,27 +31,27 @@ import game.scene.Scene;
 public abstract class SolidObject implements Drawable {
     protected Point position;
     protected int width;
-    protected int heigth;
+    protected int height;
     protected String id;
     protected Collision collision;
     protected Image image;
     protected Direction currentDir;
     
 
-    public SolidObject(Point position, int width, int heigth, String id) {
+    public SolidObject(Point position, int width, int height, String id) {
         this.position = position;
         this.width = width;
-        this.heigth = heigth;
+        this.height = height;
         this.id = id;
         this.collision=new Collision(this,null,false,false,false,false);
     }
     
 
     
-    public static Image loadImage(String imageName,int width, int heigth) {
+    public static Image loadImage(String imageName,int width, int height) {
         try {
             Image img = ImageIO.read(new File(imageName));
-            img = img.getScaledInstance(width, heigth, 0);
+            img = img.getScaledInstance(width, height, 0);
             return img;
             //ImageIcon ii = new ImageIcon(imageName);
         } catch (IOException ex) {
@@ -64,7 +64,7 @@ public abstract class SolidObject implements Drawable {
 
    
     public Rectangle getHitbox(){
-        return new Rectangle(position.x,position.y,width,heigth);
+        return new Rectangle(position.x,position.y,width,height);
     }
     
     
@@ -92,12 +92,12 @@ public abstract class SolidObject implements Drawable {
         this.width = width;
     }
 
-    public  int getHeigth() {
-        return heigth;
+    public  int getHeight() {
+        return height;
     }
 
-    public void setHeigth(int heigth) {
-        this.heigth = heigth;
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public String getId() {

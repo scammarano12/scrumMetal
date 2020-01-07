@@ -43,7 +43,7 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
         bullet = "src/resources/objects/bullet.png";
         this.image = SolidObject.loadImage(bullet,game.GameSettings.BulletDimension.width,game.GameSettings.BulletDimension.height);
         super.setWidth(GameSettings.BulletDimension.width);
-        super.setHeigth(GameSettings.BulletDimension.height);
+        super.setHeight(GameSettings.BulletDimension.height);
         this.damage=damage;
         active = true;
         this.d=d;
