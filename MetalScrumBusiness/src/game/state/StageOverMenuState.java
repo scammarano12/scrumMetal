@@ -13,6 +13,7 @@ import game.state.stateListeners.EndStateListener;
 import game.levels.GameLevel;
 
 import game.character.controller.CharacterController;
+import game.menu.MenuStart;
 import game.scene.Scene;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +23,7 @@ import java.util.logging.Logger;
  * @author albc
  */
  public class StageOverMenuState implements State{
-        
+        private MenuStart start;
         private MenuStageTerminated stageOver;
         private MenuLevelTerminated levelOver;
         private GameLevel gl;
@@ -30,7 +31,8 @@ import java.util.logging.Logger;
         private PlayerInterface player;
         private List<CharacterController> controllers;
         
-        public StageOverMenuState(MenuStageTerminated stageOver, MenuLevelTerminated levelOver,GameLevel gl, PlayerInterface player,List<CharacterController> controllers) {
+        public StageOverMenuState(MenuStart start,MenuStageTerminated stageOver, MenuLevelTerminated levelOver,GameLevel gl, PlayerInterface player,List<CharacterController> controllers) {
+            this.start=start;
             this.stageOver = stageOver;
             this.levelOver = levelOver;
             this.gl=gl;
@@ -80,16 +82,26 @@ import java.util.logging.Logger;
     public void start() {
         if(!stageOver.isVisible() && !levelOver.isVisible()){
                 gl.nextStage();
+                
             
                 sc.setVisible(false);
-                if(gl.checkNextStage()){
+                if(gl.checkNextStage() ){
                     stageOver.setVisible(true);
                     stageOver.requestFocusInWindow();
                     System.out.println("stage disponibile");
                 }else{
-                    System.out.println("stage finiti riparto da capo");
-                    levelOver.setVisible(true);
-                    levelOver.requestFocusInWindow();
+                    gl.nextLevel();
+                    if(gl.checkNextLevel()){
+                        System.out.println("stage finiti nuovo livello");
+                        levelOver.setVisible(true);
+                        levelOver.requestFocusInWindow();
+                    }else{
+                        System.out.println("stage finiti, livelli pure");
+                        start.setVisible(true);
+                        start.requestFocusInWindow();
+                  
+                        
+                    }
                     
                 }
             }

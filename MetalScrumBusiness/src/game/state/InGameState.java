@@ -54,7 +54,7 @@ public class InGameState implements State{
         @Override
         public void start(){
             inGame=true;
-           controllers.forEach(c -> c.startLucaHaDecisoCosi());
+           controllers.forEach(c -> c.startShoot());
            bar.draw();
             System.out.println("disegno barra vita");
             if(player.getCurrentDir() == Direction.LEFT)
@@ -114,7 +114,7 @@ public class InGameState implements State{
 
         @Override
         public void end() {
-                        controllers.forEach(c -> c.stopLucaHaDecisoCosi());
+                        controllers.forEach(c -> c.stopShoot());
                         sc.setVisible(false);
                         sc.removeKeyListener(gameListener);
                     

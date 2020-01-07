@@ -51,16 +51,35 @@ public class GameLevel {
 
     public synchronized void nextStage() {
         System.out.println("nextstage :"+Thread.currentThread().getName());
-        
         this.stageNumber++;
+        
     }
+    
+    public synchronized void nextLevel() {
+        System.out.println("nextLevel :"+Thread.currentThread().getName());
+        this.levelNumber++;
+        
+    }
+    public synchronized boolean checkNextLevel() {
+        System.out.println("checknextLevel :"+Thread.currentThread().getName());
+       
+        if((levelNumber-1) < 3 )
+            return true;
+        else{
+            levelNumber = 1;
+            return false;
+        }
+        
+    }
+    
+    
     
     
     
     public synchronized boolean checkNextStage(){
        System.out.println("check :"+Thread.currentThread().getName());
         //return 
-        if((stageNumber-1)<stageLimit)
+        if((stageNumber-1)<stageLimit )
             return true;
         else{
             stageNumber = 1;

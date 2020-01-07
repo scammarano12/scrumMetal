@@ -198,6 +198,13 @@ public class EnemyController extends CharacterController implements ActionListen
         }
     }
     
+    public void stopShoot(){
+        timer.stop();
+    }
+    public void startShoot(){
+        timer.start();
+    }
+    
   
 
 }
