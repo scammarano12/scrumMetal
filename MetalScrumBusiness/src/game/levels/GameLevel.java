@@ -94,6 +94,7 @@ public class GameLevel {
         LinkedList<Point> enemy = new LinkedList<>();
         LinkedList<Point> player = new LinkedList<>();
         LinkedList<Point> fenemy = new LinkedList<>();
+        LinkedList<Point> boss= new LinkedList<>();
         try {
             System.out.println("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
             
@@ -149,6 +150,11 @@ public class GameLevel {
                          count++;
                     
                     }
+                    if(c=='b'){
+                        boss.add(new Point(count*width,j*heigth));
+                        count++;
+                        
+                    }
                     if(c=='w'){
                         WeaponPowerUp wp = new WeaponPowerUp(new Point(count*width,j*heigth),14,20,"powerUp");
                         wp.draw();
@@ -156,6 +162,7 @@ public class GameLevel {
                        
                          count++;
                     }
+                    
                 }
                 j++;
             }
@@ -173,7 +180,7 @@ public class GameLevel {
         positions.put("p", player);
         positions.put("e", enemy);
         positions.put("f", fenemy);
-        
+        positions.put("b", boss);
         return positions;
     }
 

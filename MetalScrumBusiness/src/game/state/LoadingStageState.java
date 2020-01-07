@@ -14,9 +14,11 @@ import game.collisions.CollisionController;
 import game.state.stateListeners.EndStateListener;
 import game.levels.GameLevel;
 import game.GameSettings;
+import game.character.BossEnemy;
 import game.character.PlayerInterface;
 import game.character.Enemy;
 import game.character.FlyingEnemy;
+import game.character.controller.BossEnemyController;
 
 import game.character.controller.CharacterController;
 import game.character.controller.EnemyController;
@@ -24,6 +26,7 @@ import game.character.controller.FlyingEnemyController;
 import game.character.controller.PlayerController;
 import game.character.state.FlyingEnemyState.FlyingEnemyWalkRight;
 import game.character.state.enemyState.EnemyWalkRight;
+import game.objects.BossEnemyWeapon;
 import game.scene.Scene;
 import game.objects.Weapon;
 import java.util.HashMap;
@@ -104,6 +107,19 @@ public class LoadingStageState implements State{
         
         
         }
+        
+        public void initBoss(List<Point> position){
+            if(!position.isEmpty()){
+                Point p = position.get(0);
+                BossEnemy be = new BossEnemy(p,GameSettings.EnemyDimension.width*3,GameSettings.EnemyDimension.height*3,"boss",10,new BossEnemyWeapon(10));
+                BossEnemyController bec = new BossEnemyController();
+                bec.addMovable(be);
+                be.draw();
+                be.activeCollision();
+                controllers.add(bec);
+            }
+        
+        }
         public void initStage(){
             controllers = new LinkedList<>();
 
@@ -111,6 +127,7 @@ public class LoadingStageState implements State{
             initPlayer( l.get("p").get(0) , player);
             initEnemy(l.get("e"),"e");
             initEnemy(l.get("f"),"f");
+            initBoss(l.get("b"));
         
              
     }

@@ -8,6 +8,7 @@ package game.character.controller;
 import game.GameSettings;
 import game.character.BossEnemy;
 import game.character.Enemy;
+import game.character.state.enemyState.BossStopLeft;
 import game.character.state.enemyState.EnemyStopLeft;
 import game.character.state.enemyState.EnemyStopRight;
 import game.character.state.enemyState.EnemyWalkLeft;
@@ -43,12 +44,16 @@ public class BossEnemyController extends CharacterController implements ActionLi
  
     
     public BossEnemyController(){ 
-        this.timer = new Timer(1000, this);
+        stopLeft = new BossStopLeft();
+        this.timer = new Timer(2000, this);
         timer.start();
-        BossEnemy c = (BossEnemy) this.characters.get(0);
+         
+    }
+    
+    public void addMovable(Movable m){
+        BossEnemy c = (BossEnemy) m;
         c.setState(stopLeft);
-     
-        
+        super.addMovable(m);
     }
         
 
@@ -68,6 +73,8 @@ public class BossEnemyController extends CharacterController implements ActionLi
             
             if(e.isAlive()){
                 if(shoot){
+                    e.shoot();
+                    e.shoot();
                     e.shoot();
                     shoot=false;
                 }
@@ -114,7 +121,7 @@ public class BossEnemyController extends CharacterController implements ActionLi
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==timer){
             Random rand = new Random();
-            timer.setDelay(rand.nextInt(2000));
+       
         for (Movable m : characters) {
             shoot=true;
             

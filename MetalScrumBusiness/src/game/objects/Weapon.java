@@ -28,8 +28,8 @@ long seconds = (endTime - startTime) / 1000;
  */
 public class Weapon {
     
-    private int rateo;
-    private long time ;
+    protected int rateo;
+    protected long time ;
     
     
     public Weapon(int rateo) {
