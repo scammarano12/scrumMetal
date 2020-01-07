@@ -24,7 +24,7 @@ import game.objects.movable.Movable;
  *
  * @author SimonePadula
  */
-public class EnemyController extends CharacterController implements ActionListener {
+public class EnemyController extends CharacterController { //implements ActionListener {
     
     
     
@@ -55,8 +55,8 @@ public class EnemyController extends CharacterController implements ActionListen
         this.distance = rand.nextInt((this.rangeMax - this.rangeMin) + 1) + this.rangeMin;
         //System.out.println(this.distance);
         
-        this.timer = new Timer(rand.nextInt(2000-1000)+1000, this);
-        timer.start();
+//        this.timer = new Timer(rand.nextInt(2000-1000)+1000, this);
+//        timer.start();
         
     }
         
@@ -134,76 +134,70 @@ public class EnemyController extends CharacterController implements ActionListen
             }
             
             
+            }}}}
             
             
-            Collision collision=e.getCollision();
-            
-            
-            if (dx>0 && !collision.isRigth() || dx<0 && !collision.isLeft()){ 
-                
-                e.move(dx,0);
-            }
-            
-            if(collision.isDown())
-                dy=0;
-            else 
-                dy=gravitylv;
-            
-            
-            if( dy>0 && !collision.isDown() ){
-                
-                e.move(0, dy) ;
-            }
-            
-            for(Bullet b : e.getFiredBullets()){
-                if(b.getHitbox().x>GameSettings.FrameDimension.width|| b.getHitbox().x<0){
-                    
-                    b.setActive(false);
-                    b.unDraw();
-                    b.stopCollision();
-                }
-                else if(b.getDirection() == Direction.LEFT){
-                        b.move(-10,0);
-                    }
-                else if(b.getDirection() == Direction.RIGHT){
-                    b.move(10,0);
-                } else if(b.getDirection() == Direction.DOWN){
-                    b.move(0,1);
-                }
-                
-            }
-
-            }
-            else{
-                timer.stop();
-                this.characters.remove(e);
-                e.getFiredBullets().forEach((b) -> {b.unDraw();b.stopCollision();});
-                e.unDraw();
-                e.stopCollision();
-            }
-
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==timer){
-            Random rand = new Random();
-            timer.setDelay(rand.nextInt(2000));
-        for (Movable m : characters) {
-            shoot=true;
-            
-        }
-        
-        }
-    }
-    
-    public void stopLucaHaDecisoCosi(){
-        timer.stop();
-    }
-    public void startLucaHaDecisoCosi(){
-        timer.start();
-    }
-    
-
-}
+//            
+//            Collision collision=e.getCollision();
+//            
+//            
+//            if (dx>0 && !collision.isRigth() || dx<0 && !collision.isLeft()){ 
+//                
+//                e.move(dx,0);
+//            }
+//            
+//            if(collision.isDown())
+//                dy=0;
+//            else 
+//                dy=gravitylv;
+//            
+//            
+//            if( dy>0 && !collision.isDown() ){
+//                
+//                e.move(0, dy) ;
+//            }
+//            
+//            for(Bullet b : e.getFiredBullets()){
+//                if(b.getHitbox().x>GameSettings.FrameDimension.width|| b.getHitbox().x<0){
+//                    
+//                    b.setActive(false);
+//                    b.unDraw();
+//                    b.stopCollision();
+//                }
+//                else if(b.getDirection() == Direction.LEFT){
+//                        b.move(-10,0);
+//                    }
+//                else if(b.getDirection() == Direction.RIGHT){
+//                    b.move(10,0);
+//                } else if(b.getDirection() == Direction.DOWN){
+//                    b.move(0,1);
+//                }
+//                
+//            }
+//
+//            }
+//            else{
+//                timer.stop();
+//                this.characters.remove(e);
+//                e.getFiredBullets().forEach((b) -> {b.unDraw();b.stopCollision();});
+//                e.unDraw();
+//                e.stopCollision();
+//            }
+//
+//        }
+//    }
+//
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        if(e.getSource()==timer){
+//            Random rand = new Random();
+//            timer.setDelay(rand.nextInt(2000));
+//        for (Movable m : characters) {
+//            shoot=true;
+//            
+//        }
+//        
+//        }
+//    }
+//
+//}
