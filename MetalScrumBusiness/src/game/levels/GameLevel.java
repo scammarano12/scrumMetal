@@ -144,7 +144,7 @@ public class GameLevel {
                          
                     }
                     if(c=='a'){
-                         ArmorPowerUp ap = new ArmorPowerUp(new Point(count*width,j*heigth),12,12,"powerUp");
+                         ArmorPowerUp ap = new ArmorPowerUp(new Point(count*width,j*heigth),GameSettings.ArmorPowerUp.width,GameSettings.ArmorPowerUp.height,"powerUp");
                          ap.draw();
                          ap.activeCollision();
                          count++;
@@ -156,7 +156,7 @@ public class GameLevel {
                         
                     }
                     if(c=='w'){
-                        WeaponPowerUp wp = new WeaponPowerUp(new Point(count*width,j*heigth),14,20,"powerUp");
+                        WeaponPowerUp wp = new WeaponPowerUp(new Point(count*width,j*heigth),GameSettings.WeaponPowerUp.width,GameSettings.WeaponPowerUp.height,"powerUp");
                         wp.draw();
                         wp.activeCollision();
                        

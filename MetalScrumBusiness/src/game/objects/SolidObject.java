@@ -48,10 +48,10 @@ public abstract class SolidObject implements Drawable {
     
 
     
-    public static Image loadImage(String imageName) {
+    public static Image loadImage(String imageName,int width, int heigth) {
         try {
             Image img = ImageIO.read(new File(imageName));
-            img = img.getScaledInstance(2*img.getWidth(null), 2*img.getHeight(null), 0);
+            img = img.getScaledInstance(width, heigth, 0);
             return img;
             //ImageIcon ii = new ImageIcon(imageName);
         } catch (IOException ex) {

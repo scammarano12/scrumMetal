@@ -28,12 +28,16 @@ public class BossEnemyWeapon extends Weapon{
     
     @Override
     public Bullet shoot(Point position,Direction d,int width,int heigth, String id){
-       if(System.currentTimeMillis() - time > 1000/rateo){
-            Point p = new Point(position.x-10,(shooted+1)*100);
+       if(true){
+           
+            int f=heigth/10*(2+3*shooted);
+            Point p = new Point(position.x-game.GameSettings.BulletDimension.width-1,position.y+f);
             Bullet lastShooted = new Bullet(p,"bullet"+id,2,Direction.LEFT);
+            
+            System.out.println(f);
             lastShooted.draw();
             shooted++;
-            System.out.println("shooted "+shooted/2);
+            System.out.println("shooted "+shooted);
         
         if(shooted == 3){
             shooted =0;

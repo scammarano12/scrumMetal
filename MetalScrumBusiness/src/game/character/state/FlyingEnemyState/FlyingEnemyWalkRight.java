@@ -30,7 +30,7 @@ public class FlyingEnemyWalkRight extends CharacterState{
    private void setAnimation(){
         
        
-        Image stop = SolidObject.loadImage("./src/resources/nemicovolante/fermo/fermoDestra.png");
+        Image stop = SolidObject.loadImage("./src/resources/nemicovolante/fermo/fermoDestra.png",game.GameSettings.FlyingEnemyDimension.width,game.GameSettings.FlyingEnemyDimension.height);
         listImage.add(stop);
         
         

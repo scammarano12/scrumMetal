@@ -30,8 +30,8 @@ public class PlayerWalkRight extends CharacterState{
     private void setAnimation(){
         
         int step = 20;
-        Image walking = SolidObject.loadImage("src/resources/player/camminata/CamminataDestra.png");
-        Image stop = SolidObject.loadImage("src/resources/player/fermo/fermoDestra.png");
+        Image walking = SolidObject.loadImage("src/resources/player/camminata/CamminataDestra.png",game.GameSettings.PlayerDimension.width,game.GameSettings.PlayerDimension.height);
+        Image stop = SolidObject.loadImage("src/resources/player/fermo/fermoDestra.png",game.GameSettings.PlayerDimension.width,game.GameSettings.PlayerDimension.height);
         for(int j = 0;j<=20;j++ ){
             listImage.addFirst(stop);
         }

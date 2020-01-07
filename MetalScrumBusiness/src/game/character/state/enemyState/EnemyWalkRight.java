@@ -30,10 +30,10 @@ public class EnemyWalkRight extends CharacterState{
     private void setAnimation(){
         
         int step = 20;
-        Image walking1 = SolidObject.loadImage("src/resources/nemico1/camminata/1.png");
-        Image walking2 = SolidObject.loadImage("src/resources/nemico1/camminata/2.png");
-        Image walking3 = SolidObject.loadImage("src/resources/nemico1/camminata/3.png");
-        Image stop = SolidObject.loadImage("src/resources/nemico1/fermo/fermoDestra.png");
+        Image walking1 = SolidObject.loadImage("src/resources/nemico1/camminata/1.png",game.GameSettings.EnemyDimension.width,game.GameSettings.EnemyDimension.height);
+        Image walking2 = SolidObject.loadImage("src/resources/nemico1/camminata/2.png",game.GameSettings.EnemyDimension.width,game.GameSettings.EnemyDimension.height);
+        Image walking3 = SolidObject.loadImage("src/resources/nemico1/camminata/3.png",game.GameSettings.EnemyDimension.width,game.GameSettings.EnemyDimension.height);
+        Image stop = SolidObject.loadImage("src/resources/nemico1/fermo/fermoDestra.png",game.GameSettings.EnemyDimension.width,game.GameSettings.EnemyDimension.height);
         
         for(int j = 0;j<=20;j++ ){
             listImage.addFirst(stop);

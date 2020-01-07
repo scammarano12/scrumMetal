@@ -32,7 +32,7 @@ public class PlayerStopLeft extends CharacterState{
     private void setAnimation(){
         
        
-        Image stop = SolidObject.loadImage("src/resources/player/fermo/fermoSinistra.png");
+        Image stop = SolidObject.loadImage("src/resources/player/fermo/fermoSinistra.png",game.GameSettings.PlayerDimension.width,game.GameSettings.PlayerDimension.height);
         listImage.add(stop);
         
         

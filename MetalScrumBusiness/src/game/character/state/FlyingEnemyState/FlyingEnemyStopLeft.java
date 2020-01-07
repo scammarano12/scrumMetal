@@ -30,7 +30,7 @@ public class FlyingEnemyStopLeft extends CharacterState {
     private void setAnimation(){
         
        
-        Image stop = SolidObject.loadImage("./src/resources/nemicovolante/fermo/fermoSinistra.png");
+        Image stop = SolidObject.loadImage("./src/resources/nemicovolante/fermo/fermoSinistra.png",game.GameSettings.FlyingEnemyDimension.width,game.GameSettings.FlyingEnemyDimension.height);
         listImage.add(stop);
         
         

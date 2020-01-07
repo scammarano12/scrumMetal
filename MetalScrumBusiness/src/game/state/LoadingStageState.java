@@ -88,7 +88,7 @@ public class LoadingStageState implements State{
                     controller = new EnemyController(100,300);
                 }
                 else{
-                    enemy = new FlyingEnemy(positions.get(i),GameSettings.EnemyDimension.width,GameSettings.EnemyDimension.height,"enemy",2,new Weapon(2));
+                    enemy = new FlyingEnemy(positions.get(i),GameSettings.FlyingEnemyDimension.width,GameSettings.FlyingEnemyDimension.height,"enemy",2,new Weapon(2));
                     enemy.setState(new FlyingEnemyWalkRight());
                     controller = new FlyingEnemyController(100,300);
                 }
@@ -111,12 +111,13 @@ public class LoadingStageState implements State{
         public void initBoss(List<Point> position){
             if(!position.isEmpty()){
                 Point p = position.get(0);
-                BossEnemy be = new BossEnemy(p,GameSettings.EnemyDimension.width*3,GameSettings.EnemyDimension.height*3,"boss",10,new BossEnemyWeapon(10));
+                BossEnemy be = new BossEnemy(p,GameSettings.BossDimension.width,GameSettings.BossDimension.height,"boss",1,new BossEnemyWeapon(10));
                 BossEnemyController bec = new BossEnemyController();
+                controllers.add(bec);
                 bec.addMovable(be);
                 be.draw();
                 be.activeCollision();
-                controllers.add(bec);
+                
             }
         
         }

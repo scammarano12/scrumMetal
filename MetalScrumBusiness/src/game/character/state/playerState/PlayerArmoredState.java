@@ -30,8 +30,8 @@ public class PlayerArmoredState extends CharacterState{
         
         int step = 5;
         
-        Image armor1 = SolidObject.loadImage("src/resources/player/camminata/CamminataSinistra.png");
-        Image armor2 = SolidObject.loadImage("src/resources/player/fermo/fermoSinistra.png");
+        Image armor1 = SolidObject.loadImage("src/resources/player/camminata/CamminataSinistra.png",game.GameSettings.PlayerDimension.width,game.GameSettings.PlayerDimension.height);
+        Image armor2 = SolidObject.loadImage("src/resources/player/fermo/fermoSinistra.png",game.GameSettings.PlayerDimension.width,game.GameSettings.PlayerDimension.height);
         for(int j = 0;j<=step;j++ ){
             listImage.addFirst(armor1);
         }

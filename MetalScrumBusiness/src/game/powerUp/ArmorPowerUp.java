@@ -22,7 +22,7 @@ public class ArmorPowerUp extends SolidObject implements Drawable {
        private int  count;
     public ArmorPowerUp(Point position, int width, int heigth, String id) {
         super(position, width, heigth, id);
-        image = SolidObject.loadImage("src/resources/powerUp/armor.png"); 
+        image = SolidObject.loadImage("src/resources/powerUp/armor.png",game.GameSettings.ArmorPowerUp.width,game.GameSettings.ArmorPowerUp.height); 
         count=0;
     }
 

@@ -22,7 +22,7 @@ public class BossStopLeft extends EnemyStopLeft{
         protected void setAnimation(){
         
        
-        Image stop = SolidObject.loadImage("src/resources/boss1/fermo/fermoSinistra.jpg");
+        Image stop = SolidObject.loadImage("src/resources/boss1/fermo/fermoSinistra.png",game.GameSettings.BossDimension.width,game.GameSettings.BossDimension.height);
         listImage.add(stop);
         
         

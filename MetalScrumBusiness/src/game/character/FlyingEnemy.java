@@ -37,7 +37,7 @@ public class FlyingEnemy extends Enemy {
         for(int i =1 ;i<12 ;i++){
              
             
-             Image animation = SolidObject.loadImage("./src/resources/nemicovolante/"+i+".png");
+            Image animation = SolidObject.loadImage("./src/resources/nemicovolante/"+i+".png",game.GameSettings.FlyingEnemyDimension.width,game.GameSettings.FlyingEnemyDimension.height);
             for(int a = 0 ; a < step; a++){
                 
                 helicopter.addFirst(animation);

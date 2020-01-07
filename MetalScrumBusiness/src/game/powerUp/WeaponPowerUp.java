@@ -20,7 +20,7 @@ public class WeaponPowerUp extends SolidObject implements Drawable {
     
     public WeaponPowerUp(Point position, int width, int heigth, String id) {
         super(position, width, heigth, id);
-        image = SolidObject.loadImage("src/resources/powerUp/weapon.png");
+        image = SolidObject.loadImage("src/resources/powerUp/weapon.png",game.GameSettings.WeaponPowerUp.width,game.GameSettings.WeaponPowerUp.height);
     }
 
     public Image getImg() {

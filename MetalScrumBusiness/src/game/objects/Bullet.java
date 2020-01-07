@@ -41,7 +41,7 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
         super(position, 0, 0, id);
         initMusic();
         bullet = "src/resources/objects/bullet.png";
-        this.image = SolidObject.loadImage(bullet);
+        this.image = SolidObject.loadImage(bullet,game.GameSettings.BulletDimension.width,game.GameSettings.BulletDimension.height);
         super.setWidth(GameSettings.BulletDimension.width);
         super.setHeigth(GameSettings.BulletDimension.height);
         this.damage=damage;
@@ -126,15 +126,29 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
     public void setCollision(Collision c) {
         
         SolidObject so =c.getSubject();
-        String id = so.getId();
-        if(  
-            (this.getId().equals("bulletplayer") && id.equals("enemy"))|| 
-            (this.getId().equals("bulletenemy") && id.equals("player"))){
-            damageSound.start();
-            Character p = (Character) so;
-            int currentHealth = p.getHealth();
-            p.setHealth(currentHealth-damage);
+        String idDamaged = so.getId();
+        if(idDamaged.equals("player")){
+            if(id.equals("bulletenemy")|| id.equals("bulletboss")){
+                damageSound.start();
+                Character p = (Character) so;
+                int currentHealth = p.getHealth();
+                p.setHealth(currentHealth-damage);
+        
+            }
+                
+        }else if(idDamaged.equals("enemy") || idDamaged.equals("boss")){
+            
+            if(id.equals("bulletplayer")){
+                damageSound.start();
+                Character p = (Character) so;
+                int currentHealth = p.getHealth();
+                p.setHealth(currentHealth-damage);
+        
+            }
+                
+        
         }
+            
         unDraw();
         CollisionController.getInstance().removeObject(this);
         active = false;
