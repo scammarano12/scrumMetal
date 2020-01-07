@@ -52,7 +52,7 @@ public class FlyingEnemy extends Enemy {
     
     @Override
     public void shoot(){
-        Bullet b = weapon.shoot(position, Direction.DOWN,this.width,this.heigth);
+        Bullet b = weapon.shoot(position, Direction.DOWN,this.width,this.heigth,this.getId());
         if(b!=null)
             bullets.add(b);
         

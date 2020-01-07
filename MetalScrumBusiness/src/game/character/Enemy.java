@@ -39,7 +39,7 @@ public class Enemy extends Character {
         if(id.equals("player") && System.currentTimeMillis()-time > 5000 ){
             time = System.currentTimeMillis();
            
-           Character p = (Character) so;
+            Character p = (Character) so;
             int currentHealth = p.getHealth();
             p.setHealth(currentHealth-1);
         }

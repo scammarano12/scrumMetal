@@ -93,7 +93,7 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     }
     
     public void shoot(){
-        Bullet b = weapon.shoot(position, getCurrentDir(),this.width,this.heigth);
+        Bullet b = weapon.shoot(position, getCurrentDir(),this.width,this.heigth,this.getId());
         
         if(b!=null)
             bullets.add(b);

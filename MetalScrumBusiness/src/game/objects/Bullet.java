@@ -127,14 +127,14 @@ public class Bullet extends SolidObject implements Cloneable,Movable,Drawable{
         
         SolidObject so =c.getSubject();
         String id = so.getId();
-        if(id.equals("player") || id.equals("enemy" ) ){
-            
+        if(  
+            (this.getId().equals("bulletplayer") && id.equals("enemy"))|| 
+            (this.getId().equals("bulletenemy") && id.equals("player"))){
             damageSound.start();
             Character p = (Character) so;
             int currentHealth = p.getHealth();
             p.setHealth(currentHealth-damage);
         }
-        
         unDraw();
         CollisionController.getInstance().removeObject(this);
         active = false;
