@@ -53,7 +53,7 @@ public class Weapon {
     public Bullet shoot(Point position,Direction d,int width,int heigth, String id){
             
             if(System.currentTimeMillis() - time > 1000/rateo){
-                ;
+                
                 time = System.currentTimeMillis() ;
                 Bullet b = null;
                 

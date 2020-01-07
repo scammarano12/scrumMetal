@@ -198,12 +198,6 @@ public class EnemyController extends CharacterController implements ActionListen
         }
     }
     
-    public void stopLucaHaDecisoCosi(){
-        timer.stop();
-    }
-    public void startLucaHaDecisoCosi(){
-        timer.start();
-    }
-    
+  
 
 }
