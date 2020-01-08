@@ -112,6 +112,8 @@ public class PlayerTest {
         boolean result;
         instance4.hasLives();
         instance4.hasLives();
+        instance4.hasLives();
+        instance4.hasLives();
         result = instance4.hasLives();
         
         assertEquals(expResult, result);
@@ -143,7 +145,7 @@ public class PlayerTest {
     public void testGetNumberOfLife() {
         System.out.println("getNumberOfLife");
         Player instance5 = new Player(new Point(50,50), 40, 36, "player",new Weapon(2));
-        int expResult = 1;
+        int expResult = 3;
         instance5.hasLives();
         instance5.hasLives();
         int result = instance5.getNumberOfLife();

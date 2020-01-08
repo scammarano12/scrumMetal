@@ -60,7 +60,7 @@ public class HealthBarTest {
         int health = player.getHealth();
         assertEquals(4, health);
 
-        Bullet bullet = new Bullet(new Point(99, 50), "bullet", 1, Direction.RIGHT);
+        Bullet bullet = new Bullet(new Point(99, 50), "bulletenemy", 1, Direction.RIGHT);
 
         CollisionController cc = CollisionController.getInstance();
         cc.reset();

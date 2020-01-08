@@ -5,6 +5,7 @@
  */
 package game.objects;
 
+import game.GameSettings;
 import game.character.Player;
 import game.collisions.Collision;
 import game.collisions.CollisionController;
@@ -143,8 +144,8 @@ public class BulletTest {
         System.out.println("setCollision e checkDamage");
 //        Collision c = null;
         boolean checkDamage = false;
-        Bullet bullet = new Bullet(new Point(47, 30),"bulletenemy",1, Direction.RIGHT); 
-        Player player = new Player(new Point(60,25), 90, 90, "player",new Weapon(2));
+        Bullet bullet = new Bullet(new Point(150, 40),"bulletenemy",1, Direction.LEFT); 
+        Player player = new Player(new Point(60,25), 40, 50, "player",new Weapon(2));
         //con tali posizioni si ha già una condizione di collisione a sinistra tra player e bullet.
         
         cc.addSubject(player);
@@ -152,17 +153,23 @@ public class BulletTest {
         //cc.addObject(bullet);     //non bisogna farla perche viene già fatta nel costruttore di Bullet (altrimenti aggiungerebbe due bullet uguali alla lista di oggetti in cc)
         
         int currentHealth = player.getHealth();
-
-            
+        for(int i=0;i< 100;i++){
+        
         cc.checkCollision();
 
-       
-        if(player.getCollision().isLeft() || player.getCollision().isRigth()){
+        
+        if(player.getCollision().isRigth()){
             if(currentHealth != player.getHealth() && currentHealth - player.getHealth() == 1 )
                 checkDamage = true;
         }
-        else
-            assertEquals("Il bullet non danneggia il player!",true, checkDamage);
+        
+        if(bullet.isActive()){
+            bullet.move(-1,0);
+        }
+          
+           
+        }
+         assertEquals("Il bullet non danneggia il player!",true, checkDamage);
     }
 //
 //    /**

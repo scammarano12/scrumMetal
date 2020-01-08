@@ -139,7 +139,6 @@ public class CollisionController {
             if(!c.getObject().isEmpty() ) {
                 for (SolidObject so : c.getObject()){
                     if(!(so.getId().equals("player"))){
-                        
                         so.setCollision(c);
                     }
                 }
