@@ -139,58 +139,55 @@ public class EnemyControllerTest {
         enemy.setState(new EnemyStopRight());
         EnemyController instance5 = new EnemyController(10, 20);
         instance5.addMovable(enemy);
-        float dist = instance5.getDistance();
         
-        int x = enemy.getPosition().x;
-        int y = enemy.getPosition().y;
+        float dist = instance5.getDistance();
+        Direction startDir = enemy.getCurrentDir();
+        int startPosition = enemy.getPosition().x;
+        
         
         boolean checkPos = true;
         
-        int cicle = 0;
-        while(cicle < 50){
-            cicle++;
-            
+        for(int i=0; i<50; i++){
+
             instance5.updatePositions();
-            Point pos = enemy.getPosition();
             
-            if( enemy.getCurrentDir() == Direction.RIGHT && x < dist ){
-                x++;
-                System.out.println("x con più:"+x);
-                if(x != pos.x){
-                    checkPos = false;
-                }
-            }else {
-                x--;
-                System.out.println("x con meno:"+x);
-            }
             
-            if( enemy.getCurrentDir() == Direction.LEFT && x > 0 ){
-                x--;
-                if(x != pos.x){
-                    checkPos = false;
-                }
-            }else {
-                x++;
-            }
+            Direction currentDir = enemy.getCurrentDir();
+            int currentPosition = enemy.getPosition().x;
+
+            
+            if( currentDir != startDir){
                 
+                if(currentDir==Direction.LEFT){     //essendo cambiata la direzione ci aspettiamo che ora sarà Direction.LEFT
+                    if(currentPosition-startPosition != dist){ 
+                        //System.out.println("ENTROOOO IF!!  I: "+i+"  - Pos: "+(currentPosition-startPosition));
+                        checkPos = false;
+                    }
+                    else {
+                        //System.out.println("ENTROOOO ELSE!!  I: "+i+"  - Pos: "+(currentPosition-startPosition));
+                        startDir = currentDir;
+                        startPosition = currentPosition;
+                    }      
+                }
+                
+                if(currentDir==Direction.RIGHT){    //essendo cambiata la direzione ci aspettiamo che ora sarà Direction.RIGHT
+                    if(currentPosition-startPosition != -dist){ 
+                            //System.out.println("ENTROOOO IF!!  I: "+i+"  - Pos: "+(currentPosition-startPosition));
+                            checkPos = false;
+                        }
+                        else {
+                            //System.out.println("ENTROOOO ELSE!!  I: "+i+"  - Pos: "+(currentPosition-startPosition));
+                            startDir = currentDir;
+                            startPosition = currentPosition;
+                        }      
+                }
+                    
+            }
+            
+            assertEquals(true, checkPos);
             
         }
-        
-        assertEquals(true, checkPos);
-       
+  
     }
-//
-//    /**
-//     * Test of actionPerformed method, of class EnemyController.
-//     */
-//    @Test
-//    public void testActionPerformed() {
-//        System.out.println("actionPerformed");
-//        ActionEvent e = null;
-//        EnemyController instance = null;
-//        instance.actionPerformed(e);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//    
+
 }
