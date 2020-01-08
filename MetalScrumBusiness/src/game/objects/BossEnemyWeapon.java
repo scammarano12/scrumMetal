@@ -18,19 +18,20 @@ public class BossEnemyWeapon extends Weapon{
     
 
     private int shooted;
-    
+    private int lastShooted;
     public BossEnemyWeapon(int rateo) {
         super(rateo);
         shooted = 0;
+        lastShooted=0;
         time = System.currentTimeMillis();
         
     }
     
     @Override
     public Bullet shoot(Point position,Direction d,int width,int height, String id){
-       if(true){
+       
            
-            int f=height/10*(2+3*shooted);
+            int f=height/8*(1+2*shooted);
             Point p = new Point(position.x-game.GameSettings.BulletDimension.width-1,position.y+f);
             Bullet lastShooted = new Bullet(p,"bullet"+id,2,Direction.LEFT);
             
@@ -39,13 +40,12 @@ public class BossEnemyWeapon extends Weapon{
             shooted++;
             System.out.println("shooted "+shooted);
         
-        if(shooted == 3){
+        if(shooted == 1){
             shooted =0;
             
         }
         return lastShooted;
-       }
-       return null;
+       
     }
     
     

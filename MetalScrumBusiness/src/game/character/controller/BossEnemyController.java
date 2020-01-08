@@ -75,7 +75,7 @@ public class BossEnemyController extends CharacterController implements ActionLi
                 if(shoot){
                     e.shoot();
                     e.shoot();
-                    e.shoot();
+                    //e.shoot();
                     shoot=false;
                 }
 
@@ -119,8 +119,7 @@ public class BossEnemyController extends CharacterController implements ActionLi
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==timer){
-            Random rand = new Random();
+        
        
         for (Movable m : characters) {
             shoot=true;
@@ -128,7 +127,7 @@ public class BossEnemyController extends CharacterController implements ActionLi
         }
         
         }
-    }
+    
     
   
     }
