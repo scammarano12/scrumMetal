@@ -53,14 +53,16 @@ public class Scene extends JPanel {
         if(background != null)
           g.drawImage(background, 0, 0, this);
         
-        if(bar!=null)
-             g.drawImage(bar.getDraw(), bar.getPosition().x, bar.getPosition().y, this);
         
         for(Drawable d: objects){
             g.drawImage(d.getDraw(), d.getPosition().x, d.getPosition().y, this);
            
             //g.drawRect(d.getDraw().x, d.getDraw().y, d.getDraw().width, d.getDraw().height);
         }
+        
+        if(bar!=null)
+             g.drawImage(bar.getDraw(), bar.getPosition().x, bar.getPosition().y, this);
+        
         
     }
 
