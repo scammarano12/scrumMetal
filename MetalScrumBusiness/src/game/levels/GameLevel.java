@@ -90,6 +90,7 @@ public class GameLevel {
     public synchronized Map<String,List<Point>> createStage(){
         System.out.println("create :"+Thread.currentThread().getName());
         Scene.getInstance().setBackground(new ImageIcon("src/resources/Levels/Level"+levelNumber+"/background.png").getImage().getScaledInstance(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height, Image.SCALE_DEFAULT));
+        
         HashMap<String,List<Point>> positions = new HashMap<>();
         LinkedList<Point> enemy = new LinkedList<>();
         LinkedList<Point> player = new LinkedList<>();
@@ -119,8 +120,8 @@ public class GameLevel {
                     }else{
                         if((last>0 && c!='\t')){
                         
-                        Block b = new Block(new Point((count-last)*width,j*height),width*last ,height,"block");
-                        
+                        Block b = new Block(new Point((count-last)*width,j*height),width*last ,height,"block","src/resources/Levels/Level"+levelNumber+"/platform.png");
+                      
                         b.draw();
                         b.activeCollision();
                        

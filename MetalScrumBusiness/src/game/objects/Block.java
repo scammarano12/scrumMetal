@@ -24,12 +24,15 @@ import game.GameSettings;
  * @author stefano
  */
 public class Block extends SolidObject implements Drawable{
-    private static final String platform = "src/resources/objects/platform.png";
+    private String platform ;
 
-    public Block(Point position, int width, int height, String id) {
+    public Block(Point position, int width, int height, String id,String s) {
         super(position, width, height, id);
-        image = blockloadImage(platform);
+        
+        
+        image = blockloadImage(s);
         buildImage();
+        
     }
     
     
@@ -83,6 +86,11 @@ public class Block extends SolidObject implements Drawable{
     public Image getDraw() {
         return image;
   
+    }
+    
+    
+    public void setString(String s){
+        platform = s;
     }
 
 }
