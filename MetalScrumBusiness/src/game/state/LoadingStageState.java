@@ -123,13 +123,13 @@ public class LoadingStageState implements State{
                 //Aggiunto SSS
                 if(type.equals("b")){
                     
-                    enemy = new BossEnemy(position.get(i),GameSettings.BossDimension.width,GameSettings.BossDimension.height,"boss",5,new BossEnemyWeapon(90));
+                    enemy = new BossEnemy(position.get(i),GameSettings.BossDimension.width,GameSettings.BossDimension.height,"boss",10,new BossEnemyWeapon(90));
                     controller = new BossEnemyController();
                     enemy.setState(new BossStopLeft());
                     
                 }
                 if(type.equals("r")){
-                    enemy = new AereoBossEnemy(position.get(i),GameSettings.AereoBossDimension.width,GameSettings.AereoBossDimension.height,"boss",5,new AereoBossEnemyWeapon(6));
+                    enemy = new AereoBossEnemy(position.get(i),GameSettings.AereoBossDimension.width,GameSettings.AereoBossDimension.height,"boss",10,new AereoBossEnemyWeapon(6));
                     enemy.setState(new AereoBossStopLeft());
                     controller = new AereoBossEnemyController();
                 }
