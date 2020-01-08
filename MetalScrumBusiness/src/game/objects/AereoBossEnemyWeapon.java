@@ -26,7 +26,7 @@ public class AereoBossEnemyWeapon extends Weapon {
     
     @Override
     public Bullet shoot(Point position,Direction d,int width,int height, String id){
-       if(true){
+       
            
             int f = (game.GameSettings.FrameDimension.width/7) * (1+shooted);
             Point p = new Point(f,5);
@@ -43,8 +43,8 @@ public class AereoBossEnemyWeapon extends Weapon {
             
         }
         return lastShooted;
-       }
-       return null;
+       
+       
     }
       
     

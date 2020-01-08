@@ -9,6 +9,7 @@ import game.GameSettings;
 import game.character.AereoBossEnemy;
 import game.character.BossEnemy;
 import game.character.Enemy;
+import game.character.state.FlyingEnemyState.AereoBossStopLeft;
 import game.character.state.enemyState.BossStopLeft;
 import game.character.state.enemyState.EnemyStopLeft;
 import game.character.state.enemyState.EnemyStopRight;
@@ -45,7 +46,7 @@ public class AereoBossEnemyController extends CharacterController implements Act
  
     
     public AereoBossEnemyController(){ 
-        stopLeft = new BossStopLeft();
+        stopLeft = new AereoBossStopLeft();
         this.timer = new Timer(2000, this);
         timer.start();
          
@@ -87,12 +88,7 @@ public class AereoBossEnemyController extends CharacterController implements Act
                     b.setActive(false);
                     b.unDraw();
                     b.stopCollision();
-                }
-                else if(b.getDirection() == Direction.LEFT){
-                        b.move(-10,0);
-                    }
-                else if(b.getDirection() == Direction.RIGHT){
-                    b.move(10,0);
+                
                 } else if(b.getDirection() == Direction.DOWN){
                     b.move(0,8);
                 }
@@ -113,15 +109,14 @@ public class AereoBossEnemyController extends CharacterController implements Act
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==timer){
-            Random rand = new Random();
+        
        
         for (Movable m : characters) {
             shoot=true;
             
         }
         
-        }
+        
     }
     
   
