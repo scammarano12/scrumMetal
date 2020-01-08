@@ -73,5 +73,12 @@ public class Scene extends JPanel {
     }
         
     
+    public Drawable getBar() {
+        return bar;
+    }
+    
+    public List<Drawable> getObjects() {
+        return objects;
+    }
     
 }

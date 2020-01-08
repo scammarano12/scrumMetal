@@ -141,4 +141,13 @@ public class CollisionController {
         }
     }
 
+    
+    public List<SolidObject> getSubjects() {
+        return subjects;
+    }
+
+    public List<SolidObject> getObjs() {
+        return objs;
+    }
+    
 }
