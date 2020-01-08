@@ -20,9 +20,9 @@ public class Player extends Character implements PlayerInterface {
     private int numberOfLife;
     private int playerHealth;
     
-    public Player(Point position, int width, int heigth, String id, Weapon weapon) {
-        super(position, width, heigth, id, 4, weapon );  
-        numberOfLife=3;
+    public Player(Point position, int width, int height, String id, Weapon weapon) {
+        super(position, width, height, id, 4, weapon );  
+        numberOfLife=5;
         playerHealth=4;
     }
 

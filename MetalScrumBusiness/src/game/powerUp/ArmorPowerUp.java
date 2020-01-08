@@ -20,9 +20,9 @@ import java.awt.Point;
 public class ArmorPowerUp extends SolidObject implements Drawable {
        private final int  animation = 20;
        private int  count;
-    public ArmorPowerUp(Point position, int width, int heigth, String id) {
-        super(position, width, heigth, id);
-        image = SolidObject.loadImage("src/resources/powerUp/armor.png"); 
+    public ArmorPowerUp(Point position, int width, int height, String id) {
+        super(position, width, height, id);
+        image = SolidObject.loadImage("src/resources/powerUp/armor.png",game.GameSettings.ArmorPowerUp.width,game.GameSettings.ArmorPowerUp.height); 
         count=0;
     }
 

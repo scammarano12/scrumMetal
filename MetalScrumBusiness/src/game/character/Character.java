@@ -34,8 +34,8 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     private Clip deathSound;
 
 
-    public Character(Point position, int width, int heigth, String id,int health,Weapon weapon) {
-        super(position, width, heigth, id);
+    public Character(Point position, int width, int height, String id,int health,Weapon weapon) {
+        super(position, width, height, id);
         initMusic();
         state = null;
         this.health=health;
@@ -93,7 +93,7 @@ public abstract class Character extends SolidObject implements Movable,Drawable 
     }
     
     public void shoot(){
-        Bullet b = weapon.shoot(position, getCurrentDir(),this.width,this.heigth);
+        Bullet b = weapon.shoot(position, getCurrentDir(),this.width,this.height,this.getId());
         
         if(b!=null)
             bullets.add(b);

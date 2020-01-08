@@ -17,7 +17,7 @@ public class FlyingEnemyBullet extends Bullet{
     public FlyingEnemyBullet(Point position, String id, int damage, Direction d) {
         super(position, id, damage, d);
         bullet = "src/resources/objects/bullet2.png";
-        this.image = SolidObject.loadImage(bullet);
+        this.image = SolidObject.loadImage(bullet,game.GameSettings.FlyingBulletDimension.width,game.GameSettings.FlyingBulletDimension.height);
     }
     
     

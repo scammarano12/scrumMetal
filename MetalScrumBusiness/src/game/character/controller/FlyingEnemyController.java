@@ -193,10 +193,10 @@ public class FlyingEnemyController extends CharacterController implements Action
         }
     }
     
-    public void stopLucaHaDecisoCosi(){
+    public void stopShoot(){
         timer.stop();
     }
-    public void startLucaHaDecisoCosi(){
+    public void startShoot(){
         timer.start();
     }
 }

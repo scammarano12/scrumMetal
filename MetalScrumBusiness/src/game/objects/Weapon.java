@@ -28,8 +28,8 @@ long seconds = (endTime - startTime) / 1000;
  */
 public class Weapon {
     
-    private int rateo;
-    private long time ;
+    protected int rateo;
+    protected long time ;
     
     
     public Weapon(int rateo) {
@@ -51,19 +51,20 @@ public class Weapon {
     
      
     
-    public Bullet shoot(Point position,Direction d,int width,int heigth){
+    public Bullet shoot(Point position,Direction d,int width,int height, String id){
             
-        if(System.currentTimeMillis() - time >= 1000/rateo){
-            
+            if(System.currentTimeMillis() - time > 1000/rateo){
+                
+                time = System.currentTimeMillis() ;
                 Bullet b = null;
                 
                 if(d == Direction.RIGHT){
-                     b = new Bullet(new Point (position.x+width+10,position.y+heigth/2),"bullet",1,d);
+                     b = new Bullet(new Point (position.x+width+game.GameSettings.BulletDimension.width+1,position.y+height/2),"bullet"+id,1,d);
                 }else if(d == Direction.LEFT){
-                     b = new Bullet(new Point (position.x-10,position.y+heigth/2),"bullet",1,d);
+                     b = new Bullet(new Point (position.x-game.GameSettings.BulletDimension.width-1,position.y+height/2),"bullet"+id,1,d);
                      b.getPosition().translate(-b.getWidth(), 0);
                 }else if(d == Direction.DOWN){
-                     b = new FlyingEnemyBullet(new Point (position.x+width/2,position.y+heigth+10),"bullet",1,d);
+                     b = new FlyingEnemyBullet(new Point (position.x+width/2,position.y+height+10),"bullet"+id,1,d);
                      b.getPosition().translate(-b.getWidth(), 0);
                 }
                 

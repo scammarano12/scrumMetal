@@ -40,8 +40,8 @@ public class PlayerArmorDecorator extends PowerUpDecorator implements Drawable{
         super(player);
         player.unDraw();
         maxHealth = player.getMaxHealth();
-        right = SolidObject.loadImage("src/resources/powerUp/playerArmorRight.png");
-        left  = SolidObject.loadImage("src/resources/powerUp/playerArmorLeft.png");
+        right = SolidObject.loadImage("src/resources/powerUp/playerArmorRight.png",game.GameSettings.PlayerArmorDecorator.width,game.GameSettings.PlayerArmorDecorator.height);
+        left  = SolidObject.loadImage("src/resources/powerUp/playerArmorLeft.png",game.GameSettings.PlayerArmorDecorator.width,game.GameSettings.PlayerArmorDecorator.height);
         int current = player.getMaxHealth() * multiplier;
         //System.out.println("vita con moltiplicatore" + current);
         player.setMaxHealth(current);
@@ -69,7 +69,7 @@ public class PlayerArmorDecorator extends PowerUpDecorator implements Drawable{
     public Image getDraw() {
         if(p.isAlive()){
         Image img = p.getDraw();
-        BufferedImage armor = new BufferedImage(p.getSolidObject().getWidth(),p.getSolidObject().getHeigth(),BufferedImage.TRANSLUCENT);
+        BufferedImage armor = new BufferedImage(p.getSolidObject().getWidth(),p.getSolidObject().getHeight(),BufferedImage.TRANSLUCENT);
         Graphics g = armor.createGraphics();
         
         g.drawImage(img, 0, 0, null);

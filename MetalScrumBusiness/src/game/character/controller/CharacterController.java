@@ -38,10 +38,10 @@ public abstract class CharacterController{
         
     }
     
-    public void startLucaHaDecisoCosi(){
+    public void startShoot(){
         //vuoto
     }
-    public void stopLucaHaDecisoCosi(){
+    public void stopShoot(){
         //vuoto
     }
     

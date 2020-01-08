@@ -51,16 +51,35 @@ public class GameLevel {
 
     public synchronized void nextStage() {
         System.out.println("nextstage :"+Thread.currentThread().getName());
-        
         this.stageNumber++;
+        
     }
+    
+    public synchronized void nextLevel() {
+        System.out.println("nextLevel :"+Thread.currentThread().getName());
+        this.levelNumber++;
+        
+    }
+    public synchronized boolean checkNextLevel() {
+        System.out.println("checknextLevel :"+Thread.currentThread().getName());
+       
+        if((levelNumber-1) < 3 )
+            return true;
+        else{
+            levelNumber = 1;
+            return false;
+        }
+        
+    }
+    
+    
     
     
     
     public synchronized boolean checkNextStage(){
        System.out.println("check :"+Thread.currentThread().getName());
         //return 
-        if((stageNumber-1)<stageLimit)
+        if((stageNumber-1)<stageLimit )
             return true;
         else{
             stageNumber = 1;
@@ -71,17 +90,20 @@ public class GameLevel {
     public synchronized Map<String,List<Point>> createStage(){
         System.out.println("create :"+Thread.currentThread().getName());
         Scene.getInstance().setBackground(new ImageIcon("src/resources/Levels/Level"+levelNumber+"/background.png").getImage().getScaledInstance(GameSettings.FrameDimension.width,GameSettings.FrameDimension.height, Image.SCALE_DEFAULT));
+        
         HashMap<String,List<Point>> positions = new HashMap<>();
         LinkedList<Point> enemy = new LinkedList<>();
         LinkedList<Point> player = new LinkedList<>();
         LinkedList<Point> fenemy = new LinkedList<>();
+        LinkedList<Point> boss= new LinkedList<>();
+        LinkedList<Point> flyingBoss= new LinkedList<>();
         try {
             System.out.println("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
             
             Reader is = new FileReader("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
             Scanner s = new Scanner(is);
             int width =GameSettings.BlockDimension.width;
-            int heigth =GameSettings.BlockDimension.height;
+            int height =GameSettings.BlockDimension.height;
             int j =0;
             int count = 0;
             int last = 0;
@@ -98,8 +120,8 @@ public class GameLevel {
                     }else{
                         if((last>0 && c!='\t')){
                         
-                        Block b = new Block(new Point((count-last)*width,j*heigth),width*last ,heigth,"block");
-                        
+                        Block b = new Block(new Point((count-last)*width,j*height),width*last ,height,"block","src/resources/Levels/Level"+levelNumber+"/platform.png");
+                      
                         b.draw();
                         b.activeCollision();
                        
@@ -107,36 +129,46 @@ public class GameLevel {
                         }
                     }
                     if(c=='p'){
-                        player.add(new Point(count*width,j*heigth));
+                        player.add(new Point(count*width,j*height));
                         count++;
                     }
                     if(c=='0'){
                         count++;
                     }
                     if(c=='e'){
-                         enemy.add(new Point(count*width,j*heigth));
+                         enemy.add(new Point(count*width,j*height));
                          count++;
                          
                     }
                     if(c=='f'){
-                         fenemy.add(new Point(count*width,j*heigth));
+                         fenemy.add(new Point(count*width,j*height));
                          count++;
                          
                     }
                     if(c=='a'){
-                         ArmorPowerUp ap = new ArmorPowerUp(new Point(count*width,j*heigth),12,12,"powerUp");
+                         ArmorPowerUp ap = new ArmorPowerUp(new Point(count*width,j*height),GameSettings.ArmorPowerUp.width,GameSettings.ArmorPowerUp.height,"powerUp");
                          ap.draw();
                          ap.activeCollision();
                          count++;
                     
                     }
+                    if(c=='b'){
+                        boss.add(new Point(count*width,j*height));
+                        count++;
+                        
+                    }
                     if(c=='w'){
-                        WeaponPowerUp wp = new WeaponPowerUp(new Point(count*width,j*heigth),14,20,"powerUp");
+                        WeaponPowerUp wp = new WeaponPowerUp(new Point(count*width,j*height),GameSettings.WeaponPowerUp.width,GameSettings.WeaponPowerUp.height,"powerUp");
                         wp.draw();
                         wp.activeCollision();
                        
                          count++;
                     }
+                    if(c=='r'){
+                        flyingBoss.add(new Point(count*width,j*height));
+                        count++; 
+                    }
+                    
                 }
                 j++;
             }
@@ -154,13 +186,18 @@ public class GameLevel {
         positions.put("p", player);
         positions.put("e", enemy);
         positions.put("f", fenemy);
-        
+        positions.put("b", boss);
+        positions.put("r", flyingBoss);
         return positions;
     }
 
-    public void setLevel(int i, int i0) {
+    public synchronized void setLevel(int i, int i0) {
         this.stageNumber=i0 ;
         this.levelNumber= i ; 
+    }
+    public synchronized int getLevel(){
+    
+        return levelNumber;
     }
 
     

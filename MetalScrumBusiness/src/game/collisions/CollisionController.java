@@ -105,19 +105,21 @@ public class CollisionController {
                     if (subjectHitBox.y  > objHitBox.y ) {
                         collision.setTop(true);
                         
+                        
                     }
                     if (subjectHitBox.y + subjectHitBox.height == objHitBox.y + 1) {
                         collision.setDown(true);
-                       
+                        
                     }
                     
                     if ( subjectHitBox.x+subjectHitBox.width-1 == objHitBox.x && (subjectHitBox.y+subjectHitBox.height -1 > objHitBox.y || subjectHitBox.y < objHitBox.y + objHitBox.height)) {
                         
                         collision.setRigth(true);
-                        
+                       
                     }
                     if (subjectHitBox.x == objHitBox.x + objHitBox.width - 1 && (subjectHitBox.y+subjectHitBox.height -1 > objHitBox.y || subjectHitBox.y < objHitBox.y + objHitBox.height)) {
                         collision.setLeft(true);
+                        
                     }
                     }
                     
@@ -135,7 +137,13 @@ public class CollisionController {
                c.getSubject().setCollision(c);
             
             if(!c.getObject().isEmpty() ) {
-                c.getObject().forEach(o -> o.setCollision(c));
+                for (SolidObject so : c.getObject()){
+                    if(!(so.getId().equals("player"))){
+                        
+                        so.setCollision(c);
+                    }
+                }
+              
             }
             
         }

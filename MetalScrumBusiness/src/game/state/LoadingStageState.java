@@ -14,16 +14,24 @@ import game.collisions.CollisionController;
 import game.state.stateListeners.EndStateListener;
 import game.levels.GameLevel;
 import game.GameSettings;
+import game.character.AereoBossEnemy;
+import game.character.BossEnemy;
 import game.character.PlayerInterface;
 import game.character.Enemy;
 import game.character.FlyingEnemy;
+import game.character.controller.AereoBossEnemyController;
+import game.character.controller.BossEnemyController;
 
 import game.character.controller.CharacterController;
 import game.character.controller.EnemyController;
 import game.character.controller.FlyingEnemyController;
 import game.character.controller.PlayerController;
+import game.character.state.FlyingEnemyState.AereoBossStopLeft;
 import game.character.state.FlyingEnemyState.FlyingEnemyWalkRight;
+import game.character.state.enemyState.BossStopLeft;
 import game.character.state.enemyState.EnemyWalkRight;
+import game.objects.AereoBossEnemyWeapon;
+import game.objects.BossEnemyWeapon;
 import game.scene.Scene;
 import game.objects.Weapon;
 import java.util.HashMap;
@@ -85,7 +93,7 @@ public class LoadingStageState implements State{
                     controller = new EnemyController(100,300);
                 }
                 else{
-                    enemy = new FlyingEnemy(positions.get(i),GameSettings.EnemyDimension.width,GameSettings.EnemyDimension.height,"enemy",2,new Weapon(2));
+                    enemy = new FlyingEnemy(positions.get(i),GameSettings.FlyingEnemyDimension.width,GameSettings.FlyingEnemyDimension.height,"enemy",2,new Weapon(2));
                     enemy.setState(new FlyingEnemyWalkRight());
                     controller = new FlyingEnemyController(100,300);
                 }
@@ -104,6 +112,42 @@ public class LoadingStageState implements State{
         
         
         }
+        
+        public void initBoss(List<Point> position,String type){
+            
+            for(int i=0; i<position.size(); i++){
+                
+                Enemy enemy = null;
+                
+                CharacterController controller = null;
+                //Aggiunto SSS
+                if(type.equals("b")){
+                    
+                    enemy = new BossEnemy(position.get(i),GameSettings.BossDimension.width,GameSettings.BossDimension.height,"boss",10,new BossEnemyWeapon(90));
+                    controller = new BossEnemyController();
+                    enemy.setState(new BossStopLeft());
+                    
+                }
+                if(type.equals("r")){
+                    enemy = new AereoBossEnemy(position.get(i),GameSettings.AereoBossDimension.width,GameSettings.AereoBossDimension.height,"boss",10,new AereoBossEnemyWeapon(6));
+                    enemy.setState(new AereoBossStopLeft());
+                    controller = new AereoBossEnemyController();
+                }
+               
+                
+                controllers.add(controller);
+                controller.addMovable(enemy);
+                
+                //associare all'enemy un timer per spostarsi e sparare!
+                enemy.draw();
+               
+                enemy.activeCollision();
+            
+                //CollisionSystem.addCollisionObject(enemy);
+            }
+        }
+        
+        
         public void initStage(){
             controllers = new LinkedList<>();
 
@@ -111,6 +155,8 @@ public class LoadingStageState implements State{
             initPlayer( l.get("p").get(0) , player);
             initEnemy(l.get("e"),"e");
             initEnemy(l.get("f"),"f");
+            initBoss(l.get("b"),"b");
+            initBoss(l.get("r"),"r");
         
              
     }

@@ -67,7 +67,7 @@ public class WeaponTest {
         int width = 14;
         int heigth = 6;
         Weapon instance1 = new Weapon(rateo);
-        Bullet result = instance1.shoot(position, d, width, heigth);
+        Bullet result = instance1.shoot(position, d, width, heigth, "bullet");
         assertNotEquals("Se sparo, bisogna che l'oggetto result sia diverso da null", null, result);    //La prima volta può sparare (1 volta) (seppur il tempo non è iniziato a scorrere, perché fa SystemCurrent-0 che sarà sicuramente > 1000/rateo ).
     }
     
@@ -80,7 +80,7 @@ public class WeaponTest {
 
         int bull=0;
         while(System.currentTimeMillis()-time < 1000){  //entreremo finché il tempo trascorso è minore di 1 secondo. Spareremo tante volte, ma solo 2 (rateo) proiettili dovrebbero partire in un secondo (il primo a 0 e il secondo a 0,5 secondi).
-            Bullet result = instance.shoot(position, d, width, heigth);
+            Bullet result = instance.shoot(position, d, width, heigth, "bullet");
             //System.out.println("Provo a sparare!!");
             if(result!=null)
                 bull++;
@@ -99,7 +99,7 @@ public class WeaponTest {
         int heigth = 30;
         
         while(System.currentTimeMillis()-time < 1000){  //entreremo finché il tempo trascorso è minore di 1 secondo. Spareremo tante volte, ma solo 2 (rateo) proiettili dovrebbero partire in un secondo (il primo a 0 e il secondo a 0,5 secondi).
-            Bullet result = instance.shoot(position, d, width, heigth);
+            Bullet result = instance.shoot(position, d, width, heigth, "bullet");
             //System.out.println("Provo a sparare!!");
             
             if(result==null){

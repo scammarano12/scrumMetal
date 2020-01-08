@@ -18,9 +18,9 @@ import java.awt.Point;
  */
 public class WeaponPowerUp extends SolidObject implements Drawable {
     
-    public WeaponPowerUp(Point position, int width, int heigth, String id) {
-        super(position, width, heigth, id);
-        image = SolidObject.loadImage("src/resources/powerUp/weapon.png");
+    public WeaponPowerUp(Point position, int width, int height, String id) {
+        super(position, width, height, id);
+        image = SolidObject.loadImage("src/resources/powerUp/weapon.png",game.GameSettings.WeaponPowerUp.width,game.GameSettings.WeaponPowerUp.height);
     }
 
     public Image getImg() {

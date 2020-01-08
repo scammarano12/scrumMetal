@@ -23,8 +23,8 @@ import java.util.List;
 public class FlyingEnemy extends Enemy {
     private LinkedList<Image> helicopter;
    
-    public FlyingEnemy(Point position, int width, int heigth, String id, int health, Weapon weapon) {
-        super(position, width, heigth, id, health, weapon);
+    public FlyingEnemy(Point position, int width, int height, String id, int health, Weapon weapon) {
+        super(position, width, height, id, health, weapon);
          helicopter = new LinkedList<>();
         initAnimation(2);
        
@@ -37,7 +37,7 @@ public class FlyingEnemy extends Enemy {
         for(int i =1 ;i<12 ;i++){
              
             
-             Image animation = SolidObject.loadImage("./src/resources/nemicovolante/"+i+".png");
+            Image animation = SolidObject.loadImage("./src/resources/nemicovolante/"+i+".png",game.GameSettings.FlyingEnemyDimension.width,game.GameSettings.FlyingEnemyDimension.height);
             for(int a = 0 ; a < step; a++){
                 
                 helicopter.addFirst(animation);
@@ -52,7 +52,7 @@ public class FlyingEnemy extends Enemy {
     
     @Override
     public void shoot(){
-        Bullet b = weapon.shoot(position, Direction.DOWN,this.width,this.heigth);
+        Bullet b = weapon.shoot(position, Direction.DOWN,this.width,this.height,this.getId());
         if(b!=null)
             bullets.add(b);
         
@@ -61,7 +61,7 @@ public class FlyingEnemy extends Enemy {
     @Override
     public Image getDraw(){
         Image actual = state.nextImage();
-        BufferedImage completeSkin = new BufferedImage(this.width,this.heigth,BufferedImage.TRANSLUCENT);
+        BufferedImage completeSkin = new BufferedImage(this.width,this.height,BufferedImage.TRANSLUCENT);
         Graphics g = completeSkin.createGraphics();
         Image img = helicopter.removeLast();
         helicopter.addFirst(img);

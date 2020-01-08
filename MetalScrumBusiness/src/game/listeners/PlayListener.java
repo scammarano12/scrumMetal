@@ -10,6 +10,7 @@ import game.state.LoadingLevelState;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import game.frame.Application;
+import game.levels.GameLevel;
 import game.state.State;
 
 /**
@@ -27,6 +28,7 @@ public class PlayListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             
                 //context.end();
+                context.getCurrentGameLevel().setLevel(1, 1);
                 State s = new LoadingLevelState(context.getCurrentGameLevel());
                 s.setListener(new LoadedLevelListener(context));
                

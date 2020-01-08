@@ -26,10 +26,10 @@ public class EnemyStopLeft extends CharacterState {
         
     }
     
-    private void setAnimation(){
+    protected void setAnimation(){
         
        
-        Image stop = SolidObject.loadImage("src/resources/nemico1/fermo/fermoSinistra.png");
+        Image stop = SolidObject.loadImage("src/resources/nemico1/fermo/fermoSinistra.png",game.GameSettings.EnemyDimension.width,game.GameSettings.EnemyDimension.height);
         listImage.add(stop);
         
         
