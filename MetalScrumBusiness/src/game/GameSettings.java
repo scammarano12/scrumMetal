@@ -26,5 +26,5 @@ public class GameSettings {
     public static Rectangle ArmorPowerUp = new Rectangle(40,48);
     public static Rectangle PlayerArmorDecorator = new Rectangle(40,48);
     public static Rectangle WeaponPowerUp = new Rectangle(40,48);
-    
+    public static Rectangle AereoBossDimension = new Rectangle(200,240);
 }

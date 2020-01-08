@@ -95,6 +95,7 @@ public class GameLevel {
         LinkedList<Point> player = new LinkedList<>();
         LinkedList<Point> fenemy = new LinkedList<>();
         LinkedList<Point> boss= new LinkedList<>();
+        LinkedList<Point> flyingBoss= new LinkedList<>();
         try {
             System.out.println("src/resources/Levels/Level"+levelNumber+"/stage"+stageNumber+".txt");
             
@@ -162,6 +163,10 @@ public class GameLevel {
                        
                          count++;
                     }
+                    if(c=='r'){
+                        flyingBoss.add(new Point(count*width,j*height));
+                        count++; 
+                    }
                     
                 }
                 j++;
@@ -181,12 +186,17 @@ public class GameLevel {
         positions.put("e", enemy);
         positions.put("f", fenemy);
         positions.put("b", boss);
+        positions.put("r", flyingBoss);
         return positions;
     }
 
-    public void setLevel(int i, int i0) {
+    public synchronized void setLevel(int i, int i0) {
         this.stageNumber=i0 ;
         this.levelNumber= i ; 
+    }
+    public synchronized int getLevel(){
+    
+        return levelNumber;
     }
 
     

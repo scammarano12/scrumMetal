@@ -27,9 +27,11 @@ public class RestartListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             
-
+            int level = context.getCurrentGameLevel().getLevel();
+            context.getCurrentGameLevel().setLevel(level, 1);
             State s= new LoadingLevelState(context.getCurrentGameLevel());
             s.setListener(new LoadedLevelListener(context));
+            
             context.setStatus(s);
             //GameStatus.setGameStatus(1);
             

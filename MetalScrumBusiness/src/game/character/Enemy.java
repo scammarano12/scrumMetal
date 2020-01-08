@@ -31,8 +31,7 @@ public class Enemy extends Character {
     
     @Override
     public void setCollision(Collision c){
-        super.setCollision(c);
-        
+       super.setCollision(c);
        for(SolidObject so : c.getObject()){
         if(so!=null){
         String id = so.getId();
