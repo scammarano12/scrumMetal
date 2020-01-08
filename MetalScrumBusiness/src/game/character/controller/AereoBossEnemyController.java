@@ -46,7 +46,7 @@ public class AereoBossEnemyController extends CharacterController implements Act
  
     
     public AereoBossEnemyController(){ 
-        stopLeft = new AereoBossStopLeft();
+        stopLeft = new BossStopLeft();
         this.timer = new Timer(2000, this);
         timer.start();
          
