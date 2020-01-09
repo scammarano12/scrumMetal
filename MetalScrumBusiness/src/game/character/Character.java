@@ -1,17 +1,14 @@
 package game.character;
 
-import game.character.state.CharacterState;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
-import game.objects.Bullet;
 import game.collisions.CollisionController;
 import game.objects.movable.Direction;
 import game.scene.Drawable;
 import game.objects.movable.Movable;
 import game.objects.SolidObject;
-import game.objects.Weapon;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import javax.sound.sampled.AudioInputStream;

@@ -6,14 +6,14 @@
 package game;
 
 import game.frame.Application;
-import game.state.StartMenuState;
-import game.listeners.GameListener;
-import game.listeners.PlayLevelOverListener;
-import game.listeners.PlayListener;
-import game.listeners.PlayStageListener;
-import game.listeners.QuitListener;
-import game.listeners.RestartListener;
-import game.listeners.ResumeListener;
+import game.frame.state.StartMenuState;
+import game.frame.listeners.GameListener;
+import game.frame.listeners.PlayLevelOverListener;
+import game.frame.listeners.PlayListener;
+import game.frame.listeners.PlayStageListener;
+import game.frame.listeners.QuitListener;
+import game.frame.listeners.RestartListener;
+import game.frame.listeners.ResumeListener;
 import game.menu.MenuGameOver;
 import game.menu.MenuLevelTerminated;
 import game.menu.MenuPause;

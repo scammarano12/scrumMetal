@@ -5,7 +5,7 @@
  */
 package game.character;
 
-import game.objects.Weapon;
+import game.character.enemy.Enemy;
 import java.awt.Point;
 
 /**

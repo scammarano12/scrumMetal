@@ -5,9 +5,8 @@
  */
 package game.character;
 
-import game.objects.Bullet;
+import game.character.enemy.Enemy;
 import game.objects.SolidObject;
-import game.objects.Weapon;
 import game.objects.movable.Direction;
 import java.awt.Graphics;
 import java.awt.Image;

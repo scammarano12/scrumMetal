@@ -5,10 +5,10 @@
  */
 package game.levels;
 
-import game.powerUp.ArmorPowerUp;
+import game.charater.player.powerUp.ArmorPowerUp;
 import game.scene.Scene;
 import game.GameSettings;
-import game.powerUp.WeaponPowerUp;
+import game.charater.player.powerUp.WeaponPowerUp;
 import game.objects.Block;
 import game.frame.Application;
 import java.awt.Color;

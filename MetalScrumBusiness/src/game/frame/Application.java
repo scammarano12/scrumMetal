@@ -6,7 +6,7 @@
 package game.frame;
 
 
-import game.state.State;
+import game.frame.state.State;
 import game.menu.MenuGameOver;
 import game.menu.MenuLevelTerminated;
 import game.menu.MenuPause;
@@ -27,9 +27,9 @@ import javax.sound.sampled.Clip;
 import game.collisions.CollisionController;
 import game.levels.GameLevel;
 import game.GameSettings;
-import game.character.PlayerInterface;
+import game.character.player.PlayerInterface;
 
-import game.character.controller.CharacterController;
+import game.character.CharacterController;
 import game.scene.Scene;
 
 /**

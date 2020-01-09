@@ -2,7 +2,7 @@ package game.menu;
 
 
 import game.GameSettings;
-import game.character.PlayerInterface;
+import game.character.player.PlayerInterface;
 
 import game.objects.SolidObject;
 import game.scene.Drawable;
