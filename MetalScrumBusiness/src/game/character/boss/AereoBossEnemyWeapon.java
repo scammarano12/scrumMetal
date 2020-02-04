@@ -13,7 +13,7 @@ import java.awt.Point;
 
 /**
  *
- * @author lucap & alberto
+ * @author luca pomposelli 
  */
 public class AereoBossEnemyWeapon extends Weapon {
     

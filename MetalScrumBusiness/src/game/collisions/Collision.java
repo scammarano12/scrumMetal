@@ -11,23 +11,24 @@ import java.util.List;
 
 /**
  *
- * @author stefano
+ * @author luca pomposelli
  */
 public class Collision {
+
     private boolean left;
     private boolean rigth;
     private boolean top;
     private boolean down;
     private SolidObject subject;
     private List<SolidObject> object;
-    
-    public Collision(SolidObject subject,SolidObject object, boolean left,boolean rigth,boolean top,boolean down){
-        this.left=left;
-        this.rigth=rigth;
+
+    public Collision(SolidObject subject, SolidObject object, boolean left, boolean rigth, boolean top, boolean down) {
+        this.left = left;
+        this.rigth = rigth;
         this.down = down;
         this.top = top;
-        this.subject=subject;
-        this.object= new LinkedList<>();
+        this.subject = subject;
+        this.object = new LinkedList<>();
     }
 
     public boolean isLeft() {
@@ -83,9 +84,4 @@ public class Collision {
         return "Collision{" + "left=" + left + ", rigth=" + rigth + ", top=" + top + ", down=" + down + ", subject=" + subject + ", object=" + object + '}';
     }
 
-   
-    
-    
-    
-    
 }

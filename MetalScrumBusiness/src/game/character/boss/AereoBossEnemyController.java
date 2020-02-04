@@ -26,7 +26,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author lucap
+ * @author luca pomposelli
  */
 public class AereoBossEnemyController extends CharacterController implements ActionListener{
     
