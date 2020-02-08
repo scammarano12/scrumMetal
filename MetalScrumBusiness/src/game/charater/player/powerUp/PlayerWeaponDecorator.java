@@ -6,19 +6,9 @@
 package game.charater.player.powerUp;
 
 import game.character.player.PlayerInterface;
-import game.character.CharacterState;
-import game.character.player.PlayerArmoredState;
-import game.collisions.Collision;
-import game.character.Bullet;
-import game.objects.SolidObject;
 import game.character.Weapon;
-import game.objects.movable.Direction;
-import game.objects.movable.Movable;
-import java.awt.Image;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import javax.swing.Timer;
 
 /**
@@ -34,8 +24,7 @@ public class PlayerWeaponDecorator extends PowerUpDecorator implements ActionLis
     private Timer timer;
     
     public PlayerWeaponDecorator(PlayerInterface p) {
-       super(p);
-        this.p = p;
+        super(p);
         rateoMultiplier = 3;
         weapon = p.getWeapon();
         currentRateo = weapon.getRateo();

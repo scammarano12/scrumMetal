@@ -20,9 +20,10 @@ import java.util.List;
 
 /**
  *
- * @author stefano
+ * @author SimonePadula
  */
 public interface PlayerInterface {
+    
     public void setState(CharacterState s);
     public void draw();
     public void unDraw();

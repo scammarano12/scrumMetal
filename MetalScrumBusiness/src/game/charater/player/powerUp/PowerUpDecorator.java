@@ -15,7 +15,6 @@ import game.objects.movable.Direction;
 import game.objects.movable.Movable;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.util.List;
@@ -25,10 +24,10 @@ import javax.sound.sampled.Clip;
 
 /**
  *
- * @author stefano
+ * @author SimonePadula
  */
 public class PowerUpDecorator implements PlayerInterface{
-    protected PlayerInterface p;
+    private PlayerInterface p;
     private Clip sound ;
     
     public PowerUpDecorator(PlayerInterface p){
@@ -106,7 +105,7 @@ public class PowerUpDecorator implements PlayerInterface{
 
     @Override
     public SolidObject getSolidObject() {
-        return this.p.getSolidObject();
+        return p.getSolidObject();
     }
 
     @Override

@@ -15,7 +15,7 @@ import java.awt.Point;
 
 /**
  *
- * @author stefano
+ * @author  SimonePadula
  */
 public class ArmorPowerUp extends SolidObject implements Drawable {
        private final int  animation = 20;

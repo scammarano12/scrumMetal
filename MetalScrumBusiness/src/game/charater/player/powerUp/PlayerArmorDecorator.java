@@ -24,13 +24,14 @@ import java.util.List;
 
 /**
  *
- * @author stefano
+ * @author  SimonePadula
  */
 public class PlayerArmorDecorator extends PowerUpDecorator implements Drawable{
     
     private Image left;
     private Image right;
     private int maxHealth;
+    private PlayerInterface p;
     
     
     private final int multiplier = 3; 
@@ -38,6 +39,7 @@ public class PlayerArmorDecorator extends PowerUpDecorator implements Drawable{
     
     public PlayerArmorDecorator(PlayerInterface player){
         super(player);
+        this.p = player;
         player.unDraw();
         maxHealth = player.getMaxHealth();
         right = SolidObject.loadImage("src/resources/powerUp/playerArmorRight.png",game.GameSettings.PlayerArmorDecorator.width,game.GameSettings.PlayerArmorDecorator.height);

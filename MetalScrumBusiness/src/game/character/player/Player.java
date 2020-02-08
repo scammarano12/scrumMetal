@@ -28,10 +28,12 @@ public class Player extends Character implements PlayerInterface {
     }
 
     
+    @Override
     public synchronized int getMaxHealth(){
         return playerHealth;
     }
     
+    @Override
     public synchronized void setMaxHealth(int max){
         playerHealth=max;
     }
@@ -39,6 +41,7 @@ public class Player extends Character implements PlayerInterface {
   
 
     
+    @Override
     public boolean hasLives(){
         
             
@@ -53,6 +56,8 @@ public class Player extends Character implements PlayerInterface {
         
         
     }
+    
+    @Override
     public int getNumberOfLife(){
         return numberOfLife;
     }

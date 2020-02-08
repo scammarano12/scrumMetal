@@ -23,10 +23,8 @@ public class WeaponPowerUp extends SolidObject implements Drawable {
         image = SolidObject.loadImage("src/resources/powerUp/weapon.png",game.GameSettings.WeaponPowerUp.width,game.GameSettings.WeaponPowerUp.height);
     }
 
-    public Image getImg() {
-        return image;
-    }
 
+    @Override
     public void setCollision(Collision c){
         super.setCollision(c);
         if(c.getSubject().getId().equals("player")){
@@ -36,6 +34,7 @@ public class WeaponPowerUp extends SolidObject implements Drawable {
             pi = new PlayerWeaponDecorator(pi);
         }
     }
+    
     
     @Override
     public Image getDraw() {
