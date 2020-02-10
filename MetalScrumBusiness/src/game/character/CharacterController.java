@@ -11,7 +11,7 @@ import game.objects.movable.Movable;
 
 /**
  *
- * @author stefano
+ * @author SimonePadula
  */
 public abstract class CharacterController{
     

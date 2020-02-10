@@ -30,7 +30,7 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author stefano
+ * @author Salvatore Reina
  */
 public class GameLevel {
     

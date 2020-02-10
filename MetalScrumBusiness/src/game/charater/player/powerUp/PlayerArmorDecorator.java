@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  *
- * @author  SimonePadula
+ * @author  Salvatore Reina
  */
 public class PlayerArmorDecorator extends PowerUpDecorator implements Drawable{
     

@@ -5,8 +5,6 @@
  */
 package game.character.player;
 
-
-import game.character.player.PlayerWalkRight;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.SwingUtilities;
@@ -15,22 +13,17 @@ import game.collisions.Collision;
 import game.objects.movable.Direction;
 import game.GameSettings;
 import game.character.CharacterController;
-import game.character.player.PlayerInterface;
-import game.character.player.PlayerStopLeft;
-import game.character.player.PlayerStopRight;
-import game.character.player.PlayerWalkLeft;
 import game.objects.movable.Movable;
 import game.frame.listeners.PlayerDeadListener;
 
 /**
  *
- * @author stefano
+ * @author SimonePadula
  */
 public class PlayerController extends CharacterController implements KeyListener {
 
     private PlayerDeadListener listener;
     private boolean avaiable = false;
-    
 
     public PlayerController() {
         stopLeft = new PlayerStopLeft();
@@ -39,13 +32,9 @@ public class PlayerController extends CharacterController implements KeyListener
         walkLeft = new PlayerWalkLeft();
     }
 
-  
-    
-    
-
     public void setListener(PlayerDeadListener listener) {
         this.listener = listener;
-       
+
     }
 
     @Override
@@ -54,57 +43,55 @@ public class PlayerController extends CharacterController implements KeyListener
     }
 
     @Override
-    public void keyPressed (KeyEvent e) {
-        //System.out.print("stefano è bello");
-        if(characters.size()>0){
-        PlayerInterface p = (PlayerInterface) characters.get(0);
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_SPACE:
-                shoot = true;
-                break;
-            case KeyEvent.VK_LEFT:
-                p.setState(walkLeft);
-                dx = -1;
-                break;
-            case KeyEvent.VK_RIGHT:
-                p.setState(walkRight);
-                
-                dx = 1;
-                break;
-            case KeyEvent.VK_UP:
-                if (avaiable) {
-                    dy = -15;
-                    avaiable = false;
-                }
+    public void keyPressed(KeyEvent e) {
+        if (characters.size() > 0) {
+            PlayerInterface p = (PlayerInterface) characters.get(0);
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_SPACE:
+                    shoot = true;
+                    break;
+                case KeyEvent.VK_LEFT:
+                    p.setState(walkLeft);
+                    dx = -1;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    p.setState(walkRight);
+                    dx = 1;
+                    break;
+                case KeyEvent.VK_UP:
+                    if (avaiable) {
+                        dy = -15;
+                        avaiable = false;
+                    }
 
-                break;
+                    break;
 
-        }
+            }
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if(characters.size()>0){
-        PlayerInterface p = (PlayerInterface) characters.get(0);
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_SPACE:
-                shoot = false;
-                break;
-            case KeyEvent.VK_LEFT:
-                p.setState(stopLeft);
-                dx = 0;
-                break;
-            case KeyEvent.VK_RIGHT:
-                p.setState(stopRight);
-                dx = 0;
-                break;
-            case KeyEvent.VK_UP:
-                dy = 0;
-                break;
+        if (characters.size() > 0) {
+            PlayerInterface p = (PlayerInterface) characters.get(0);
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_SPACE:
+                    shoot = false;
+                    break;
+                case KeyEvent.VK_LEFT:
+                    p.setState(stopLeft);
+                    dx = 0;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    p.setState(stopRight);
+                    dx = 0;
+                    break;
+                case KeyEvent.VK_UP:
+                    dy = 0;
+                    break;
 
+            }
         }
-    }
     }
 
     @Override
@@ -118,8 +105,8 @@ public class PlayerController extends CharacterController implements KeyListener
                 }
                 Collision collision = p.getCollision();
                 if (dx > 0 && !collision.isRigth() || dx < 0 && !collision.isLeft()) {
-                       
-                       p.move(dx, 0);
+
+                    p.move(dx, 0);
                 }
                 if (dy != gravitylv) {
                     dy += gravitylv;
@@ -138,9 +125,9 @@ public class PlayerController extends CharacterController implements KeyListener
                         b.setActive(false);
                         b.unDraw();
                         b.stopCollision();
-                    } else if (b.getDirection()== Direction.LEFT) {
+                    } else if (b.getDirection() == Direction.LEFT) {
                         b.move(-10, 0);
-                    } else if (b.getDirection()== Direction.RIGHT) {
+                    } else if (b.getDirection() == Direction.RIGHT) {
                         b.move(10, 0);
                     }
                 }
@@ -148,18 +135,19 @@ public class PlayerController extends CharacterController implements KeyListener
             } else {
                 if (p.hasLives()) {
                     SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    listener.playerHealthLevelEnded();//To change body of generated methods, choose Tools | Templates.
-                }
-            });
-                    
+                        @Override
+                        public void run() {
+                            listener.playerHealthLevelEnded();//To change body of generated methods, choose Tools | Templates.
+                        }
+                    });
+
                 } else {
                     SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    listener.playerDead();
-                }});
+                        @Override
+                        public void run() {
+                            listener.playerDead();
+                        }
+                    });
                 }
                 p.unDraw();
                 p.stopCollision();

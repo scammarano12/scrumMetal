@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author luca pomposelli
+ * @author Sabato Reina
  */
 public class CollisionController {
 
